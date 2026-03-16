@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <script>
+  (function(){
+    var t = sessionStorage.getItem('nx_auth');
+    if (t !== 'amFjQG51bm94LmlvOm51bm9YOTM2MjM2NDI=') {
+      window.location.replace('index.html');
+    }
+  })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nunox Business Dashboard 2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; background: #0d1117; color: #c9d1d9; min-height: 100vh; }
+    
+    header {
+      background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+      padding: 20px 40px;
+      border-bottom: 1px solid #21262d;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo { font-size: 26px; font-weight: 900; letter-spacing: -1px; }
+    .logo span { background: linear-gradient(135deg, #58a6ff, #bc8cff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    header .meta { text-align: right; }
+    header .meta h1 { font-size: 15px; font-weight: 600; color: #e6edf3; }
+    header .meta .gen { font-size: 11px; color: #484f58; margin-top: 3px; }
+
+    .container { max-width: 1440px; margin: 0 auto; padding: 32px 40px; }
+    
+    .section-title {
+      font-size: 11px; font-weight: 600; color: #484f58;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      margin: 36px 0 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: #21262d; }
+
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+    .kpi {
+      background: #161b22; border: 1px solid #21262d; border-radius: 10px;
+      padding: 18px 20px; position: relative; overflow: hidden;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .kpi:hover { border-color: #30363d; transform: translateY(-1px); }
+    .kpi.accent { border-color: #1f6feb; }
+    .kpi.accent::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background: linear-gradient(90deg, #58a6ff, #bc8cff); }
+    .kpi .label { font-size: 11px; color: #484f58; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+    .kpi .value { font-size: 26px; font-weight: 700; color: #e6edf3; line-height: 1; }
+    .kpi.accent .value { background: linear-gradient(135deg, #58a6ff, #bc8cff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .kpi .sub { font-size: 11px; color: #484f58; margin-top: 6px; }
+
+    .progress-bar { height: 4px; background: #21262d; border-radius: 2px; margin-top: 10px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #58a6ff, #bc8cff); border-radius: 2px; transition: width 0.6s ease; }
+
+    .charts-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 16px; }
+    .chart-card {
+      background: #161b22; border: 1px solid #21262d; border-radius: 10px;
+      padding: 20px 24px;
+    }
+    .chart-card h3 { font-size: 11px; font-weight: 600; color: #484f58; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+    .chart-card canvas { max-height: 260px; }
+
+    .table-card { background: #161b22; border: 1px solid #21262d; border-radius: 10px; overflow: hidden; margin-top: 16px; }
+    .table-card h3 { font-size: 11px; font-weight: 600; color: #484f58; text-transform: uppercase; letter-spacing: 1px; padding: 16px 20px; border-bottom: 1px solid #21262d; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { background: #0d1117; color: #484f58; font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; padding: 10px 20px; text-align: left; border-bottom: 1px solid #21262d; }
+    td { padding: 11px 20px; border-bottom: 1px solid #161b22; color: #c9d1d9; }
+    tr:hover td { background: #1c2128; }
+    tr:last-child td { border-bottom: none; }
+    .highlight-text { color: #58a6ff; font-weight: 600; }
+
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+    .badge-active { background: #1a4e2e; color: #3fb950; }
+    .badge-dead   { background: #3d1f23; color: #f85149; }
+    .badge-pending { background: #2d2a14; color: #e3b341; }
+    .badge-unknown { background: #21262d; color: #8b949e; }
+
+    footer { text-align: center; padding: 40px; color: #21262d; font-size: 11px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><span>Nunox</span></div>
+  <div class="meta">
+    <h1>Business Dashboard · 2026</h1>
+    <div class="gen">Generated 2026/3/16 上午10:40:54 (Taipei)</div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Customers -->
+  <div class="section-title">Customers</div>
+  <div class="kpi-grid" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); max-width: 640px;">
+    <div class="kpi accent">
+      <div class="label">Total Existing Customers</div>
+      <div class="value">36</div>
+    </div>
+    <div class="kpi">
+      <div class="label">New (Mar)</div>
+      <div class="value">4</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Recurrent</div>
+      <div class="value">19</div>
+    </div>
+    <div class="kpi">
+      <div class="label">New (All Time)</div>
+      <div class="value">16</div>
+    </div>
+  </div>
+
+  <!-- Revenue -->
+  <div class="section-title">Revenue</div>
+  <div class="kpi-grid">
+    <div class="kpi accent">
+      <div class="label">YTD Revenue 2026</div>
+      <div class="value">$57.5K</div>
+      <div class="sub">Goal: $1.00M · 5.8% achieved</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:5.8%"></div></div>
+    </div>
+    <div class="kpi">
+      <div class="label">Revenue This Month</div>
+      <div class="value">$39.4K</div>
+      <div class="sub">Mar 2026</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Recurrent Revenue YTD</div>
+      <div class="value">$132.5K</div>
+    </div>
+    <div class="kpi accent">
+      <div class="label">MRR</div>
+      <div class="value">$21.7K</div>
+    </div>
+    <div class="kpi accent">
+      <div class="label">ARR</div>
+      <div class="value">$260.4K</div>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="section-title">Revenue Trend</div>
+  <div class="charts-grid">
+    <div class="chart-card">
+      <h3>Monthly Revenue 2026</h3>
+      <canvas id="revenueBar"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Pipeline by Stage (Deal Count)</h3>
+      <canvas id="pipelinePie"></canvas>
+    </div>
+  </div>
+
+  <!-- Quarterly Chart -->
+  <div class="section-title">Quarterly Revenue</div>
+  <div class="charts-grid" style="grid-template-columns: 1fr 1fr;">
+    <div class="chart-card">
+      <h3>Quarterly Revenue vs Goal 2026</h3>
+      <canvas id="quarterBar"></canvas>
+    </div>
+    <div class="kpi-grid" style="grid-template-columns: 1fr 1fr; align-content: start; gap: 12px;">
+      
+      <div class="kpi accent">
+        <div class="label">Q1 2026</div>
+        <div class="value">$57.5K</div>
+        <div class="sub">Goal: $75.0K</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:76.7%"></div></div>
+      </div>
+      <div class="kpi ">
+        <div class="label">Q2 2026</div>
+        <div class="value">$0</div>
+        <div class="sub">Goal: $225.0K</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:0.0%"></div></div>
+      </div>
+      <div class="kpi ">
+        <div class="label">Q3 2026</div>
+        <div class="value">$0</div>
+        <div class="sub">Goal: $410.0K</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:0.0%"></div></div>
+      </div>
+      <div class="kpi ">
+        <div class="label">Q4 2026</div>
+        <div class="value">$0</div>
+        <div class="sub">Goal: $290.0K</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:0.0%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sales Pipeline -->
+  <div class="section-title">Sales Pipeline</div>
+  <div class="kpi-grid" style="max-width: 800px;">
+    <div class="kpi">
+      <div class="label">Total Leads Revenue</div>
+      <div class="value">$1.02M</div>
+      <div class="sub">All deal values</div>
+    </div>
+    <div class="kpi accent">
+      <div class="label">Weighted Pipeline</div>
+      <div class="value">$356.5K</div>
+      <div class="sub">Probability-adjusted</div>
+    </div>
+    <div class="kpi accent">
+      <div class="label">Est. Revenue 2026</div>
+      <div class="value">$414.0K</div>
+      <div class="sub">YTD + Weighted Pipeline</div>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <h3>Pipeline Breakdown by Stage</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Stage</th>
+          <th>Leads</th>
+          <th>Total Value</th>
+          <th>Probability</th>
+          <th>Weighted Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+    <tr>
+      <td><span class="badge badge-active">Active</span></td>
+      <td>54</td>
+      <td>$622.9K</td>
+      <td>-</td>
+      <td class="highlight-text">$205.4K</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-closed">Closed</span></td>
+      <td>6</td>
+      <td>$265.2K</td>
+      <td>10%</td>
+      <td class="highlight-text">$137.6K</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-pending">Pending</span></td>
+      <td>12</td>
+      <td>$84.7K</td>
+      <td>-</td>
+      <td class="highlight-text">$13.5K</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-dead">Dead</span></td>
+      <td>10</td>
+      <td>$45.0K</td>
+      <td>-</td>
+      <td class="highlight-text">$0</td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/3/16 上午10:40:54 (Taipei)</footer>
+
+<script>
+const chartDefaults = {
+  responsive: true,
+  plugins: { legend: { display: false } },
+  scales: {
+    x: { ticks: { color: '#484f58', font: { size: 11 } }, grid: { color: '#21262d' } },
+    y: { ticks: { color: '#484f58', font: { size: 11 }, callback: v => v>=1000? '$'+(v/1000).toFixed(0)+'K' : '$'+v }, grid: { color: '#21262d' } }
+  }
+};
+
+// Revenue Bar
+new Chart(document.getElementById('revenueBar'), {
+  type: 'bar',
+  data: {
+    labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    datasets: [
+      {
+        label: 'Revenue',
+        data: [14861,3212.5,39436.53,0,0,0,0,0,0,0,0,0],
+        backgroundColor: ctx => {
+          const i = ctx.dataIndex;
+          return i === 2 ? 'rgba(88,166,255,0.85)' : 'rgba(88,166,255,0.3)';
+        },
+        borderColor: '#58a6ff',
+        borderWidth: 1,
+        borderRadius: 4,
+      },
+      {
+        label: 'Monthly Goal',
+        data: [83333.33333333333,83333.33333333333,83333.33333333333,83333.33333333333,83333.33333333333,83333.33333333333,83333.33333333333,83333.33333333333,83333.33333333333,83333.33333333333,83333.33333333333,83333.33333333333],
+        type: 'line',
+        borderColor: 'rgba(188,140,255,0.5)',
+        borderWidth: 1.5,
+        borderDash: [4,4],
+        pointRadius: 0,
+        fill: false,
+      }
+    ]
+  },
+  options: { ...chartDefaults, plugins: { legend: { display: true, labels: { color: '#484f58', font: { size: 11 }, boxWidth: 12 } } } }
+});
+
+// Quarterly Bar
+new Chart(document.getElementById('quarterBar'), {
+  type: 'bar',
+  data: {
+    labels: ['Q1','Q2','Q3','Q4'],
+    datasets: [
+      {
+        label: 'Actual',
+        data: [57510.03,0,0,0],
+        backgroundColor: ['rgba(88,166,255,0.8)','rgba(88,166,255,0.4)','rgba(88,166,255,0.2)','rgba(88,166,255,0.1)'],
+        borderColor: '#58a6ff',
+        borderWidth: 1,
+        borderRadius: 4,
+      },
+      {
+        label: 'Goal',
+        data: [75000,225000,410000,290000],
+        backgroundColor: 'transparent',
+        borderColor: 'rgba(188,140,255,0.5)',
+        borderWidth: 2,
+        borderRadius: 4,
+        type: 'bar',
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: true, labels: { color: '#484f58', font: { size: 11 }, boxWidth: 12 } } },
+    scales: {
+      x: { ticks: { color: '#484f58', font: { size: 12 } }, grid: { color: '#21262d' } },
+      y: { ticks: { color: '#484f58', font: { size: 11 }, callback: v => v>=1000? '$'+(v/1000).toFixed(0)+'K' : '$'+v }, grid: { color: '#21262d' } }
+    }
+  }
+});
+
+// Pipeline Pie
+new Chart(document.getElementById('pipelinePie'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Dead','Active','Pending','Closed'],
+    datasets: [{
+      data: [10,54,12,6],
+      backgroundColor: ['#3fb950','#f85149','#e3b341','#58a6ff','#bc8cff','#79c0ff','#d2a8ff'],
+      borderColor: '#161b22',
+      borderWidth: 3,
+    }]
+  },
+  options: {
+    responsive: true,
+    cutout: '65%',
+    plugins: {
+      legend: { position: 'bottom', labels: { color: '#8b949e', padding: 14, font: { size: 11 }, boxWidth: 12 } }
+    }
+  }
+});
+</script>
+</body>
+</html>

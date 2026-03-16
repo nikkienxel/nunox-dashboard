@@ -4,4 +4,3 @@ package.json
 server.js
 fetch-data.js
 build-index.js
-dashboard.html
