@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <script>
-  (function(){
-    var t = sessionStorage.getItem('nx_auth');
-    if (t !== 'amFjQG51bm94LmlvOm51bm9YOTM2MjM2NDI=') {
-      window.location.replace('index.html');
-    }
-  })();
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nunox Business Dashboard 2026</title>
@@ -88,7 +80,7 @@
   <div class="logo"><span>Nunox</span></div>
   <div class="meta">
     <h1>Business Dashboard · 2026</h1>
-    <div class="gen">Generated 2026/3/16 上午10:40:54 (Taipei)</div>
+    <div class="gen">Generated 2026/3/16 上午11:23:46 (Taipei)</div>
   </div>
 </header>
 
@@ -96,10 +88,14 @@
 
   <!-- Customers -->
   <div class="section-title">Customers</div>
-  <div class="kpi-grid" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); max-width: 640px;">
+  <div class="kpi-grid" style="grid-template-columns: repeat(4, 1fr); max-width: 800px;">
     <div class="kpi accent">
       <div class="label">Total Existing Customers</div>
       <div class="value">36</div>
+    </div>
+    <div class="kpi accent">
+      <div class="label">New (2026)</div>
+      <div class="value">16</div>
     </div>
     <div class="kpi">
       <div class="label">New (Mar)</div>
@@ -108,10 +104,6 @@
     <div class="kpi">
       <div class="label">Recurrent</div>
       <div class="value">19</div>
-    </div>
-    <div class="kpi">
-      <div class="label">New (All Time)</div>
-      <div class="value">16</div>
     </div>
   </div>
 
@@ -136,10 +128,12 @@
     <div class="kpi accent">
       <div class="label">MRR</div>
       <div class="value">$21.7K</div>
+      <div class="sub">Repeating revenue · Mar</div>
     </div>
     <div class="kpi accent">
       <div class="label">ARR</div>
       <div class="value">$260.4K</div>
+      <div class="sub">MRR × 12 (estimated)</div>
     </div>
   </div>
 
@@ -260,7 +254,7 @@
 
 </div>
 
-<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/3/16 上午10:40:54 (Taipei)</footer>
+<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/3/16 上午11:23:46 (Taipei)</footer>
 
 <script>
 const chartDefaults = {
