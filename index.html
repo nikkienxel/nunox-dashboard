@@ -64,28 +64,20 @@ function doLogin() {
   const p = document.getElementById('pwd').value;
   if (btoa(u + ':' + p) === _T) {
     sessionStorage.setItem('nx_auth', _T);
-    showDashboard();
+    window.location.href = 'dashboard.html';
   } else {
     document.getElementById('err').textContent = 'Incorrect email or password.';
   }
 }
 document.addEventListener('DOMContentLoaded', function() {
+  // If already logged in, go straight to dashboard
+  if (sessionStorage.getItem('nx_auth') === _T) {
+    window.location.href = 'dashboard.html';
+    return;
+  }
   document.getElementById('login-form').addEventListener('submit', doLogin);
   document.getElementById('login-btn').addEventListener('click', doLogin);
 });
-function showDashboard() {
-  document.getElementById('login-wrap').style.display = 'none';
-  const wrap = document.getElementById('dashboard-wrap');
-  wrap.innerHTML = getDashboard();
-  wrap.style.display = 'block';
-  // Re-run scripts inside injected HTML
-  wrap.querySelectorAll('script').forEach(old => {
-    const s = document.createElement('script');
-    if (old.src) { s.src = old.src; } else { s.textContent = old.textContent; }
-    document.head.appendChild(s);
-    old.remove();
-  });
-}
 function getDashboard() { return `<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
