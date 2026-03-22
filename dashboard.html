@@ -4,13 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nunox Business Dashboard 2026</title>
-  <script>
-    // Auth guard — redirect to login if not authenticated
-    const _T = 'amFjQG51bm94LmlvOm51bm9YOTM2MjM2NDI=';
-    if (sessionStorage.getItem('nx_auth') !== _T) {
-      window.location.replace('index.html');
-    }
-  </script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -87,7 +80,11 @@
   <div class="logo"><span>Nunox</span></div>
   <div class="meta">
     <h1>Business Dashboard · 2026</h1>
-    <div class="gen">Generated 2026/3/23 上午6:02:03 (Taipei)</div>
+    <div class="gen" style="display:flex;align-items:center;gap:8px;">
+      <span>Generated 2026/3/23 上午7:35:40 (Taipei)</span>
+      <!-- 🔄 Refresh: reloads page. Future: replace with /api/refresh call to re-run fetch-data.js -->
+      <button onclick="window.location.reload()" title="Reload dashboard" style="background:none;border:1px solid #30363d;color:#8b949e;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:11px;line-height:1.4;">🔄 Refresh</button>
+    </div>
   </div>
 </header>
 
@@ -98,11 +95,11 @@
   <div class="kpi-grid" style="grid-template-columns: repeat(4, 1fr); max-width: 800px;">
     <div class="kpi accent">
       <div class="label">Total Existing Customers</div>
-      <div class="value">36</div>
+      <div class="value">0</div>
     </div>
     <div class="kpi accent">
       <div class="label">New (2026)</div>
-      <div class="value">16</div>
+      <div class="value">0</div>
     </div>
     <div class="kpi">
       <div class="label">New (Mar)</div>
@@ -110,7 +107,7 @@
     </div>
     <div class="kpi">
       <div class="label">Recurrent</div>
-      <div class="value">19</div>
+      <div class="value">0</div>
     </div>
   </div>
 
@@ -135,7 +132,7 @@
     </div>
     <div class="kpi accent">
       <div class="label">ARR</div>
-      <div class="value">$72.6K</div>
+      <div class="value">$0</div>
       <div class="sub">Software revenue 2025+2026 YTD</div>
     </div>
     <div class="kpi" style="border-color:#f85149;">
@@ -199,17 +196,17 @@
   <div class="kpi-grid" style="max-width: 800px;">
     <div class="kpi">
       <div class="label">Total Leads Revenue</div>
-      <div class="value">$1.05M</div>
-      <div class="sub">All deal values</div>
+      <div class="value">$769.2K</div>
+      <div class="sub">All deal values (excl. Closed)</div>
     </div>
     <div class="kpi accent">
       <div class="label">Weighted Pipeline</div>
-      <div class="value">$349.0K</div>
-      <div class="sub">Probability-adjusted</div>
+      <div class="value">$203.5K</div>
+      <div class="sub">Probability-adjusted (excl. Closed)</div>
     </div>
     <div class="kpi accent">
       <div class="label">Est. Revenue 2026</div>
-      <div class="value">$417.1K</div>
+      <div class="value">$271.7K</div>
       <div class="sub">YTD + Weighted Pipeline</div>
     </div>
   </div>
@@ -230,17 +227,17 @@
         
     <tr>
       <td><span class="badge badge-active">Active</span></td>
-      <td>50</td>
-      <td>$583.8K</td>
+      <td>49</td>
+      <td>$571.5K</td>
       <td>-</td>
-      <td class="highlight-text">$173.8K</td>
+      <td class="highlight-text">$165.9K</td>
     </tr>
-    <tr>
-      <td><span class="badge badge-closed">Closed</span></td>
-      <td>6</td>
-      <td>$265.2K</td>
+    <tr style="opacity:0.55">
+      <td><span class="badge badge-closed">Closed</span> <small style="color:#8b949e">(已計入收入)</small></td>
+      <td>7</td>
+      <td>$275.2K</td>
       <td>10%</td>
-      <td class="highlight-text">$137.6K</td>
+      <td class="highlight-text">-</td>
     </tr>
     <tr>
       <td><span class="badge badge-pending">Pending</span></td>
@@ -260,9 +257,127 @@
     </table>
   </div>
 
+  <!-- Category Breakdown -->
+  <div class="card" style="margin-top:16px;">
+    <h3>Pipeline by Customer Category <small style="color:#8b949e;font-weight:400">(excl. Closed)</small></h3>
+    <table>
+      <thead><tr>
+        <th>Category</th>
+        <th>Leads</th>
+        <th>Total Value</th>
+        <th>Weighted Value</th>
+      </tr></thead>
+      <tbody>
+        
+    <tr>
+      <td>T2 - Textile (Apparel)</td>
+      <td>32</td>
+      <td>$405.6K</td>
+      <td class="highlight-text">$136.3K</td>
+    </tr>
+    <tr>
+      <td>T2 - Textiel (Footwear)</td>
+      <td>1</td>
+      <td>$27.5K</td>
+      <td class="highlight-text">$19.3K</td>
+    </tr>
+    <tr>
+      <td>T1 & T2 - Apparel</td>
+      <td>3</td>
+      <td>$75.0K</td>
+      <td class="highlight-text">$12.5K</td>
+    </tr>
+    <tr>
+      <td>T1 - Apparel</td>
+      <td>8</td>
+      <td>$81.0K</td>
+      <td class="highlight-text">$12.3K</td>
+    </tr>
+    <tr>
+      <td>Software Provider</td>
+      <td>3</td>
+      <td>$21.0K</td>
+      <td class="highlight-text">$10.5K</td>
+    </tr>
+    <tr>
+      <td>Brand</td>
+      <td>13</td>
+      <td>$98.0K</td>
+      <td class="highlight-text">$5.8K</td>
+    </tr>
+    <tr>
+      <td>Others</td>
+      <td>1</td>
+      <td>$28.0K</td>
+      <td class="highlight-text">$2.8K</td>
+    </tr>
+    <tr>
+      <td>Service Provider</td>
+      <td>4</td>
+      <td>$15.4K</td>
+      <td class="highlight-text">$2.1K</td>
+    </tr>
+    <tr>
+      <td>T2 - Furniture/Accessory</td>
+      <td>6</td>
+      <td>$12.3K</td>
+      <td class="highlight-text">$1.2K</td>
+    </tr>
+    <tr>
+      <td>Acadamic</td>
+      <td>1</td>
+      <td>$4.2K</td>
+      <td class="highlight-text">$420</td>
+    </tr>
+    <tr>
+      <td>Designer Brand</td>
+      <td>2</td>
+      <td>$1.2K</td>
+      <td class="highlight-text">$360</td>
+    </tr>
+    <tr>
+      <td>Uncategorized</td>
+      <td>1</td>
+      <td>$0</td>
+      <td class="highlight-text">$0</td>
+    </tr>
+    <tr>
+      <td>?</td>
+      <td>2</td>
+      <td>$0</td>
+      <td class="highlight-text">$0</td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>
 
-<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/3/23 上午6:02:03 (Taipei)</footer>
+<!-- Weekly Sales Review -->
+<div style="max-width:1200px;margin:32px auto;padding:0 24px;">
+  <div class="card" style="border-left:3px solid #58a6ff;">
+    <h3 style="margin-bottom:16px;">📊 本週業務回顧 Weekly Sales Review</h3>
+    <div style="line-height:1.8;color:#c9d1d9;white-space:pre-wrap;">### 本週業務回顧報告
+
+1. **本週業務動能：**
+   - 本週的業務動能需要關注。雖然本月營收達到$50.0K，但年初至今累計營收（YTD）僅達到年度目標的6.8%。這表示目前的營收增長速度遠低於預期。
+
+2. **做得好的地方與需要改善的地方：**
+   - **做得好的地方：** 本月營收表現出色，達到$50.0K，顯示出在某些客戶類別中的銷售策略可能有效。
+   - **需要改善的地方：** Q2至Q4的進度完全為零，這意味著未來幾個季度的壓力巨大。需要加強對Active和Pending項目的轉化，以提高達成目標的可能性。
+
+3. **達成年度目標的可能性評估：**
+   - 目前加權後預估總年收為$271.7K，遠低於年度目標$1,000,000。基於現有的pipeline，達成年度目標的可能性較低，需大幅增加pipeline的加權金額。
+
+4. **建議：**
+   - 為了有信心達成年度目標$1,000,000，Sales Funnel的加權金額至少需要達到約$1,471.0K。這意味著需要在現有的Active和Pending項目之外，開發更多潛在客戶，並提高現有項目的轉化率。
+
+總結來看，雖然本月營收表現良好，但整體年度目標達成的壓力仍然很大。建議增強市場拓展力度，並優化現有銷售策略以提高pipeline的轉化率。</div>
+    <div style="margin-top:12px;font-size:11px;color:#484f58;">由 GPT-4o 根據最新數據自動生成 · 2026/3/23 上午7:35:40 (Taipei)</div>
+  </div>
+</div>
+
+<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/3/23 上午7:35:40 (Taipei)</footer>
 
 <script>
 const chartDefaults = {
@@ -347,7 +462,7 @@ new Chart(document.getElementById('pipelinePie'), {
   data: {
     labels: ['Dead','Active','Pending','Closed'],
     datasets: [{
-      data: [14,50,14,6],
+      data: [14,49,14,7],
       backgroundColor: ['#3fb950','#f85149','#e3b341','#58a6ff','#bc8cff','#79c0ff','#d2a8ff'],
       borderColor: '#161b22',
       borderWidth: 3,
