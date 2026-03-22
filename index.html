@@ -70,12 +70,16 @@ function doLogin() {
 document.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 function showDashboard() {
   document.getElementById('login-wrap').style.display = 'none';
-  const iframe = document.createElement('iframe');
-  iframe.style.cssText = 'width:100vw;height:100vh;border:none;display:block;';
-  const blob = new Blob([getDashboard()], {type: 'text/html'});
-  iframe.src = URL.createObjectURL(blob);
-  document.getElementById('dashboard-wrap').style.display = 'block';
-  document.getElementById('dashboard-wrap').appendChild(iframe);
+  const wrap = document.getElementById('dashboard-wrap');
+  wrap.innerHTML = getDashboard();
+  wrap.style.display = 'block';
+  // Re-run scripts inside injected HTML
+  wrap.querySelectorAll('script').forEach(old => {
+    const s = document.createElement('script');
+    if (old.src) { s.src = old.src; } else { s.textContent = old.textContent; }
+    document.head.appendChild(s);
+    old.remove();
+  });
 }
 function getDashboard() { return `<!DOCTYPE html>
 <html lang="zh-TW">
