@@ -44,11 +44,13 @@
   <div class="login-card">
     <div class="logo"><span>Nunox</span></div>
     <div class="subtitle">Business Dashboard · Sign in to continue</div>
-    <label>Email</label>
-    <input type="email" id="uid" placeholder="you@nunox.io" autocomplete="username">
-    <label>Password</label>
-    <input type="password" id="pwd" placeholder="••••••••" autocomplete="current-password">
-    <button onclick="doLogin()">Sign In</button>
+    <form id="login-form" onsubmit="return false;">
+      <label>Email</label>
+      <input type="email" id="uid" placeholder="you@nunox.io" autocomplete="username">
+      <label>Password</label>
+      <input type="password" id="pwd" placeholder="••••••••" autocomplete="current-password">
+      <button type="submit" id="login-btn">Sign In</button>
+    </form>
     <div class="error" id="err"></div>
   </div>
 </div>
@@ -67,7 +69,10 @@ function doLogin() {
     document.getElementById('err').textContent = 'Incorrect email or password.';
   }
 }
-document.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('login-form').addEventListener('submit', doLogin);
+  document.getElementById('login-btn').addEventListener('click', doLogin);
+});
 function showDashboard() {
   document.getElementById('login-wrap').style.display = 'none';
   const wrap = document.getElementById('dashboard-wrap');
