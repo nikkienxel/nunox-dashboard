@@ -61,7 +61,7 @@ function doLogin() {
   const u = document.getElementById('uid').value.trim();
   const p = document.getElementById('pwd').value;
   if (btoa(u + ':' + p) === _T) {
-    sessionStorage.setItem('nx_auth', _T);
+    localStorage.setItem('nx_auth', _T);
     showDashboard();
   } else {
     document.getElementById('err').textContent = 'Incorrect email or password.';
@@ -561,7 +561,7 @@ new Chart(document.getElementById('pipelinePie'), {
 </script>
 </body>
 </html>`; }
-if (sessionStorage.getItem('nx_auth') === _T) {
+if (localStorage.getItem('nx_auth') === _T) {
   document.addEventListener('DOMContentLoaded', showDashboard);
 }
 </script>
