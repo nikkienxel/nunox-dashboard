@@ -61,7 +61,7 @@ function doLogin() {
   const u = document.getElementById('uid').value.trim();
   const p = document.getElementById('pwd').value;
   if (btoa(u + ':' + p) === _T) {
-    localStorage.setItem('nx_auth', _T);
+    sessionStorage.setItem('nx_auth', _T);
     showDashboard();
   } else {
     document.getElementById('err').textContent = 'Incorrect email or password.';
@@ -160,7 +160,7 @@ function getDashboard() { return `<!DOCTYPE html>
   <div class="meta">
     <h1>Business Dashboard · 2026</h1>
     <div class="gen" style="display:flex;align-items:center;gap:8px;">
-      <span>Generated 2026/3/30 上午6:00:06 (Taipei)</span>
+      <span>Generated 2026/4/13 下午9:52:04 (Taipei)</span>
       <!-- 🔄 Refresh: reloads page. Future: replace with /api/refresh call to re-run fetch-data.js -->
       <button onclick="window.location.reload()" title="Reload dashboard" style="background:none;border:1px solid #30363d;color:#8b949e;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:11px;line-height:1.4;">🔄 Refresh</button>
     </div>
@@ -181,8 +181,8 @@ function getDashboard() { return `<!DOCTYPE html>
       <div class="value">16</div>
     </div>
     <div class="kpi">
-      <div class="label">New (Mar)</div>
-      <div class="value">5</div>
+      <div class="label">New (Apr)</div>
+      <div class="value">0</div>
     </div>
     <div class="kpi">
       <div class="label">Recurrent</div>
@@ -195,14 +195,14 @@ function getDashboard() { return `<!DOCTYPE html>
   <div class="kpi-grid">
     <div class="kpi accent">
       <div class="label">YTD Revenue 2026</div>
-      <div class="value">\$68.2K</div>
+      <div class="value">\$68.4K</div>
       <div class="sub">Goal: \$1.00M · 6.8% achieved</div>
       <div class="progress-bar"><div class="progress-fill" style="width:6.8%"></div></div>
     </div>
     <div class="kpi">
       <div class="label">Revenue This Month</div>
-      <div class="value">\$50.0K</div>
-      <div class="sub">Mar 2026</div>
+      <div class="value">\$0</div>
+      <div class="sub">Apr 2026</div>
     </div>
     <div class="kpi">
       <div class="label">Recurring Revenue (2026 YTD)</div>
@@ -211,12 +211,12 @@ function getDashboard() { return `<!DOCTYPE html>
     </div>
     <div class="kpi accent">
       <div class="label">ARR</div>
-      <div class="value">\$72.6K</div>
+      <div class="value">\$72.8K</div>
       <div class="sub">Software revenue 2025+2026 YTD</div>
     </div>
     <div class="kpi" style="border-color:#f85149;">
       <div class="label" style="color:#f85149;">Outstanding Balance</div>
-      <div class="value" style="color:#f85149;">\$62.4K</div>
+      <div class="value" style="color:#f85149;">\$61.2K</div>
       <div class="sub" style="color:#6e2020;">Unpaid invoices</div>
     </div>
   </div>
@@ -245,9 +245,9 @@ function getDashboard() { return `<!DOCTYPE html>
       
       <div class="kpi accent">
         <div class="label">Q1 2026</div>
-        <div class="value">\$68.2K</div>
+        <div class="value">\$68.4K</div>
         <div class="sub">Goal: \$75.0K</div>
-        <div class="progress-bar"><div class="progress-fill" style="width:90.9%"></div></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:91.2%"></div></div>
       </div>
       <div class="kpi ">
         <div class="label">Q2 2026</div>
@@ -285,7 +285,7 @@ function getDashboard() { return `<!DOCTYPE html>
     </div>
     <div class="kpi accent">
       <div class="label">Est. Revenue 2026</div>
-      <div class="value">\$281.7K</div>
+      <div class="value">\$281.9K</div>
       <div class="sub">YTD + Weighted Pipeline</div>
     </div>
   </div>
@@ -306,7 +306,7 @@ function getDashboard() { return `<!DOCTYPE html>
         
     <tr>
       <td><span class="badge badge-active">Active</span></td>
-      <td>50</td>
+      <td>69</td>
       <td>\$621.5K</td>
       <td>-</td>
       <td class="highlight-text">\$175.9K</td>
@@ -350,9 +350,9 @@ function getDashboard() { return `<!DOCTYPE html>
         
     <tr>
       <td>T2 - Textile (Apparel)</td>
-      <td>32</td>
-      <td>\$430.6K</td>
-      <td class="highlight-text">\$143.8K</td>
+      <td>34</td>
+      <td>\$455.6K</td>
+      <td class="highlight-text">\$146.3K</td>
     </tr>
     <tr>
       <td>T2 - Textiel (Footwear)</td>
@@ -391,12 +391,6 @@ function getDashboard() { return `<!DOCTYPE html>
       <td class="highlight-text">\$2.8K</td>
     </tr>
     <tr>
-      <td>Uncategorized</td>
-      <td>2</td>
-      <td>\$25.0K</td>
-      <td class="highlight-text">\$2.5K</td>
-    </tr>
-    <tr>
       <td>Service Provider</td>
       <td>4</td>
       <td>\$15.4K</td>
@@ -421,6 +415,12 @@ function getDashboard() { return `<!DOCTYPE html>
       <td class="highlight-text">\$360</td>
     </tr>
     <tr>
+      <td>Uncategorized</td>
+      <td>19</td>
+      <td>\$0</td>
+      <td class="highlight-text">\$0</td>
+    </tr>
+    <tr>
       <td>?</td>
       <td>2</td>
       <td>\$0</td>
@@ -436,30 +436,25 @@ function getDashboard() { return `<!DOCTYPE html>
 <div style="max-width:1200px;margin:32px auto;padding:0 24px;">
   <div class="card" style="border-left:3px solid #58a6ff;">
     <h3 style="margin-bottom:16px;">📊 本週業務回顧 Weekly Sales Review</h3>
-    <div style="line-height:1.8;color:#c9d1d9;white-space:pre-wrap;">### 本週業務回顧報告
+    <div style="line-height:1.8;color:#c9d1d9;white-space:pre-wrap;">**本週業務回顧報告**
 
-1. **本週業務動能**
-   - 需關注：雖然本月營收達到 \$50.0K，但年初至今累計營收僅達成年度目標的 6.8%，顯示出營收進度嚴重落後。
+1. **本週業務動能：**
+   - 需關注。本月營收為零，年度目標達成率僅為6.8%，顯示業務動能不足，需加強推動。
 
-2. **做得好的地方與需要改善的地方**
-   - 做得好的地方：
-     - 本月 \$50.0K 的營收顯示出一定的市場需求和銷售潛力。
-     - Active pipeline 中有 50 筆交易，總金額達 \$621.5K，顯示出潛在業務發展的可能性。
-   - 需要改善的地方：
-     - Dead pipeline 的 14 筆交易，總金額達 \$45.0K，顯示出需要加強客戶互動和提升成交率。
-     - Q2 至 Q4 無任何營收，反映出需要更積極的季度規劃和客戶開發策略。
+2. **做得好的地方與需要改善的地方：**
+   - 做得好的地方：Active pipeline 總金額達 \$621.5K，顯示潛在商機仍具一定規模，其中 T2 - Textile (Apparel) 部門表現相對突出，顯示該市場具潛力。
+   - 需要改善的地方：Q2 至 Q4 目標進度停滯，顯示在轉化商機為實際營收方面存在困難，需提高客戶成交率。
 
-3. **以現有 pipeline，達成年度目標的可能性評估**
-   - 目前加權後預估總年收為 \$281.7K，距離年度目標 \$1,000,000 仍有較大差距，達成年度目標的可能性不高。
-   - Active 和 Pending pipeline 的加權金額總計為 \$213.5K，仍不足以填補與目標的差距。
+3. **達成年度目標的可能性評估：**
+   - 以現有 pipeline 與加權後預估總年收 \$281.9K 相比，距離年度目標 \$1,000,000 尚有較大差距，達成目標的可能性較低，需加大開發新客戶與提升成交率的力度。
 
-4. **建議：Sales Funnel 的加權金額需要達到多少，才能有信心達成目標**
-   - 需要將加權後預估總年收至少提高到 \$1,000,000，考慮到現有加權預估 \$281.7K，尚需額外 \$718.3K 的加權金額才能有信心達成年度目標。建議加強對高潛力客戶的追蹤與談判，並開發新的市場機會以達成此目標。</div>
-    <div style="margin-top:12px;font-size:11px;color:#484f58;">由 GPT-4o 根據最新數據自動生成 · 2026/3/30 上午6:00:06 (Taipei)</div>
+4. **建議：**
+   - 為有信心達成年度目標，Sales Funnel 的加權金額至少需要達到 \$1,200,000。這樣才能在考慮到可能的成交率和市場變動的情況下，保證達成 \$1,000,000 的年度營收目標。需特別關注高潛力市場如 T2 - Textile (Apparel)，並加強市場開發與銷售策略調整。</div>
+    <div style="margin-top:12px;font-size:11px;color:#484f58;">由 GPT-4o 根據最新數據自動生成 · 2026/4/13 下午9:52:04 (Taipei)</div>
   </div>
 </div>
 
-<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/3/30 上午6:00:06 (Taipei)</footer>
+<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/4/13 下午9:52:04 (Taipei)</footer>
 
 <script>
 const chartDefaults = {
@@ -479,10 +474,10 @@ new Chart(document.getElementById('revenueBar'), {
     datasets: [
       {
         label: 'Revenue',
-        data: [14907,3227.55,50015.56,0,0,0,0,0,0,0,0,0],
+        data: [14988,3246,50183,0,0,0,0,0,0,0,0,0],
         backgroundColor: ctx => {
           const i = ctx.dataIndex;
-          return i === 2 ? 'rgba(88,166,255,0.85)' : 'rgba(88,166,255,0.3)';
+          return i === 3 ? 'rgba(88,166,255,0.85)' : 'rgba(88,166,255,0.3)';
         },
         borderColor: '#58a6ff',
         borderWidth: 1,
@@ -511,7 +506,7 @@ new Chart(document.getElementById('quarterBar'), {
     datasets: [
       {
         label: 'Actual',
-        data: [68150.11,0,0,0],
+        data: [68417,0,0,0],
         backgroundColor: ['rgba(88,166,255,0.8)','rgba(88,166,255,0.4)','rgba(88,166,255,0.2)','rgba(88,166,255,0.1)'],
         borderColor: '#58a6ff',
         borderWidth: 1,
@@ -544,7 +539,7 @@ new Chart(document.getElementById('pipelinePie'), {
   data: {
     labels: ['Dead','Active','Pending','Closed'],
     datasets: [{
-      data: [14,50,14,7],
+      data: [14,69,14,7],
       backgroundColor: ['#3fb950','#f85149','#e3b341','#58a6ff','#bc8cff','#79c0ff','#d2a8ff'],
       borderColor: '#161b22',
       borderWidth: 3,
@@ -561,7 +556,7 @@ new Chart(document.getElementById('pipelinePie'), {
 </script>
 </body>
 </html>`; }
-if (localStorage.getItem('nx_auth') === _T) {
+if (sessionStorage.getItem('nx_auth') === _T) {
   document.addEventListener('DOMContentLoaded', showDashboard);
 }
 </script>
