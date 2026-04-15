@@ -40,6 +40,11 @@ build-index.js      → index.html 構建腳本（已不常用）
 - Customers Satus sheet: row[2]=customer, row[3]=status, row[2]=label(Total/New/Recurrent), row[3]=value
 - Detail Records sheet: col B(idx 1)=customer, col D(idx 3)=type, col E(idx 4)=date, col H(idx 7)=product, col AB(idx 27)=Total NunoX Revenue, col AD(idx 29)=Outstanding
 
+## 已知問題修復紀錄
+- **2026-04-15**: 第三次 login 失敗
+  - 根本原因：`build-index.js` 用 `sessionStorage`（應為 `localStorage`），且未 escape `</script>` in template literal → HTML parser 在第一個 `</script>` 就截斷外層 script block，導致 `doLogin` 變成 `undefined`
+  - 修復：`build-index.js` 改 `localStorage` + 用 `<\x2fscript>` escape；`weekly_update.sh` 加入 `node build-index.js` step 確保每次更新同步修復 `index.html`
+
 ## 自動排程
 - launchd: `com.nunox.dashboard-weekly-update`
 - 時間: 每週一 8:00 AM 台北時間
