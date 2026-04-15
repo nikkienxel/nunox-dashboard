@@ -61,7 +61,7 @@ function doLogin() {
   const u = document.getElementById('uid').value.trim();
   const p = document.getElementById('pwd').value;
   if (btoa(u + ':' + p) === _T) {
-    sessionStorage.setItem('nx_auth', _T);
+    localStorage.setItem('nx_auth', _T);
     showDashboard();
   } else {
     document.getElementById('err').textContent = 'Incorrect email or password.';
@@ -83,7 +83,7 @@ function getDashboard() { return `<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nunox Business Dashboard 2026</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"><\/script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; background: #0d1117; color: #c9d1d9; min-height: 100vh; }
@@ -553,10 +553,10 @@ new Chart(document.getElementById('pipelinePie'), {
     }
   }
 });
-</script>
+<\/script>
 </body>
 </html>`; }
-if (sessionStorage.getItem('nx_auth') === _T) {
+if (localStorage.getItem('nx_auth') === _T) {
   document.addEventListener('DOMContentLoaded', showDashboard);
 }
 </script>
