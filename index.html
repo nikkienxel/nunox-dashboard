@@ -160,7 +160,7 @@ function getDashboard() { return `<!DOCTYPE html>
   <div class="meta">
     <h1>Business Dashboard · 2026</h1>
     <div class="gen" style="display:flex;align-items:center;gap:8px;">
-      <span>Generated 2026/4/16 上午9:51:08 (Taipei)</span>
+      <span>Generated 2026/4/16 上午10:54:17 (Taipei)</span>
       <!-- 🔄 Refresh: reloads page. Future: replace with /api/refresh call to re-run fetch-data.js -->
       <button onclick="window.location.reload()" title="Reload dashboard" style="background:none;border:1px solid #30363d;color:#8b949e;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:11px;line-height:1.4;">🔄 Refresh</button>
     </div>
@@ -274,9 +274,9 @@ function getDashboard() { return `<!DOCTYPE html>
   <div class="section-title">Sales Pipeline</div>
   <div class="kpi-grid" style="max-width: 800px;">
     <div class="kpi">
-      <div class="label">Total Leads Revenue</div>
-      <div class="value">\$835.7K</div>
-      <div class="sub">All deal values (excl. Closed)</div>
+      <div class="label">Active Leads Revenue</div>
+      <div class="value">\$638.0K</div>
+      <div class="sub">Active pipeline only</div>
     </div>
     <div class="kpi accent">
       <div class="label">Weighted Pipeline</div>
@@ -463,27 +463,29 @@ function getDashboard() { return `<!DOCTYPE html>
 <div style="max-width:1200px;margin:32px auto;padding:0 24px;">
   <div class="card" style="border-left:3px solid #58a6ff;">
     <h3 style="margin-bottom:16px;">📊 本週業務回顧 Weekly Sales Review</h3>
-    <div style="line-height:1.8;color:#c9d1d9;white-space:pre-wrap;">**本週業務回顧報告**
+    <div style="line-height:1.8;color:#c9d1d9;white-space:pre-wrap;">### 本週業務回顧報告
 
 1. **本週業務動能**
-   - 本週業務動能需關注。雖然本月營收為\$78.8K，但年初至今累計營收僅達成13.7%的年度目標，距離年度目標仍有相當距離。
+   - 需關注：以目前數據來看，公司自年初至今的累計營收達到 \$137.4K，僅達成年度目標的 13.7%。特別是 Q2 的營收 \$78.8K，尚未達到季度目標 \$225.0K，顯示出業務成長存在挑戰。
 
 2. **做得好的地方與需要改善的地方**
-   - 做得好的地方：本月營收較上月有顯著提升，顯示出一定的市場拓展能力。
-   - 需要改善的地方：Q2的營收未達目標，且Q3和Q4尚無任何進展，顯示出季度目標的達成有挑戰。Sales Pipeline中Dead項目過多，需優化客戶篩選與追蹤流程。
+   - 做得好的地方：
+     - 在 T2 - Textile (Apparel) 的業務佔據了相當大的比例，總金額達 \$486.8K，加權金額為 \$168.7K，顯示在該領域的市場滲透較為成功。
+   - 需要改善的地方：
+     - Q3 和 Q4 的營收目前皆為 \$0，急需推進業務發展。
+     - Sales Pipeline 中的Dead筆數較多（14筆），需要更有效地篩選潛在客戶。
+     - 其他類別如 T2 - Textiel (Footwear) 和 Designer Brand 的業務量需要進一步拓展。
 
 3. **達成年度目標的可能性評估**
-   - 以現有pipeline的加權後預估總年收為\$389.3K，距離\$1,000,000的年度目標尚有顯著差距，達成目標的可能性低。需加大客戶開發與推進現有商機的力度。
+   - 以現有的加權後預估總年收 \$389.3K 來看，距離年度目標 \$1,000,000 還有相當大的差距。若僅依賴現有 pipeline，達成年度目標的可能性較低，需要積極拓展新客戶和加強現有客戶的轉化效率。
 
-4. **建議**
-   - 為增加達成年度目標的信心，Sales Funnel的加權金額至少需要達到\$610.7K（\$1,000,000 - \$389.3K）。這意味著在現有pipeline基礎上，需要進一步擴大商機，特別是提高Active與Pending項目的加權金額。
-
-綜合以上分析，建議加強市場推廣與客戶管理，確保商機能有效轉化為營收。</div>
-    <div style="margin-top:12px;font-size:11px;color:#484f58;">由 GPT-4o 根據最新數據自動生成 · 2026/4/16 上午9:51:08 (Taipei)</div>
+4. **建議：Sales Funnel 的加權金額目標**
+   - 若希望有信心達成年度目標，Sales Funnel 的加權金額需要達到約 \$1,250,000。這考慮到一些潛在交易可能未能完成，從而提供足夠的緩衝空間以實現既定目標。建議加強對高潛力客戶的跟進和市場拓展策略。</div>
+    <div style="margin-top:12px;font-size:11px;color:#484f58;">由 GPT-4o 根據最新數據自動生成 · 2026/4/16 上午10:54:17 (Taipei)</div>
   </div>
 </div>
 
-<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/4/16 上午9:51:08 (Taipei)</footer>
+<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/4/16 上午10:54:17 (Taipei)</footer>
 
 <script>
 const chartDefaults = {
