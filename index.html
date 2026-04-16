@@ -160,7 +160,7 @@ function getDashboard() { return `<!DOCTYPE html>
   <div class="meta">
     <h1>Business Dashboard · 2026</h1>
     <div class="gen" style="display:flex;align-items:center;gap:8px;">
-      <span>Generated 2026/4/16 上午8:37:01 (Taipei)</span>
+      <span>Generated 2026/4/16 上午9:51:08 (Taipei)</span>
       <!-- 🔄 Refresh: reloads page. Future: replace with /api/refresh call to re-run fetch-data.js -->
       <button onclick="window.location.reload()" title="Reload dashboard" style="background:none;border:1px solid #30363d;color:#8b949e;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:11px;line-height:1.4;">🔄 Refresh</button>
     </div>
@@ -336,6 +336,33 @@ function getDashboard() { return `<!DOCTYPE html>
     </table>
   </div>
 
+  <!-- Probability Tier Breakdown -->
+  <div class="section-title" style="margin-top:36px;">Pipeline by Probability</div>
+  <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);max-width:900px;">
+    
+    <div class="kpi" style="border-color:#3fb950;">
+      <div class="label" style="color:#3fb950;">>80% (High)</div>
+      <div class="value" style="color:#3fb950;font-size:22px;">\$110.0K</div>
+      <div class="sub" style="color:#8b949e;margin-top:4px;">5 leads</div>
+      <div class="sub" style="margin-top:4px;">Weighted: <span style="color:#3fb950;font-weight:600;">\$96.7K</span></div>
+      <div class="progress-bar" style="margin-top:10px;background:#21262d;"><div class="progress-fill" style="width:88.0%;background:#3fb950;"></div></div>
+    </div>
+    <div class="kpi" style="border-color:#e3b341;">
+      <div class="label" style="color:#e3b341;">50~80% (Mid)</div>
+      <div class="value" style="color:#e3b341;font-size:22px;">\$80.1K</div>
+      <div class="sub" style="color:#8b949e;margin-top:4px;">4 leads</div>
+      <div class="sub" style="margin-top:4px;">Weighted: <span style="color:#e3b341;font-weight:600;">\$42.9K</span></div>
+      <div class="progress-bar" style="margin-top:10px;background:#21262d;"><div class="progress-fill" style="width:53.6%;background:#e3b341;"></div></div>
+    </div>
+    <div class="kpi" style="border-color:#f85149;">
+      <div class="label" style="color:#f85149;"><50% (Low)</div>
+      <div class="value" style="color:#f85149;font-size:22px;">\$600.6K</div>
+      <div class="sub" style="color:#8b949e;margin-top:4px;">73 leads</div>
+      <div class="sub" style="margin-top:4px;">Weighted: <span style="color:#f85149;font-weight:600;">\$112.2K</span></div>
+      <div class="progress-bar" style="margin-top:10px;background:#21262d;"><div class="progress-fill" style="width:18.7%;background:#f85149;"></div></div>
+    </div>
+  </div>
+
   <!-- Category Breakdown -->
   <div class="card" style="margin-top:16px;">
     <h3>Pipeline by Customer Category <small style="color:#8b949e;font-weight:400">(excl. Closed)</small></h3>
@@ -436,30 +463,27 @@ function getDashboard() { return `<!DOCTYPE html>
 <div style="max-width:1200px;margin:32px auto;padding:0 24px;">
   <div class="card" style="border-left:3px solid #58a6ff;">
     <h3 style="margin-bottom:16px;">📊 本週業務回顧 Weekly Sales Review</h3>
-    <div style="line-height:1.8;color:#c9d1d9;white-space:pre-wrap;">### 本週業務回顧報告
+    <div style="line-height:1.8;color:#c9d1d9;white-space:pre-wrap;">**本週業務回顧報告**
 
 1. **本週業務動能**
-   - 需關注：截至目前為止，年度目標達成率僅為13.7%，與年度目標\$1,000,000尚有相當距離。
+   - 本週業務動能需關注。雖然本月營收為\$78.8K，但年初至今累計營收僅達成13.7%的年度目標，距離年度目標仍有相當距離。
 
 2. **做得好的地方與需要改善的地方**
-   - 做得好的地方：
-     - 本月營收達到\$78.8K，為年初至今的最高月營收，有助於提升整體營收。
-     - Sales Pipeline中，有68筆活躍案件，總金額達\$638.0K，顯示出較高的潛在業務機會。
-   - 需要改善的地方：
-     - Q1和Q2的營收均未達目標，尤其是Q2，尚有\$146.2K的缺口。
-     - Dead案件數量達14筆，需分析原因以避免未來類似情況。
-     - Textiel (Footwear) 和 Designer Brand等客戶類別的案件數量較少，需擴展客戶基礎。
+   - 做得好的地方：本月營收較上月有顯著提升，顯示出一定的市場拓展能力。
+   - 需要改善的地方：Q2的營收未達目標，且Q3和Q4尚無任何進展，顯示出季度目標的達成有挑戰。Sales Pipeline中Dead項目過多，需優化客戶篩選與追蹤流程。
 
 3. **達成年度目標的可能性評估**
-   - 以目前的加權後預估總年收\$389.3K來看，距離年度目標仍有較大差距，達成目標的可能性偏低，需加強開發新客戶及提升現有案件的成交率。
+   - 以現有pipeline的加權後預估總年收為\$389.3K，距離\$1,000,000的年度目標尚有顯著差距，達成目標的可能性低。需加大客戶開發與推進現有商機的力度。
 
 4. **建議**
-   - 為增加達成年度目標的信心，Sales Funnel的加權金額需達到約\$800K。這將提供充足的潛在業務量來彌補目前的缺口，並增加成功實現目標的可能性。</div>
-    <div style="margin-top:12px;font-size:11px;color:#484f58;">由 GPT-4o 根據最新數據自動生成 · 2026/4/16 上午8:37:01 (Taipei)</div>
+   - 為增加達成年度目標的信心，Sales Funnel的加權金額至少需要達到\$610.7K（\$1,000,000 - \$389.3K）。這意味著在現有pipeline基礎上，需要進一步擴大商機，特別是提高Active與Pending項目的加權金額。
+
+綜合以上分析，建議加強市場推廣與客戶管理，確保商機能有效轉化為營收。</div>
+    <div style="margin-top:12px;font-size:11px;color:#484f58;">由 GPT-4o 根據最新數據自動生成 · 2026/4/16 上午9:51:08 (Taipei)</div>
   </div>
 </div>
 
-<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/4/16 上午8:37:01 (Taipei)</footer>
+<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/4/16 上午9:51:08 (Taipei)</footer>
 
 <script>
 const chartDefaults = {
