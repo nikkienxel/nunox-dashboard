@@ -160,7 +160,7 @@ function getDashboard() { return `<!DOCTYPE html>
   <div class="meta">
     <h1>Business Dashboard · 2026</h1>
     <div class="gen" style="display:flex;align-items:center;gap:8px;">
-      <span>Generated 2026/4/27 上午6:00:09 (Taipei)</span>
+      <span>Generated 2026/4/27 上午8:00:03 (Taipei)</span>
       <!-- 🔄 Refresh: reloads page. Future: replace with /api/refresh call to re-run fetch-data.js -->
       <button onclick="window.location.reload()" title="Reload dashboard" style="background:none;border:1px solid #30363d;color:#8b949e;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:11px;line-height:1.4;">🔄 Refresh</button>
     </div>
@@ -195,13 +195,13 @@ function getDashboard() { return `<!DOCTYPE html>
   <div class="kpi-grid">
     <div class="kpi accent">
       <div class="label">YTD Revenue 2026</div>
-      <div class="value">\$138.2K</div>
+      <div class="value">\$138.3K</div>
       <div class="sub">Goal: \$1.00M · 13.8% achieved</div>
       <div class="progress-bar"><div class="progress-fill" style="width:13.8%"></div></div>
     </div>
     <div class="kpi">
       <div class="label">Revenue This Month</div>
-      <div class="value">\$79.5K</div>
+      <div class="value">\$79.6K</div>
       <div class="sub">Apr 2026</div>
     </div>
     <div class="kpi">
@@ -216,7 +216,7 @@ function getDashboard() { return `<!DOCTYPE html>
     </div>
     <div class="kpi" style="border-color:#f85149;">
       <div class="label" style="color:#f85149;">Outstanding Balance</div>
-      <div class="value" style="color:#f85149;">\$148.2K</div>
+      <div class="value" style="color:#f85149;">\$148.3K</div>
       <div class="sub" style="color:#6e2020;">Unpaid invoices</div>
     </div>
   </div>
@@ -251,9 +251,9 @@ function getDashboard() { return `<!DOCTYPE html>
       </div>
       <div class="kpi accent">
         <div class="label">Q2 2026</div>
-        <div class="value">\$79.5K</div>
+        <div class="value">\$79.6K</div>
         <div class="sub">Goal: \$225.0K</div>
-        <div class="progress-bar"><div class="progress-fill" style="width:35.3%"></div></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:35.4%"></div></div>
       </div>
       <div class="kpi ">
         <div class="label">Q3 2026</div>
@@ -285,7 +285,7 @@ function getDashboard() { return `<!DOCTYPE html>
     </div>
     <div class="kpi accent">
       <div class="label">Est. Revenue 2026</div>
-      <div class="value">\$463.0K</div>
+      <div class="value">\$463.1K</div>
       <div class="sub">YTD + Weighted Pipeline</div>
     </div>
   </div>
@@ -458,11 +458,11 @@ function getDashboard() { return `<!DOCTYPE html>
   <div class="card" style="border-left:3px solid #58a6ff;">
     <h3 style="margin-bottom:16px;">📊 本週業務回顧 Weekly Sales Review</h3>
     <div style="line-height:1.8;color:#c9d1d9;white-space:pre-wrap;">（本週銷售分析暫無資料）</div>
-    <div style="margin-top:12px;font-size:11px;color:#484f58;">由 GPT-4o 根據最新數據自動生成 · 2026/4/27 上午6:00:09 (Taipei)</div>
+    <div style="margin-top:12px;font-size:11px;color:#484f58;">由 GPT-4o 根據最新數據自動生成 · 2026/4/27 上午8:00:03 (Taipei)</div>
   </div>
 </div>
 
-<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/4/27 上午6:00:09 (Taipei)</footer>
+<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/4/27 上午8:00:03 (Taipei)</footer>
 
 <script>
 const chartDefaults = {
@@ -482,7 +482,7 @@ new Chart(document.getElementById('revenueBar'), {
     datasets: [
       {
         label: 'Revenue',
-        data: [5076.99,3261.95,50377.49999999999,79511.61,0,0,0,0,0,0,0,0],
+        data: [5076.99,3263.2,50396.23999999999,79574.07,0,0,0,0,0,0,0,0],
         backgroundColor: ctx => {
           const i = ctx.dataIndex;
           return i === 3 ? 'rgba(88,166,255,0.85)' : 'rgba(88,166,255,0.3)';
@@ -514,7 +514,7 @@ new Chart(document.getElementById('quarterBar'), {
     datasets: [
       {
         label: 'Actual',
-        data: [58716.43999999999,79511.61,0,0],
+        data: [58736.42999999999,79574.07,0,0],
         backgroundColor: ['rgba(88,166,255,0.8)','rgba(88,166,255,0.4)','rgba(88,166,255,0.2)','rgba(88,166,255,0.1)'],
         borderColor: '#58a6ff',
         borderWidth: 1,
