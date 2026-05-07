@@ -81,7 +81,7 @@
   <div class="meta">
     <h1>Business Dashboard · 2026</h1>
     <div class="gen" style="display:flex;align-items:center;gap:8px;">
-      <span>Generated 2026/5/7 下午5:45:44 (Taipei)</span>
+      <span>Generated 2026/5/7 下午5:55:27 (Taipei)</span>
       <button id="refreshBtn" onclick="triggerRefresh()" title="Pull latest data from Google Sheets" style="background:none;border:1px solid #30363d;color:#8b949e;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:11px;line-height:1.4;">🔄 Refresh</button>
       <script>
       async function triggerRefresh() {
@@ -216,21 +216,21 @@
 
   <!-- Sales Pipeline -->
   <div class="section-title">Sales Pipeline</div>
-  <div style="background:#3d1f23;border:1px solid #f85149;border-radius:8px;padding:12px 16px;margin-bottom:16px;color:#f85149;font-size:13px;">⚠️ Sales Leads spreadsheet is currently inaccessible (permission error). Pipeline data may be stale. Please check sharing settings for the Sales Leads sheet.</div>
+  
   <div class="kpi-grid" style="max-width: 800px;">
     <div class="kpi">
       <div class="label">Active Leads Revenue</div>
-      <div class="value">$0</div>
+      <div class="value">$921.5K</div>
       <div class="sub">Active pipeline only</div>
     </div>
     <div class="kpi accent">
       <div class="label">Weighted Pipeline</div>
-      <div class="value">$0</div>
+      <div class="value">$341.1K</div>
       <div class="sub">Probability-adjusted (excl. Closed)</div>
     </div>
     <div class="kpi accent">
       <div class="label">Est. Revenue 2026</div>
-      <div class="value">$165.2K</div>
+      <div class="value">$506.3K</div>
       <div class="sub">YTD + Weighted Pipeline</div>
     </div>
   </div>
@@ -249,6 +249,34 @@
       </thead>
       <tbody>
         
+    <tr>
+      <td><span class="badge badge-active">Active</span></td>
+      <td>69</td>
+      <td>$921.5K</td>
+      <td>-</td>
+      <td class="highlight-text">$303.6K</td>
+    </tr>
+    <tr style="opacity:0.55">
+      <td><span class="badge badge-closed">Closed</span> <small style="color:#8b949e">(已計入收入)</small></td>
+      <td>11</td>
+      <td>$359.1K</td>
+      <td>10%</td>
+      <td class="highlight-text">-</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-pending">Pending</span></td>
+      <td>14</td>
+      <td>$152.7K</td>
+      <td>-</td>
+      <td class="highlight-text">$37.6K</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-dead">Dead</span></td>
+      <td>14</td>
+      <td>$45.0K</td>
+      <td>-</td>
+      <td class="highlight-text">$0</td>
+    </tr>
       </tbody>
     </table>
   </div>
@@ -259,24 +287,24 @@
     
     <div class="kpi" style="border-color:#3fb950;">
       <div class="label" style="color:#3fb950;">>80% (High)</div>
-      <div class="value" style="color:#3fb950;font-size:22px;">$0</div>
-      <div class="sub" style="color:#8b949e;margin-top:4px;">0 leads</div>
-      <div class="sub" style="margin-top:4px;">Weighted: <span style="color:#3fb950;font-weight:600;">$0</span></div>
-      <div class="progress-bar" style="margin-top:10px;background:#21262d;"><div class="progress-fill" style="width:0%;background:#3fb950;"></div></div>
+      <div class="value" style="color:#3fb950;font-size:22px;">$96.7K</div>
+      <div class="sub" style="color:#8b949e;margin-top:4px;">4 leads</div>
+      <div class="sub" style="margin-top:4px;">Weighted: <span style="color:#3fb950;font-weight:600;">$82.0K</span></div>
+      <div class="progress-bar" style="margin-top:10px;background:#21262d;"><div class="progress-fill" style="width:84.8%;background:#3fb950;"></div></div>
     </div>
     <div class="kpi" style="border-color:#e3b341;">
       <div class="label" style="color:#e3b341;">50~80% (Mid)</div>
-      <div class="value" style="color:#e3b341;font-size:22px;">$0</div>
-      <div class="sub" style="color:#8b949e;margin-top:4px;">0 leads</div>
-      <div class="sub" style="margin-top:4px;">Weighted: <span style="color:#e3b341;font-weight:600;">$0</span></div>
-      <div class="progress-bar" style="margin-top:10px;background:#21262d;"><div class="progress-fill" style="width:0%;background:#e3b341;"></div></div>
+      <div class="value" style="color:#e3b341;font-size:22px;">$208.4K</div>
+      <div class="sub" style="color:#8b949e;margin-top:4px;">4 leads</div>
+      <div class="sub" style="margin-top:4px;">Weighted: <span style="color:#e3b341;font-weight:600;">$122.7K</span></div>
+      <div class="progress-bar" style="margin-top:10px;background:#21262d;"><div class="progress-fill" style="width:58.9%;background:#e3b341;"></div></div>
     </div>
     <div class="kpi" style="border-color:#f85149;">
       <div class="label" style="color:#f85149;"><50% (Low)</div>
-      <div class="value" style="color:#f85149;font-size:22px;">$0</div>
-      <div class="sub" style="color:#8b949e;margin-top:4px;">0 leads</div>
-      <div class="sub" style="margin-top:4px;">Weighted: <span style="color:#f85149;font-weight:600;">$0</span></div>
-      <div class="progress-bar" style="margin-top:10px;background:#21262d;"><div class="progress-fill" style="width:0%;background:#f85149;"></div></div>
+      <div class="value" style="color:#f85149;font-size:22px;">$769.1K</div>
+      <div class="sub" style="color:#8b949e;margin-top:4px;">75 leads</div>
+      <div class="sub" style="margin-top:4px;">Weighted: <span style="color:#f85149;font-weight:600;">$136.5K</span></div>
+      <div class="progress-bar" style="margin-top:10px;background:#21262d;"><div class="progress-fill" style="width:17.7%;background:#f85149;"></div></div>
     </div>
   </div>
 
@@ -292,6 +320,90 @@
       </tr></thead>
       <tbody>
         
+    <tr>
+      <td>T2 - Textile (Apparel)</td>
+      <td>36</td>
+      <td>$492.7K</td>
+      <td class="highlight-text">$134.0K</td>
+    </tr>
+    <tr>
+      <td>T1 - Apparel</td>
+      <td>10</td>
+      <td>$262.3K</td>
+      <td class="highlight-text">$108.5K</td>
+    </tr>
+    <tr>
+      <td>Acadamic</td>
+      <td>3</td>
+      <td>$38.6K</td>
+      <td class="highlight-text">$31.4K</td>
+    </tr>
+    <tr>
+      <td>Others</td>
+      <td>1</td>
+      <td>$28.0K</td>
+      <td class="highlight-text">$22.4K</td>
+    </tr>
+    <tr>
+      <td>T1 & T2 - Apparel</td>
+      <td>4</td>
+      <td>$86.9K</td>
+      <td class="highlight-text">$15.7K</td>
+    </tr>
+    <tr>
+      <td>Software Provider</td>
+      <td>3</td>
+      <td>$21.0K</td>
+      <td class="highlight-text">$10.5K</td>
+    </tr>
+    <tr>
+      <td>Service Provider</td>
+      <td>7</td>
+      <td>$65.4K</td>
+      <td class="highlight-text">$7.1K</td>
+    </tr>
+    <tr>
+      <td>Brand</td>
+      <td>14</td>
+      <td>$98.0K</td>
+      <td class="highlight-text">$5.8K</td>
+    </tr>
+    <tr>
+      <td>T1 - Furniture/Accessory</td>
+      <td>1</td>
+      <td>$10.4K</td>
+      <td class="highlight-text">$3.1K</td>
+    </tr>
+    <tr>
+      <td>T2 - Furniture/Accessory</td>
+      <td>6</td>
+      <td>$12.3K</td>
+      <td class="highlight-text">$2.0K</td>
+    </tr>
+    <tr>
+      <td>Designer Brand</td>
+      <td>3</td>
+      <td>$1.2K</td>
+      <td class="highlight-text">$360</td>
+    </tr>
+    <tr>
+      <td>T1-Accessory</td>
+      <td>3</td>
+      <td>$2.5K</td>
+      <td class="highlight-text">$250</td>
+    </tr>
+    <tr>
+      <td>Uncategorized</td>
+      <td>4</td>
+      <td>$0</td>
+      <td class="highlight-text">$0</td>
+    </tr>
+    <tr>
+      <td>?</td>
+      <td>2</td>
+      <td>$0</td>
+      <td class="highlight-text">$0</td>
+    </tr>
       </tbody>
     </table>
   </div>
@@ -302,30 +414,25 @@
 <div style="max-width:1200px;margin:32px auto;padding:0 24px;">
   <div class="card" style="border-left:3px solid #58a6ff;">
     <h3 style="margin-bottom:16px;">📊 本週業務回顧 Weekly Sales Review</h3>
-    <div style="line-height:1.8;color:#c9d1d9;white-space:pre-wrap;">### 本週業務回顧報告
+    <div style="line-height:1.8;color:#c9d1d9;white-space:pre-wrap;">**本週業務回顧報告**
 
 1. **本週業務動能**
-   - 需關注：本週的業務動能顯示出公司在達成年度目標上的挑戰。儘管本月營收為$30.3K，但與年度目標相比，達成率僅為16.5%，顯示出現階段進度明顯落後。
+   - 本週業務動能需關注。累計營收達成率僅16.5%，距離年度目標仍有很大的差距，特別是在Q3和Q4尚未有任何營收的情況下，急需提升業務推進力。
 
 2. **做得好的地方與需要改善的地方**
-   - **做得好的地方**：
-     - Q1的營收表現相對較好，達到了目標的78.3%。
-     - 本月營收$30.3K，顯示出一定的市場需求與銷售能力。
-   - **需要改善的地方**：
-     - Q2的達成率僅為47.3%，距離目標差距甚大。
-     - Q3和Q4尚未開始，仍無營收入帳，需要緊急制定計畫以追趕進度。
-     - 目前加權後預估總年收僅為$165.2K，無法支持達成年度目標。
+   - 做得好的地方：客戶類別分佈中，T2 - Textile (Apparel)及T1 - Apparel類別的加權金額較高，顯示這些領域的市場需求較大，值得繼續深耕。
+   - 需要改善的地方：Q2的營收未達目標，Q3和Q4尚未有進展，需加強對這兩個季度的業務推進。另外，Sales Pipeline中Dead的筆數過多，顯示在初步篩選客戶上可能存在問題。
 
-3. **以現有 pipeline，達成年度目標的可能性評估**
-   - 目前的Sales Pipeline顯示，公司在達成年度目標上存在較大困難。加權後預估總年收與年度目標差距過大，僅有16.5%的達成率，明顯不足以達成$1,000,000的年度目標。
+3. **達成年度目標的可能性評估**
+   - 以現有Pipeline的加權後預估總年收$506.3K來看，達成$1,000,000的年度目標可能性較低，需在剩餘的時間中大幅度提升營收。
 
 4. **建議**
-   - 為有信心達成年度目標，Sales Funnel 的加權金額至少需要達到$850,000。這樣才能在現有進度基礎上，通過加強銷售活動和提升轉化率來實現目標。建議立即加強Sales Pipeline的開發和現有客戶的深耕，提高潛在銷售機會的質量和數量。</div>
-    <div style="margin-top:12px;font-size:11px;color:#484f58;">由 GPT-4o 根據最新數據自動生成 · 2026/5/7 下午5:45:44 (Taipei)</div>
+   - 為了有信心達成年度目標，Sales Funnel的加權金額需要達到至少$1,000,000。這意味著需要大幅度增加現有的Pipeline價值，並確保轉化率的提升，特別是集中在高潛力的客戶類別上，以最大化收入潛力。</div>
+    <div style="margin-top:12px;font-size:11px;color:#484f58;">由 GPT-4o 根據最新數據自動生成 · 2026/5/7 下午5:55:27 (Taipei)</div>
   </div>
 </div>
 
-<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/5/7 下午5:45:44 (Taipei)</footer>
+<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/5/7 下午5:55:27 (Taipei)</footer>
 
 <script>
 const chartDefaults = {
@@ -408,9 +515,9 @@ new Chart(document.getElementById('quarterBar'), {
 new Chart(document.getElementById('pipelinePie'), {
   type: 'doughnut',
   data: {
-    labels: [],
+    labels: ['Dead','Active','Pending','Closed'],
     datasets: [{
-      data: [],
+      data: [14,69,14,11],
       backgroundColor: ['#3fb950','#f85149','#e3b341','#58a6ff','#bc8cff','#79c0ff','#d2a8ff'],
       borderColor: '#161b22',
       borderWidth: 3,
