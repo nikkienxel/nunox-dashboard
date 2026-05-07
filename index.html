@@ -160,29 +160,29 @@ function getDashboard() { return `<!DOCTYPE html>
   <div class="meta">
     <h1>Business Dashboard · 2026</h1>
     <div class="gen" style="display:flex;align-items:center;gap:8px;">
-      <span>Generated 2026/5/7 下午5:33:12 (Taipei)</span>
+      <span>Generated 2026/5/7 下午5:37:21 (Taipei)</span>
       <button id="refreshBtn" onclick="triggerRefresh()" title="Pull latest data from Google Sheets" style="background:none;border:1px solid #30363d;color:#8b949e;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:11px;line-height:1.4;">🔄 Refresh</button>
       <script>
       async function triggerRefresh() {
         const btn = document.getElementById('refreshBtn');
         btn.disabled = true; btn.textContent = '⏳ Refreshing...'; btn.style.color='#58a6ff';
         try {
-          const r = await fetch('https://api.github.com/repos/nikkienxel/nunox-dashboard/actions/workflows/refresh-dashboard.yml/dispatches', {
-            method: 'POST',
-            headers: { 'Authorization': 'Bearer '+atob('Z2hwX2tINTNrR3RYR2hhejBMWTU4VjA0bWZiVHNaQk1keTROZzg2UQ=='), 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ref: 'main', inputs: { triggered_by: 'dashboard-button' } })
-          });
-          if (r.status === 204) {
-            btn.textContent = '✅ Refresh triggered (~2 min)';
+          // Fetch current tunnel URL from GitHub (updated on Mac mini boot)
+          const urlResp = await fetch('https://raw.githubusercontent.com/nikkienxel/nunox-dashboard/main/refresh-endpoint.txt?t='+Date.now());
+          if (!urlResp.ok) throw new Error('Could not fetch endpoint URL');
+          const baseUrl = (await urlResp.text()).trim();
+          const r = await fetch(baseUrl + '/refresh?s=nunox-refresh-2026', { method: 'POST' });
+          const data = await r.json();
+          if (data.ok) {
+            btn.textContent = '✅ Done (~60s)';
+            setTimeout(() => window.location.reload(), 65000);
             setTimeout(() => { btn.textContent = '🔄 Refresh'; btn.disabled = false; btn.style.color='#8b949e'; }, 10000);
-            setTimeout(() => window.location.reload(), 130000); // auto-reload after ~2 min
           } else {
-            btn.textContent = '❌ Error ' + r.status; btn.style.color='#f85149';
-            setTimeout(() => { btn.textContent = '🔄 Refresh'; btn.disabled = false; btn.style.color='#8b949e'; }, 5000);
+            throw new Error(data.error || 'Unknown error');
           }
         } catch(e) {
-          btn.textContent = '❌ Failed'; btn.style.color='#f85149';
-          setTimeout(() => { btn.textContent = '🔄 Refresh'; btn.disabled = false; btn.style.color='#8b949e'; }, 5000);
+          btn.textContent = '❌ ' + e.message.substring(0, 30); btn.style.color='#f85149';
+          setTimeout(() => { btn.textContent = '🔄 Refresh'; btn.disabled = false; btn.style.color='#8b949e'; }, 6000);
         }
       }
       <\x2fscript>
@@ -382,11 +382,11 @@ function getDashboard() { return `<!DOCTYPE html>
   <div class="card" style="border-left:3px solid #58a6ff;">
     <h3 style="margin-bottom:16px;">📊 本週業務回顧 Weekly Sales Review</h3>
     <div style="line-height:1.8;color:#c9d1d9;white-space:pre-wrap;">（本週銷售分析暫無資料）</div>
-    <div style="margin-top:12px;font-size:11px;color:#484f58;">由 GPT-4o 根據最新數據自動生成 · 2026/5/7 下午5:33:12 (Taipei)</div>
+    <div style="margin-top:12px;font-size:11px;color:#484f58;">由 GPT-4o 根據最新數據自動生成 · 2026/5/7 下午5:37:21 (Taipei)</div>
   </div>
 </div>
 
-<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/5/7 下午5:33:12 (Taipei)</footer>
+<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/5/7 下午5:37:21 (Taipei)</footer>
 
 <script>
 const chartDefaults = {
