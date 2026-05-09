@@ -11,6 +11,8 @@ index.html          → 登入頁（login guard，成功後跳轉 dashboard.html
 weekly_update.sh    → launchd 自動更新腳本
 server.js           → 本地開發用（含 Basic Auth）
 build-index.js      → index.html 構建腳本（已不常用）
+scripts/token-dashboard-build.js → OpenClaw token dashboard 靜態生成器（不嵌 gateway token）
+token-dashboard-refresh.sh → hourly launchd refresh script for token-dashboard.html
 ```
 
 ## 部署
@@ -36,6 +38,15 @@ build-index.js      → index.html 構建腳本（已不常用）
 - 🔄 Refresh 按鈕（reload）
 - 📊 AI 週報：GPT-4o 繁體中文，分析動能/優劣/達標可能性/pipeline 目標
 
+## Token Dashboard
+- `token-dashboard.html` 由 `scripts/token-dashboard-build.js` 生成，資料來自 `openclaw sessions --all-agents --json`
+- 同步輸出兩份：repo 內 `nunox-dashboard/token-dashboard.html` + Jac 常用路徑 `/Users/jacai/.openclaw/workspace/token-dashboard.html`
+- 不再依賴 `agent-status-server.js` / port 18888，也不嵌入 Gateway token
+- launchd: `ai.nunox.token-dashboard-refresh`
+- 時間: 每小時（StartInterval 3600）+ RunAtLoad
+- Log: `token-dashboard-refresh.log`
+- 手動觸發: `bash token-dashboard-refresh.sh` 或 `npm run token-dashboard`
+
 ## 已知 Column Index
 - Customers Satus sheet: row[2]=customer, row[3]=status, row[2]=label(Total/New/Recurrent), row[3]=value
 - Detail Records sheet: col B(idx 1)=customer, col D(idx 3)=type, col E(idx 4)=date, col H(idx 7)=product, col AB(idx 27)=Total NunoX Revenue, col AD(idx 29)=Outstanding
@@ -50,6 +61,12 @@ build-index.js      → index.html 構建腳本（已不常用）
 - 時間: 每週一 8:00 AM 台北時間
 - Log: `auto_update.log`
 - 手動觸發: `bash weekly_update.sh`
+
+### Token Dashboard 自動刷新
+- launchd: `ai.nunox.token-dashboard-refresh`
+- 時間: 每小時
+- Log: `token-dashboard-refresh.log`
+- 手動觸發: `bash token-dashboard-refresh.sh`
 
 ## 更新 dashboard 步驟
 ```bash
