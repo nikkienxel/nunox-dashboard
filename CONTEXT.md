@@ -51,6 +51,9 @@ token-dashboard-refresh.sh → hourly launchd refresh script for token-dashboard
 - Customers Satus sheet: row[2]=customer, row[3]=status, row[2]=label(Total/New/Recurrent), row[3]=value
 - Detail Records sheet: col B(idx 1)=customer, col D(idx 3)=type, col E(idx 4)=date, col H(idx 7)=product, col AB(idx 27)=Total NunoX Revenue, col AD(idx 29)=Outstanding
 
+## 更新紀錄
+- **2026-05-11**: Weekly dashboard update pushed (`508c9db`): Customers 34, New this month 2, YTD Revenue $202.9K (20.3% of $1.00M goal), ARR $91.0K, Outstanding $211.6K, Pipeline $921.5K total / $341.1K weighted, Est. 2026 Revenue $544.1K. AI review call returned OpenAI quota 429, but dashboard HTML still generated and deployed.
+
 ## 已知問題修復紀錄
 - **2026-04-15**: 第三次 login 失敗
   - 根本原因：`build-index.js` 用 `sessionStorage`（應為 `localStorage`），且未 escape `</script>` in template literal → HTML parser 在第一個 `</script>` 就截斷外層 script block，導致 `doLogin` 變成 `undefined`
