@@ -52,6 +52,7 @@ token-dashboard-refresh.sh → hourly launchd refresh script for token-dashboard
 - Detail Records sheet: col B(idx 1)=customer, col D(idx 3)=type, col E(idx 4)=date, col H(idx 7)=product, col AB(idx 27)=Total NunoX Revenue, col AD(idx 29)=Outstanding
 
 ## 更新紀錄
+- **2026-05-18**: Weekly dashboard update pushed (`30d6080`): Customers 34, New this month 2, YTD Revenue $201.7K (20.2% of $1.00M goal), ARR $90.8K, Outstanding $181.9K, Pipeline $896.5K total / $333.6K weighted, Est. 2026 Revenue $535.3K. AI review call returned OpenAI quota 429, but dashboard HTML still generated and deployed.
 - **2026-05-11**: Weekly dashboard update pushed (`508c9db`): Customers 34, New this month 2, YTD Revenue $202.9K (20.3% of $1.00M goal), ARR $91.0K, Outstanding $211.6K, Pipeline $921.5K total / $341.1K weighted, Est. 2026 Revenue $544.1K. AI review call returned OpenAI quota 429, but dashboard HTML still generated and deployed.
 
 ## 已知問題修復紀錄
