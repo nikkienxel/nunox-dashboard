@@ -8,57 +8,69 @@
 </style>
 </head>
 <body><main class="wrap">
-  <div class="hero"><div><h1>OpenClaw Token Dashboard</h1><p>Generated 05/09 下午06:03 · static hourly refresh · no embedded gateway token</p></div><p class="actions"><code>bash token-dashboard-refresh.sh</code></p></div>
+  <div class="hero"><div><h1>OpenClaw Token Dashboard</h1><p>Generated 05/25 上午05:52 · static hourly refresh · no embedded gateway token</p></div><p class="actions"><code>bash token-dashboard-refresh.sh</code></p></div>
   <section class="grid">
-    <div class="card"><div class="label">Active Sessions</div><div class="value purple">64</div><p>All agents</p></div>
-    <div class="card"><div class="label">Current Context</div><div class="value green">4.2M</div><p>4,245,084 tokens</p></div>
-    <div class="card"><div class="label">Estimated Cache Saved</div><div class="value yellow">3.6M</div><p>input - current context</p></div>
-    <div class="card"><div class="label">Needs Attention</div><div class="value red">3</div><p>sessions above 70% context</p></div>
+    <div class="card"><div class="label">Active Sessions</div><div class="value purple">18</div><p>All agents</p></div>
+    <div class="card"><div class="label">Current Context</div><div class="value green">208k</div><p>208,083 tokens</p></div>
+    <div class="card"><div class="label">Estimated Cache Saved</div><div class="value yellow">3.4M</div><p>input - current context</p></div>
+    <div class="card"><div class="label">Needs Attention</div><div class="value red">1</div><p>sessions above 70% context</p></div>
   </section>
   <section class="section panel note"><b>Optimization status:</b> regular automatic context/token compaction is handled by OpenClaw runtime. This dashboard now audits session pressure hourly without calling the LLM, so monitoring itself does not burn tokens.</section>
   <section class="section"><h2>Agents</h2><div class="agentgrid">
-    <div class="mini"><b>main</b><span>24 sessions</span><strong>1.3M</strong><small>latest 05/09 下午05:58</small></div>
-    <div class="mini"><b>eddie</b><span>13 sessions</span><strong>1.2M</strong><small>latest 05/07 下午06:50</small></div>
-    <div class="mini"><b>christina</b><span>13 sessions</span><strong>1.1M</strong><small>latest 05/09 上午01:01</small></div>
-    <div class="mini"><b>nora</b><span>7 sessions</span><strong>368k</strong><small>latest 05/09 下午05:57</small></div>
-    <div class="mini"><b>handsome</b><span>7 sessions</span><strong>264k</strong><small>latest 05/07 下午06:50</small></div></div></section>
-  <section class="section panel"><h2>Models</h2><span class="pill">claude-sonnet-4-6 · 44</span><span class="pill">gpt-5.5 · 17</span><span class="pill">gpt-5.2-pro · 3</span></section>
+    <div class="mini"><b>main</b><span>11 sessions</span><strong>117k</strong><small>latest 05/25 上午03:30</small></div>
+    <div class="mini"><b>christina</b><span>3 sessions</span><strong>74k</strong><small>latest 05/24 下午06:25</small></div>
+    <div class="mini"><b>nora</b><span>2 sessions</span><strong>18k</strong><small>latest 05/24 上午09:00</small></div>
+    <div class="mini"><b>handsome</b><span>1 sessions</span><strong>0</strong><small>latest 05/07 下午06:50</small></div>
+    <div class="mini"><b>eddie</b><span>1 sessions</span><strong>0</strong><small>latest 04/16 下午07:27</small></div></div></section>
+  <section class="section panel"><h2>Models</h2><span class="pill">gpt-5.5 · 17</span><span class="pill">gpt-5.2-pro · 1</span></section>
   <section class="section panel"><h2>Sessions</h2><div class="tablewrap"><table><thead><tr><th>Status</th><th>Agent</th><th>Session</th><th>Kind</th><th>Model</th><th class="num">Context</th><th>Usage</th><th class="num">Cache Saved</th><th>Age</th><th>Updated</th></tr></thead><tbody>
     <tr>
       <td><span class="badge online">online</span></td>
       <td>main</td>
-      <td title="agent:main:dashboard:8bd28dcf-52f2-4d0e-80d8-3bb3f62d3174">main:dashboard:8bd28dcf-52f2-4d0e-80d8-3bb3f62d3174</td>
-      <td>direct</td>
+      <td title="agent:main:cron:c226e669-8aff-4873-bf87-0a974e69bb9e">main:cron:c226e669-8aff-4873-bf87-0a974e69bb9e</td>
+      <td>cron</td>
       <td>gpt-5.5</td>
-      <td class="num">48k / 272k</td>
-      <td><div class="bar"><i style="width:17.8%"></i></div><small>17.8%</small></td>
-      <td class="num">3k</td>
-      <td>5m</td>
-      <td>05/09 下午05:58</td>
-    </tr>
-    <tr>
-      <td><span class="badge online">online</span></td>
-      <td>nora</td>
-      <td title="agent:nora:discord:channel:1502241128995487816">nora:discord:channel:1502241128995487816</td>
-      <td>group</td>
-      <td>gpt-5.5</td>
-      <td class="num">86k / 272k</td>
-      <td><div class="bar"><i style="width:31.5%"></i></div><small>31.5%</small></td>
-      <td class="num">85k</td>
-      <td>6m</td>
-      <td>05/09 下午05:57</td>
+      <td class="num">27k / 100k</td>
+      <td><div class="bar"><i style="width:27.1%"></i></div><small>27.1%</small></td>
+      <td class="num">0</td>
+      <td>2h</td>
+      <td>05/25 上午03:30</td>
     </tr>
     <tr>
       <td><span class="badge online">online</span></td>
       <td>main</td>
-      <td title="agent:main:discord:channel:1491700672960139264">main:discord:channel:1491700672960139264</td>
+      <td title="agent:main:discord:channel:1493912962576945182">main:discord:channel:1493912962576945182</td>
       <td>group</td>
       <td>gpt-5.5</td>
-      <td class="num">23k / 272k</td>
-      <td><div class="bar"><i style="width:8.6%"></i></div><small>8.6%</small></td>
+      <td class="num">39k / 100k</td>
+      <td><div class="bar"><i style="width:38.9%"></i></div><small>38.9%</small></td>
       <td class="num">0</td>
-      <td>13m</td>
-      <td>05/09 下午05:50</td>
+      <td>8h</td>
+      <td>05/24 下午09:42</td>
+    </tr>
+    <tr>
+      <td><span class="badge online">online</span></td>
+      <td>main</td>
+      <td title="agent:main:main">main:main</td>
+      <td>direct</td>
+      <td>gpt-5.5</td>
+      <td class="num">51k / 100k</td>
+      <td><div class="bar"><i style="width:50.6%"></i></div><small>50.6%</small></td>
+      <td class="num">0</td>
+      <td>9h</td>
+      <td>05/24 下午09:10</td>
+    </tr>
+    <tr>
+      <td><span class="badge online">online</span></td>
+      <td>christina</td>
+      <td title="agent:christina:main">christina:main</td>
+      <td>direct</td>
+      <td>gpt-5.5</td>
+      <td class="num">74k / 100k</td>
+      <td><div class="bar"><i style="width:73.6%"></i></div><small>73.6%</small></td>
+      <td class="num">0</td>
+      <td>11h</td>
+      <td>05/24 下午06:25</td>
     </tr>
     <tr>
       <td><span class="badge online">online</span></td>
@@ -66,95 +78,35 @@
       <td title="agent:nora:cron:762b8f9f-c343-467b-9e0c-e9f0e68d45c9">nora:cron:762b8f9f-c343-467b-9e0c-e9f0e68d45c9</td>
       <td>cron</td>
       <td>gpt-5.5</td>
-      <td class="num">24k / 200k</td>
-      <td><div class="bar"><i style="width:11.8%"></i></div><small>11.8%</small></td>
-      <td class="num">45k</td>
-      <td>9h</td>
-      <td>05/09 上午09:00</td>
+      <td class="num">18k / 100k</td>
+      <td><div class="bar"><i style="width:17.9%"></i></div><small>17.9%</small></td>
+      <td class="num">993</td>
+      <td>21h</td>
+      <td>05/24 上午09:00</td>
     </tr>
     <tr>
       <td><span class="badge offline">offline</span></td>
-      <td>christina</td>
-      <td title="agent:christina:main">christina:main</td>
-      <td>direct</td>
-      <td>gpt-5.5</td>
-      <td class="num">0 / 200k</td>
-      <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
-      <td class="num">0</td>
-      <td>17h</td>
-      <td>05/09 上午01:01</td>
-    </tr>
-    <tr>
-      <td><span class="badge online">online</span></td>
-      <td>christina</td>
-      <td title="agent:christina:cron:08606b3e-5252-4bbd-8e8b-d6aea9737598">christina:cron:08606b3e-5252-4bbd-8e8b-d6aea9737598</td>
-      <td>cron</td>
-      <td>gpt-5.5</td>
-      <td class="num">22k / 200k</td>
-      <td><div class="bar"><i style="width:10.8%"></i></div><small>10.8%</small></td>
-      <td class="num">40k</td>
-      <td>17h</td>
-      <td>05/09 上午01:00</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>nora</td>
-      <td title="agent:nora:discord:channel:1493078293182808094">nora:discord:channel:1493078293182808094</td>
-      <td>group</td>
-      <td>gpt-5.5</td>
-      <td class="num">99k / 272k</td>
-      <td><div class="bar"><i style="width:36.5%"></i></div><small>36.5%</small></td>
-      <td class="num">0</td>
-      <td>29h</td>
-      <td>05/08 下午01:20</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
       <td>nora</td>
       <td title="agent:nora:discord:channel:1494192815381545050">nora:discord:channel:1494192815381545050</td>
       <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">35k / 1.0M</td>
-      <td><div class="bar"><i style="width:3.5%"></i></div><small>3.5%</small></td>
+      <td>gpt-5.5</td>
+      <td class="num">0 / 100k</td>
+      <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>43h</td>
-      <td>05/07 下午11:12</td>
+      <td>7d</td>
+      <td>05/18 上午09:00</td>
     </tr>
     <tr>
       <td><span class="badge stale">stale</span></td>
-      <td>main</td>
-      <td title="agent:main:discord:channel:1493912962576945182">main:discord:channel:1493912962576945182</td>
+      <td>christina</td>
+      <td title="agent:christina:discord:channel:1494555974760136826">christina:discord:channel:1494555974760136826</td>
       <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">75k / 1.0M</td>
-      <td><div class="bar"><i style="width:7.5%"></i></div><small>7.5%</small></td>
-      <td class="num">0</td>
-      <td>43h</td>
-      <td>05/07 下午11:06</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>main</td>
-      <td title="agent:main:discord:channel:1487892484611768420">main:discord:channel:1487892484611768420</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">30k / 1.0M</td>
-      <td><div class="bar"><i style="width:3.0%"></i></div><small>3.0%</small></td>
-      <td class="num">0</td>
-      <td>43h</td>
-      <td>05/07 下午10:38</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>handsome</td>
-      <td title="agent:handsome:discord:channel:1494192815381545050">handsome:discord:channel:1494192815381545050</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">130k / 200k</td>
-      <td><div class="bar"><i style="width:64.8%"></i></div><small>64.8%</small></td>
-      <td class="num">0</td>
-      <td>47h</td>
-      <td>05/07 下午06:50</td>
+      <td>gpt-5.5</td>
+      <td class="num">0 / 100k</td>
+      <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
+      <td class="num">10k</td>
+      <td>10d</td>
+      <td>05/15 上午08:47</td>
     </tr>
     <tr>
       <td><span class="badge offline">offline</span></td>
@@ -162,47 +114,11 @@
       <td title="agent:handsome:discord:channel:1487566617071194243">handsome:discord:channel:1487566617071194243</td>
       <td>group</td>
       <td>gpt-5.5</td>
-      <td class="num">0 / 200k</td>
+      <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>47h</td>
+      <td>17d</td>
       <td>05/07 下午06:50</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>eddie</td>
-      <td title="agent:eddie:discord:channel:1494192815381545050">eddie:discord:channel:1494192815381545050</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">24k / 200k</td>
-      <td><div class="bar"><i style="width:12.0%"></i></div><small>12.0%</small></td>
-      <td class="num">0</td>
-      <td>47h</td>
-      <td>05/07 下午06:50</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>christina</td>
-      <td title="agent:christina:discord:channel:1494192815381545050">christina:discord:channel:1494192815381545050</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">41k / 200k</td>
-      <td><div class="bar"><i style="width:20.4%"></i></div><small>20.4%</small></td>
-      <td class="num">0</td>
-      <td>47h</td>
-      <td>05/07 下午06:41</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>main</td>
-      <td title="agent:main:discord:channel:1494192815381545050">main:discord:channel:1494192815381545050</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">61k / 200k</td>
-      <td><div class="bar"><i style="width:30.6%"></i></div><small>30.6%</small></td>
-      <td class="num">0</td>
-      <td>47h</td>
-      <td>05/07 下午06:39</td>
     </tr>
     <tr>
       <td><span class="badge offline">offline</span></td>
@@ -210,10 +126,10 @@
       <td title="agent:main:whatsapp:group:120363409171636946@g.us">main:whatsapp:group:120363409171636946@g.us</td>
       <td>group</td>
       <td>gpt-5.5</td>
-      <td class="num">0 / 200k</td>
+      <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>2d</td>
+      <td>18d</td>
       <td>05/07 下午12:48</td>
     </tr>
     <tr>
@@ -222,47 +138,11 @@
       <td title="agent:main:whatsapp:group:120363417502693963@g.us">main:whatsapp:group:120363417502693963@g.us</td>
       <td>group</td>
       <td>gpt-5.5</td>
-      <td class="num">0 / 200k</td>
+      <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>3d</td>
+      <td>18d</td>
       <td>05/06 下午07:02</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>main</td>
-      <td title="agent:main:cron:850abfa0-3cff-44dc-8f9b-57d198b16469">main:cron:850abfa0-3cff-44dc-8f9b-57d198b16469</td>
-      <td>cron</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">45k / 200k</td>
-      <td><div class="bar"><i style="width:22.7%"></i></div><small>22.7%</small></td>
-      <td class="num">0</td>
-      <td>6d</td>
-      <td>05/04 上午06:03</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>christina</td>
-      <td title="agent:christina:discord:channel:1487910108481589299">christina:discord:channel:1487910108481589299</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">255k / 1.0M</td>
-      <td><div class="bar"><i style="width:25.5%"></i></div><small>25.5%</small></td>
-      <td class="num">0</td>
-      <td>11d</td>
-      <td>04/28 下午10:10</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>main</td>
-      <td title="agent:main:discord:channel:1498208327270924529">main:discord:channel:1498208327270924529</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">168k / 200k</td>
-      <td><div class="bar"><i style="width:83.9%"></i></div><small>83.9%</small></td>
-      <td class="num">0</td>
-      <td>12d</td>
-      <td>04/27 下午09:53</td>
     </tr>
     <tr>
       <td><span class="badge offline">offline</span></td>
@@ -270,95 +150,11 @@
       <td title="agent:main:whatsapp:group:120363406717327844@g.us">main:whatsapp:group:120363406717327844@g.us</td>
       <td>group</td>
       <td>gpt-5.5</td>
-      <td class="num">0 / 200k</td>
+      <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>15d</td>
+      <td>30d</td>
       <td>04/24 下午10:23</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>handsome</td>
-      <td title="agent:handsome:discord:channel:1497164612230053959">handsome:discord:channel:1497164612230053959</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">25k / 200k</td>
-      <td><div class="bar"><i style="width:12.4%"></i></div><small>12.4%</small></td>
-      <td class="num">0</td>
-      <td>15d</td>
-      <td>04/24 下午05:18</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>nora</td>
-      <td title="agent:nora:main">nora:main</td>
-      <td>direct</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">63k / 1.0M</td>
-      <td><div class="bar"><i style="width:6.3%"></i></div><small>6.3%</small></td>
-      <td class="num">0</td>
-      <td>17d</td>
-      <td>04/22 下午06:22</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>christina</td>
-      <td title="agent:christina:discord:channel:1494704147008589925">christina:discord:channel:1494704147008589925</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">109k / 200k</td>
-      <td><div class="bar"><i style="width:54.5%"></i></div><small>54.5%</small></td>
-      <td class="num">0</td>
-      <td>22d</td>
-      <td>04/17 下午10:31</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>christina</td>
-      <td title="agent:christina:discord:channel:1494555974760136826">christina:discord:channel:1494555974760136826</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">27k / 200k</td>
-      <td><div class="bar"><i style="width:13.4%"></i></div><small>13.4%</small></td>
-      <td class="num">0</td>
-      <td>22d</td>
-      <td>04/17 下午12:41</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>eddie</td>
-      <td title="agent:eddie:discord:channel:1491653655148105938">eddie:discord:channel:1491653655148105938</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">230k / 1.0M</td>
-      <td><div class="bar"><i style="width:23.0%"></i></div><small>23.0%</small></td>
-      <td class="num">0</td>
-      <td>23d</td>
-      <td>04/16 下午10:11</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>eddie</td>
-      <td title="agent:eddie:discord:channel:1489084220470071416">eddie:discord:channel:1489084220470071416</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">204k / 1.0M</td>
-      <td><div class="bar"><i style="width:20.4%"></i></div><small>20.4%</small></td>
-      <td class="num">0</td>
-      <td>23d</td>
-      <td>04/16 下午10:07</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>eddie</td>
-      <td title="agent:eddie:discord:channel:1494305140054818876">eddie:discord:channel:1494305140054818876</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">82k / 200k</td>
-      <td><div class="bar"><i style="width:40.9%"></i></div><small>40.9%</small></td>
-      <td class="num">0</td>
-      <td>23d</td>
-      <td>04/16 下午08:33</td>
     </tr>
     <tr>
       <td><span class="badge stale">stale</span></td>
@@ -369,56 +165,8 @@
       <td class="num">0 / 200k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">3.4M</td>
-      <td>23d</td>
+      <td>38d</td>
       <td>04/16 下午07:27</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>main</td>
-      <td title="agent:main:discord:channel:1494290897763045466">main:discord:channel:1494290897763045466</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">41k / 200k</td>
-      <td><div class="bar"><i style="width:20.6%"></i></div><small>20.6%</small></td>
-      <td class="num">0</td>
-      <td>23d</td>
-      <td>04/16 下午07:13</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>nora</td>
-      <td title="agent:nora:discord:channel:1494290897763045466">nora:discord:channel:1494290897763045466</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">25k / 200k</td>
-      <td><div class="bar"><i style="width:12.6%"></i></div><small>12.6%</small></td>
-      <td class="num">0</td>
-      <td>23d</td>
-      <td>04/16 下午06:58</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>eddie</td>
-      <td title="agent:eddie:discord:channel:1494290897763045466">eddie:discord:channel:1494290897763045466</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">23k / 200k</td>
-      <td><div class="bar"><i style="width:11.3%"></i></div><small>11.3%</small></td>
-      <td class="num">0</td>
-      <td>23d</td>
-      <td>04/16 下午06:58</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>eddie</td>
-      <td title="agent:eddie:discord:channel:1494233513623289876">eddie:discord:channel:1494233513623289876</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">206k / 200k</td>
-      <td><div class="bar"><i style="width:100.0%"></i></div><small>100.0%</small></td>
-      <td class="num">0</td>
-      <td>23d</td>
-      <td>04/16 下午04:42</td>
     </tr>
     <tr>
       <td><span class="badge offline">offline</span></td>
@@ -426,95 +174,11 @@
       <td title="agent:main:whatsapp:group:120363406846425722@g.us">main:whatsapp:group:120363406846425722@g.us</td>
       <td>group</td>
       <td>gpt-5.5</td>
-      <td class="num">0 / 200k</td>
+      <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>23d</td>
+      <td>39d</td>
       <td>04/16 上午11:13</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>main</td>
-      <td title="agent:main:main">main:main</td>
-      <td>direct</td>
-      <td>gpt-5.2-pro</td>
-      <td class="num">202k / 200k</td>
-      <td><div class="bar"><i style="width:100.0%"></i></div><small>100.0%</small></td>
-      <td class="num">0</td>
-      <td>24d</td>
-      <td>04/15 下午11:42</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>main</td>
-      <td title="agent:main:discord:channel:1493473916772024340">main:discord:channel:1493473916772024340</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">151k / 1.0M</td>
-      <td><div class="bar"><i style="width:15.1%"></i></div><small>15.1%</small></td>
-      <td class="num">0</td>
-      <td>24d</td>
-      <td>04/15 下午03:50</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>main</td>
-      <td title="agent:main:discord:channel:1487893206572994763">main:discord:channel:1487893206572994763</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">70k / 1.0M</td>
-      <td><div class="bar"><i style="width:7.0%"></i></div><small>7.0%</small></td>
-      <td class="num">0</td>
-      <td>25d</td>
-      <td>04/14 下午03:16</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>eddie</td>
-      <td title="agent:eddie:discord:channel:1491343015053230170">eddie:discord:channel:1491343015053230170</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">74k / 1.0M</td>
-      <td><div class="bar"><i style="width:7.4%"></i></div><small>7.4%</small></td>
-      <td class="num">0</td>
-      <td>25d</td>
-      <td>04/14 上午08:37</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>handsome</td>
-      <td title="agent:handsome:main">handsome:main</td>
-      <td>direct</td>
-      <td>gpt-5.2-pro</td>
-      <td class="num">29k / 400k</td>
-      <td><div class="bar"><i style="width:7.2%"></i></div><small>7.2%</small></td>
-      <td class="num">83k</td>
-      <td>26d</td>
-      <td>04/14 上午05:55</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>handsome</td>
-      <td title="agent:handsome:discord:channel:1493368677222060122">handsome:discord:channel:1493368677222060122</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">21k / 1.0M</td>
-      <td><div class="bar"><i style="width:2.1%"></i></div><small>2.1%</small></td>
-      <td class="num">0</td>
-      <td>26d</td>
-      <td>04/14 上午05:54</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>eddie</td>
-      <td title="agent:eddie:discord:channel:1488225667337162792">eddie:discord:channel:1488225667337162792</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">151k / 1.0M</td>
-      <td><div class="bar"><i style="width:15.1%"></i></div><small>15.1%</small></td>
-      <td class="num">0</td>
-      <td>29d</td>
-      <td>04/10 下午04:41</td>
     </tr>
     <tr>
       <td><span class="badge offline">offline</span></td>
@@ -522,131 +186,11 @@
       <td title="agent:main:whatsapp:group:120363403313252497@g.us">main:whatsapp:group:120363403313252497@g.us</td>
       <td>group</td>
       <td>gpt-5.5</td>
-      <td class="num">0 / 200k</td>
+      <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>35d</td>
+      <td>51d</td>
       <td>04/04 上午06:54</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>main</td>
-      <td title="agent:main:discord:channel:1489474303094296737">main:discord:channel:1489474303094296737</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">233k / 1.0M</td>
-      <td><div class="bar"><i style="width:23.3%"></i></div><small>23.3%</small></td>
-      <td class="num">0</td>
-      <td>36d</td>
-      <td>04/04 上午06:04</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>handsome</td>
-      <td title="agent:handsome:discord:channel:1487892484611768420">handsome:discord:channel:1487892484611768420</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">40k / 1.0M</td>
-      <td><div class="bar"><i style="width:4.0%"></i></div><small>4.0%</small></td>
-      <td class="num">0</td>
-      <td>39d</td>
-      <td>03/31 上午11:38</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>eddie</td>
-      <td title="agent:eddie:discord:channel:1487892484611768420">eddie:discord:channel:1487892484611768420</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">33k / 1.0M</td>
-      <td><div class="bar"><i style="width:3.3%"></i></div><small>3.3%</small></td>
-      <td class="num">0</td>
-      <td>40d</td>
-      <td>03/31 上午01:30</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>nora</td>
-      <td title="agent:nora:discord:channel:1487892484611768420">nora:discord:channel:1487892484611768420</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">36k / 1.0M</td>
-      <td><div class="bar"><i style="width:3.6%"></i></div><small>3.6%</small></td>
-      <td class="num">0</td>
-      <td>40d</td>
-      <td>03/31 上午01:30</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>christina</td>
-      <td title="agent:christina:discord:channel:1487892484611768420">christina:discord:channel:1487892484611768420</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">21k / 1.0M</td>
-      <td><div class="bar"><i style="width:2.1%"></i></div><small>2.1%</small></td>
-      <td class="num">0</td>
-      <td>40d</td>
-      <td>03/31 上午01:29</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>christina</td>
-      <td title="agent:christina:discord:channel:1487927192716578998">christina:discord:channel:1487927192716578998</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">39k / 1.0M</td>
-      <td><div class="bar"><i style="width:3.9%"></i></div><small>3.9%</small></td>
-      <td class="num">0</td>
-      <td>41d</td>
-      <td>03/30 上午05:34</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>christina</td>
-      <td title="agent:christina:discord:channel:1487927070930767973">christina:discord:channel:1487927070930767973</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">21k / 1.0M</td>
-      <td><div class="bar"><i style="width:2.1%"></i></div><small>2.1%</small></td>
-      <td class="num">0</td>
-      <td>41d</td>
-      <td>03/30 上午05:31</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>main</td>
-      <td title="agent:main:discord:channel:1487569550441578609">main:discord:channel:1487569550441578609</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">23k / 1.0M</td>
-      <td><div class="bar"><i style="width:2.3%"></i></div><small>2.3%</small></td>
-      <td class="num">0</td>
-      <td>41d</td>
-      <td>03/30 上午02:51</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>main</td>
-      <td title="agent:main:discord:channel:1487578661618974740">main:discord:channel:1487578661618974740</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">22k / 1.0M</td>
-      <td><div class="bar"><i style="width:2.2%"></i></div><small>2.2%</small></td>
-      <td class="num">0</td>
-      <td>42d</td>
-      <td>03/29 上午06:33</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>eddie</td>
-      <td title="agent:eddie:discord:channel:1487579890243866754">eddie:discord:channel:1487579890243866754</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">18k / 1.0M</td>
-      <td><div class="bar"><i style="width:1.8%"></i></div><small>1.8%</small></td>
-      <td class="num">0</td>
-      <td>42d</td>
-      <td>03/29 上午06:31</td>
     </tr>
     <tr>
       <td><span class="badge offline">offline</span></td>
@@ -654,23 +198,11 @@
       <td title="agent:main:whatsapp:group:120363424904554560@g.us">main:whatsapp:group:120363424904554560@g.us</td>
       <td>group</td>
       <td>gpt-5.5</td>
-      <td class="num">0 / 200k</td>
+      <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>46d</td>
+      <td>61d</td>
       <td>03/25 上午01:34</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>main</td>
-      <td title="agent:main:whatsapp:group:120363406710347795@g.us">main:whatsapp:group:120363406710347795@g.us</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">46k / 200k</td>
-      <td><div class="bar"><i style="width:23.1%"></i></div><small>23.1%</small></td>
-      <td class="num">0</td>
-      <td>52d</td>
-      <td>03/18 下午11:11</td>
     </tr>
     <tr>
       <td><span class="badge offline">offline</span></td>
@@ -678,10 +210,10 @@
       <td title="agent:main:whatsapp:group:120363423885474539@g.us">main:whatsapp:group:120363423885474539@g.us</td>
       <td>group</td>
       <td>gpt-5.5</td>
-      <td class="num">0 / 200k</td>
+      <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>52d</td>
+      <td>67d</td>
       <td>03/18 下午06:52</td>
     </tr>
     <tr>
@@ -690,23 +222,11 @@
       <td title="agent:christina:telegram:group:@hsiehjac">christina:telegram:group:@hsiehjac</td>
       <td>group</td>
       <td>gpt-5.5</td>
-      <td class="num">0 / 200k</td>
+      <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>55d</td>
+      <td>70d</td>
       <td>03/16 上午05:56</td>
-    </tr>
-    <tr>
-      <td><span class="badge stale">stale</span></td>
-      <td>main</td>
-      <td title="agent:main:whatsapp:group:120363421893919555@g.us">main:whatsapp:group:120363421893919555@g.us</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">37k / 200k</td>
-      <td><div class="bar"><i style="width:18.4%"></i></div><small>18.4%</small></td>
-      <td class="num">0</td>
-      <td>57d</td>
-      <td>03/14 上午12:48</td>
     </tr>
     <tr>
       <td><span class="badge offline">offline</span></td>
@@ -714,82 +234,10 @@
       <td title="agent:main:whatsapp:group:120363423622946125@g.us">main:whatsapp:group:120363423622946125@g.us</td>
       <td>group</td>
       <td>gpt-5.5</td>
-      <td class="num">0 / 200k</td>
+      <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>60d</td>
+      <td>76d</td>
       <td>03/10 上午07:58</td>
-    </tr>
-    <tr>
-      <td><span class="badge working">working</span></td>
-      <td>eddie</td>
-      <td title="agent:eddie:discord:channel:1489479194445348955">eddie:discord:channel:1489479194445348955</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">160k / 1.0M</td>
-      <td><div class="bar"><i style="width:16.0%"></i></div><small>16.0%</small></td>
-      <td class="num">0</td>
-      <td>—</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td><span class="badge working">working</span></td>
-      <td>eddie</td>
-      <td title="agent:eddie:discord:channel:1489792585382760628">eddie:discord:channel:1489792585382760628</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">27k / 1.0M</td>
-      <td><div class="bar"><i style="width:2.7%"></i></div><small>2.7%</small></td>
-      <td class="num">0</td>
-      <td>—</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td><span class="badge working">working</span></td>
-      <td>handsome</td>
-      <td title="agent:handsome:discord:channel:1488301768709378148">handsome:discord:channel:1488301768709378148</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">20k / 1.0M</td>
-      <td><div class="bar"><i style="width:2.0%"></i></div><small>2.0%</small></td>
-      <td class="num">0</td>
-      <td>—</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td><span class="badge working">working</span></td>
-      <td>christina</td>
-      <td title="agent:christina:discord:channel:1488237568247070872">christina:discord:channel:1488237568247070872</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">274k / 1.0M</td>
-      <td><div class="bar"><i style="width:27.4%"></i></div><small>27.4%</small></td>
-      <td class="num">0</td>
-      <td>—</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td><span class="badge working">working</span></td>
-      <td>christina</td>
-      <td title="agent:christina:discord:channel:1488304682680979507">christina:discord:channel:1488304682680979507</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">274k / 1.0M</td>
-      <td><div class="bar"><i style="width:27.4%"></i></div><small>27.4%</small></td>
-      <td class="num">0</td>
-      <td>—</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td><span class="badge working">working</span></td>
-      <td>christina</td>
-      <td title="agent:christina:discord:channel:1489707617520718106">christina:discord:channel:1489707617520718106</td>
-      <td>group</td>
-      <td>claude-sonnet-4-6</td>
-      <td class="num">23k / 1.0M</td>
-      <td><div class="bar"><i style="width:2.3%"></i></div><small>2.3%</small></td>
-      <td class="num">0</td>
-      <td>—</td>
-      <td>—</td>
     </tr></tbody></table></div></section>
 </main></body></html>
