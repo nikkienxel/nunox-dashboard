@@ -2,6 +2,12 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
+  <script>
+    const NX_AUTH_TOKEN = 'amFjQG51bm94LmlvOm51bm9YOTM2MjM2NDI=';
+    if (localStorage.getItem('nx_auth') !== NX_AUTH_TOKEN) {
+      window.location.replace('index.html');
+    }
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nunox Business Dashboard 2026</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
@@ -81,7 +87,7 @@
   <div class="meta">
     <h1>Business Dashboard · 2026</h1>
     <div class="gen" style="display:flex;align-items:center;gap:8px;">
-      <span>Generated 2026/5/18 下午12:25:13 (Taipei)</span>
+      <span>Generated 2026/5/24 下午9:16:41 (Taipei)</span>
       <button id="refreshBtn" onclick="triggerRefresh()" title="Pull latest data from Google Sheets" style="background:none;border:1px solid #30363d;color:#8b949e;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:11px;line-height:1.4;">🔄 Refresh</button>
       <script>
       async function triggerRefresh() {
@@ -118,15 +124,15 @@
   <div class="kpi-grid" style="grid-template-columns: repeat(4, 1fr); max-width: 800px;">
     <div class="kpi accent">
       <div class="label">Total Existing Customers</div>
-      <div class="value">34</div>
+      <div class="value">37</div>
     </div>
     <div class="kpi accent">
       <div class="label">New (2026)</div>
-      <div class="value">16</div>
+      <div class="value">19</div>
     </div>
     <div class="kpi">
       <div class="label">New (May)</div>
-      <div class="value">2</div>
+      <div class="value">5</div>
     </div>
     <div class="kpi">
       <div class="label">Recurrent</div>
@@ -139,28 +145,28 @@
   <div class="kpi-grid">
     <div class="kpi accent">
       <div class="label">YTD Revenue 2026</div>
-      <div class="value">$201.5K</div>
-      <div class="sub">Goal: $1.00M · 20.2% achieved</div>
-      <div class="progress-bar"><div class="progress-fill" style="width:20.2%"></div></div>
+      <div class="value">$207.5K</div>
+      <div class="sub">Goal: $1.00M · 20.7% achieved</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:20.7%"></div></div>
     </div>
     <div class="kpi">
       <div class="label">Revenue This Month</div>
-      <div class="value">$66.8K</div>
+      <div class="value">$92.4K</div>
       <div class="sub">May 2026</div>
     </div>
     <div class="kpi">
       <div class="label">Recurring Revenue (2026 YTD)</div>
-      <div class="value">$10.2K</div>
+      <div class="value">$15.4K</div>
       <div class="sub">Repeating transactions · 2026</div>
     </div>
     <div class="kpi accent">
       <div class="label">ARR</div>
-      <div class="value">$90.8K</div>
+      <div class="value">$104.3K</div>
       <div class="sub">Software revenue 2025+2026 YTD</div>
     </div>
     <div class="kpi" style="border-color:#f85149;">
       <div class="label" style="color:#f85149;">Outstanding Balance</div>
-      <div class="value" style="color:#f85149;">$188.1K</div>
+      <div class="value" style="color:#f85149;">$177.6K</div>
       <div class="sub" style="color:#6e2020;">Unpaid invoices</div>
     </div>
   </div>
@@ -189,15 +195,15 @@
       
       <div class="kpi accent">
         <div class="label">Q1 2026</div>
-        <div class="value">$58.6K</div>
+        <div class="value">$38.7K</div>
         <div class="sub">Goal: $75.0K</div>
-        <div class="progress-bar"><div class="progress-fill" style="width:78.2%"></div></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:51.7%"></div></div>
       </div>
       <div class="kpi accent">
         <div class="label">Q2 2026</div>
-        <div class="value">$142.9K</div>
+        <div class="value">$168.7K</div>
         <div class="sub">Goal: $225.0K</div>
-        <div class="progress-bar"><div class="progress-fill" style="width:63.5%"></div></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:75.0%"></div></div>
       </div>
       <div class="kpi ">
         <div class="label">Q3 2026</div>
@@ -220,17 +226,17 @@
   <div class="kpi-grid" style="max-width: 800px;">
     <div class="kpi">
       <div class="label">Active Leads Revenue</div>
-      <div class="value">$896.5K</div>
+      <div class="value">$899.9K</div>
       <div class="sub">Active pipeline only</div>
     </div>
     <div class="kpi accent">
       <div class="label">Weighted Pipeline</div>
-      <div class="value">$333.6K</div>
+      <div class="value">$320.6K</div>
       <div class="sub">Probability-adjusted (excl. Closed)</div>
     </div>
     <div class="kpi accent">
       <div class="label">Est. Revenue 2026</div>
-      <div class="value">$535.2K</div>
+      <div class="value">$528.0K</div>
       <div class="sub">YTD + Weighted Pipeline</div>
     </div>
   </div>
@@ -251,10 +257,10 @@
         
     <tr>
       <td><span class="badge badge-active">Active</span></td>
-      <td>69</td>
-      <td>$896.5K</td>
+      <td>56</td>
+      <td>$899.9K</td>
       <td>-</td>
-      <td class="highlight-text">$296.1K</td>
+      <td class="highlight-text">$279.1K</td>
     </tr>
     <tr style="opacity:0.55">
       <td><span class="badge badge-closed">Closed</span> <small style="color:#8b949e">(已計入收入)</small></td>
@@ -265,14 +271,14 @@
     </tr>
     <tr>
       <td><span class="badge badge-pending">Pending</span></td>
-      <td>14</td>
-      <td>$152.7K</td>
+      <td>26</td>
+      <td>$166.4K</td>
       <td>-</td>
-      <td class="highlight-text">$37.6K</td>
+      <td class="highlight-text">$41.4K</td>
     </tr>
     <tr>
       <td><span class="badge badge-dead">Dead</span></td>
-      <td>14</td>
+      <td>15</td>
       <td>$45.0K</td>
       <td>-</td>
       <td class="highlight-text">$0</td>
@@ -287,10 +293,10 @@
     
     <div class="kpi" style="border-color:#3fb950;">
       <div class="label" style="color:#3fb950;">>80% (High)</div>
-      <div class="value" style="color:#3fb950;font-size:22px;">$96.7K</div>
-      <div class="sub" style="color:#8b949e;margin-top:4px;">4 leads</div>
-      <div class="sub" style="margin-top:4px;">Weighted: <span style="color:#3fb950;font-weight:600;">$82.0K</span></div>
-      <div class="progress-bar" style="margin-top:10px;background:#21262d;"><div class="progress-fill" style="width:84.8%;background:#3fb950;"></div></div>
+      <div class="value" style="color:#3fb950;font-size:22px;">$74.2K</div>
+      <div class="sub" style="color:#8b949e;margin-top:4px;">3 leads</div>
+      <div class="sub" style="margin-top:4px;">Weighted: <span style="color:#3fb950;font-weight:600;">$64.0K</span></div>
+      <div class="progress-bar" style="margin-top:10px;background:#21262d;"><div class="progress-fill" style="width:86.2%;background:#3fb950;"></div></div>
     </div>
     <div class="kpi" style="border-color:#e3b341;">
       <div class="label" style="color:#e3b341;">50~80% (Mid)</div>
@@ -301,10 +307,10 @@
     </div>
     <div class="kpi" style="border-color:#f85149;">
       <div class="label" style="color:#f85149;"><50% (Low)</div>
-      <div class="value" style="color:#f85149;font-size:22px;">$744.1K</div>
+      <div class="value" style="color:#f85149;font-size:22px;">$783.7K</div>
       <div class="sub" style="color:#8b949e;margin-top:4px;">75 leads</div>
-      <div class="sub" style="margin-top:4px;">Weighted: <span style="color:#f85149;font-weight:600;">$129.0K</span></div>
-      <div class="progress-bar" style="margin-top:10px;background:#21262d;"><div class="progress-fill" style="width:17.3%;background:#f85149;"></div></div>
+      <div class="sub" style="margin-top:4px;">Weighted: <span style="color:#f85149;font-weight:600;">$133.9K</span></div>
+      <div class="progress-bar" style="margin-top:10px;background:#21262d;"><div class="progress-fill" style="width:17.1%;background:#f85149;"></div></div>
     </div>
   </div>
 
@@ -324,7 +330,7 @@
       <td>T2 - Textile (Apparel)</td>
       <td>37</td>
       <td>$467.7K</td>
-      <td class="highlight-text">$126.5K</td>
+      <td class="highlight-text">$110.8K</td>
     </tr>
     <tr>
       <td>T1 - Apparel</td>
@@ -363,10 +369,16 @@
       <td class="highlight-text">$7.1K</td>
     </tr>
     <tr>
+      <td>T2 - Furniture/Accessory</td>
+      <td>6</td>
+      <td>$29.4K</td>
+      <td class="highlight-text">$5.4K</td>
+    </tr>
+    <tr>
       <td>Brand</td>
       <td>14</td>
       <td>$98.0K</td>
-      <td class="highlight-text">$5.8K</td>
+      <td class="highlight-text">$5.3K</td>
     </tr>
     <tr>
       <td>T1 - Furniture/Accessory</td>
@@ -375,22 +387,16 @@
       <td class="highlight-text">$3.1K</td>
     </tr>
     <tr>
-      <td>T2 - Furniture/Accessory</td>
-      <td>6</td>
-      <td>$12.3K</td>
-      <td class="highlight-text">$2.0K</td>
+      <td>T1-Accessory</td>
+      <td>3</td>
+      <td>$2.5K</td>
+      <td class="highlight-text">$250</td>
     </tr>
     <tr>
       <td>Designer Brand</td>
       <td>3</td>
       <td>$1.2K</td>
-      <td class="highlight-text">$360</td>
-    </tr>
-    <tr>
-      <td>T1-Accessory</td>
-      <td>3</td>
-      <td>$2.5K</td>
-      <td class="highlight-text">$250</td>
+      <td class="highlight-text">$120</td>
     </tr>
     <tr>
       <td>Uncategorized</td>
@@ -410,7 +416,7 @@
 
 </div>
 
-<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/5/18 下午12:25:13 (Taipei)</footer>
+<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/5/24 下午9:16:41 (Taipei)</footer>
 
 <script>
 const chartDefaults = {
@@ -430,7 +436,7 @@ new Chart(document.getElementById('revenueBar'), {
     datasets: [
       {
         label: 'Revenue',
-        data: [5076.99,3257.92,50298.59,76064.05000000002,66844.95,0,0,0,0,0,0,0],
+        data: [5076.99,3257.92,30406.890000000003,76300.13000000002,92433.52999999998,0,0,0,0,0,0,0],
         backgroundColor: ctx => {
           const i = ctx.dataIndex;
           return i === 4 ? 'rgba(88,166,255,0.85)' : 'rgba(88,166,255,0.3)';
@@ -462,7 +468,7 @@ new Chart(document.getElementById('quarterBar'), {
     datasets: [
       {
         label: 'Actual',
-        data: [58633.5,142909,0,0],
+        data: [38741.8,168733.66,0,0],
         backgroundColor: ['rgba(88,166,255,0.8)','rgba(88,166,255,0.4)','rgba(88,166,255,0.2)','rgba(88,166,255,0.1)'],
         borderColor: '#58a6ff',
         borderWidth: 1,
@@ -495,7 +501,7 @@ new Chart(document.getElementById('pipelinePie'), {
   data: {
     labels: ['Dead','Active','Pending','Closed'],
     datasets: [{
-      data: [14,69,14,11],
+      data: [15,56,26,11],
       backgroundColor: ['#3fb950','#f85149','#e3b341','#58a6ff','#bc8cff','#79c0ff','#d2a8ff'],
       borderColor: '#161b22',
       borderWidth: 3,
