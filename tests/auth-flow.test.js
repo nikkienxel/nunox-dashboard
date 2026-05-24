@@ -17,6 +17,9 @@ assert(!indexHtml.includes('function getDashboard()'));
 assert(dashboardHtml.includes('const NX_AUTH_TOKEN'));
 assert(dashboardHtml.includes("window.location.replace('index.html')"));
 assert(dashboardHtml.includes('Refresh endpoint returned'));
+assert(dashboardHtml.includes('raw.githubusercontent.com/nikkienxel/nunox-dashboard/main/dashboard.html'));
+assert(dashboardHtml.includes('document.write(latestHtml)'));
+assert(!dashboardHtml.includes('window.location.reload(), 65000'));
 assert(!dashboardHtml.includes('const data = await r.json();'));
 
 assert(refreshServer.includes('const requestUrl = new URL(req.url'));

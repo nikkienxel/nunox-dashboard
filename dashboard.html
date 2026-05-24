@@ -87,11 +87,12 @@
   <div class="meta">
     <h1>Business Dashboard · 2026</h1>
     <div class="gen" style="display:flex;align-items:center;gap:8px;">
-      <span>Generated 2026/5/24 下午9:36:32 (Taipei)</span>
+      <span>Generated 2026/5/24 下午9:38:24 (Taipei)</span>
       <button id="refreshBtn" onclick="triggerRefresh()" title="Pull latest data from Google Sheets" style="background:none;border:1px solid #30363d;color:#8b949e;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:11px;line-height:1.4;">🔄 Refresh</button>
       <script>
       async function triggerRefresh() {
         const btn = document.getElementById('refreshBtn');
+        const currentGenerated = document.querySelector('.gen span')?.textContent || '';
         btn.disabled = true; btn.textContent = '⏳ Refreshing...'; btn.style.color='#58a6ff';
         try {
           // Fetch current tunnel URL from GitHub (updated on Mac mini boot)
@@ -108,9 +109,22 @@
           }
           if (!r.ok) throw new Error(data.error || `Refresh endpoint returned ${r.status}`);
           if (data.ok) {
-            btn.textContent = '✅ Done (~60s)';
-            setTimeout(() => window.location.reload(), 65000);
-            setTimeout(() => { btn.textContent = '🔄 Refresh'; btn.disabled = false; btn.style.color='#8b949e'; }, 10000);
+            btn.textContent = '⏳ Publishing...';
+            const latestUrl = 'https://raw.githubusercontent.com/nikkienxel/nunox-dashboard/main/dashboard.html?t=';
+            for (let attempt = 0; attempt < 24; attempt += 1) {
+              await new Promise(resolve => setTimeout(resolve, attempt === 0 ? 15000 : 10000));
+              const latestResp = await fetch(latestUrl + Date.now(), { cache: 'no-store' });
+              if (!latestResp.ok) continue;
+              const latestHtml = await latestResp.text();
+              if (latestHtml.includes('Generated ') && !latestHtml.includes(currentGenerated)) {
+                btn.textContent = '✅ Loading latest';
+                document.open();
+                document.write(latestHtml);
+                document.close();
+                return;
+              }
+            }
+            throw new Error('Published, waiting for GitHub Pages cache');
           } else {
             throw new Error(data.error || 'Unknown error');
           }
@@ -423,7 +437,7 @@
 
 </div>
 
-<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/5/24 下午9:36:32 (Taipei)</footer>
+<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/5/24 下午9:38:24 (Taipei)</footer>
 
 <script>
 const chartDefaults = {

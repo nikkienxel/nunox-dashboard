@@ -64,6 +64,9 @@ token-dashboard-refresh.sh → hourly launchd refresh script for token-dashboard
   - 根本原因：`refresh-server.js` 用 `req.url === '/refresh'` 判斷 route；前端呼叫 `/refresh?s=nunox-refresh-2026` 時 `req.url` 含 query string，server 回純文字 404 `not found`，前端再直接 `r.json()` 導致 JSON parse error
   - 修復：refresh server 改用 `new URL(req.url, ...)` 判斷 `pathname` 並讀 query secret；`dashboard.html` refresh client 改成先讀 text、再安全 parse JSON，非 JSON response 會顯示可讀 HTTP 錯誤
   - 已重啟本機 3099 refresh server；Cloudflare tunnel `/refresh?s=bad-secret` 已驗證回 JSON 403 而非 404 純文字
+- **2026-05-24**: 修復 Refresh 成功 push 但 GitHub Pages 短時間仍顯示舊 dashboard
+  - 根本原因：GitHub Pages/Fastly 對 `dashboard.html` 回 `cache-control: max-age=600`，refresh 背景 push 已成功，但 direct URL 仍可能被 CDN 快取約 10 分鐘
+  - 修復：refresh client 在 API 回 OK 後輪詢 GitHub raw 的 `main/dashboard.html`，偵測到 `Generated` 時間更新後直接用最新 HTML 替換目前頁面，避免使用者看到 Pages 舊快取
 - **2026-04-15**: 第三次 login 失敗
   - 根本原因：`build-index.js` 用 `sessionStorage`（應為 `localStorage`），且未 escape `</script>` in template literal → HTML parser 在第一個 `</script>` 就截斷外層 script block，導致 `doLogin` 變成 `undefined`
   - 修復：`build-index.js` 改 `localStorage` + 用 `<\x2fscript>` escape；`weekly_update.sh` 加入 `node build-index.js` step 確保每次更新同步修復 `index.html`
