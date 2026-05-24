@@ -60,6 +60,10 @@ token-dashboard-refresh.sh → hourly launchd refresh script for token-dashboard
 - **2026-05-24**: 修復 `dashboard.html` 直連不會回登入頁、`index.html` 用 blob iframe 顯示 dashboard 的不穩定登入流程
   - 根本原因：登入頁與文件描述不一致；`dashboard.html` 沒有 auth guard，使用者若直接開 Jac 常用的 `dashboard.html` URL，不會走登入流程
   - 修復：`build-index.js` 改為登入成功後導向 `dashboard.html`；`fetch-data.js` 生成的 `dashboard.html` 加上 `localStorage nx_auth` 檢查，未登入自動回 `index.html`
+- **2026-05-24**: 修復 dashboard Refresh 按鈕顯示 `Unexpected token 'o', "not fou..."`
+  - 根本原因：`refresh-server.js` 用 `req.url === '/refresh'` 判斷 route；前端呼叫 `/refresh?s=nunox-refresh-2026` 時 `req.url` 含 query string，server 回純文字 404 `not found`，前端再直接 `r.json()` 導致 JSON parse error
+  - 修復：refresh server 改用 `new URL(req.url, ...)` 判斷 `pathname` 並讀 query secret；`dashboard.html` refresh client 改成先讀 text、再安全 parse JSON，非 JSON response 會顯示可讀 HTTP 錯誤
+  - 已重啟本機 3099 refresh server；Cloudflare tunnel `/refresh?s=bad-secret` 已驗證回 JSON 403 而非 404 純文字
 - **2026-04-15**: 第三次 login 失敗
   - 根本原因：`build-index.js` 用 `sessionStorage`（應為 `localStorage`），且未 escape `</script>` in template literal → HTML parser 在第一個 `</script>` 就截斷外層 script block，導致 `doLogin` 變成 `undefined`
   - 修復：`build-index.js` 改 `localStorage` + 用 `<\x2fscript>` escape；`weekly_update.sh` 加入 `node build-index.js` step 確保每次更新同步修復 `index.html`

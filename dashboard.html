@@ -99,7 +99,14 @@
           if (!urlResp.ok) throw new Error('Could not fetch endpoint URL');
           const baseUrl = (await urlResp.text()).trim();
           const r = await fetch(baseUrl + '/refresh?s=nunox-refresh-2026', { method: 'POST' });
-          const data = await r.json();
+          const text = await r.text();
+          let data;
+          try {
+            data = JSON.parse(text);
+          } catch (_) {
+            throw new Error(`Refresh endpoint returned ${r.status}: ${text.slice(0, 40)}`);
+          }
+          if (!r.ok) throw new Error(data.error || `Refresh endpoint returned ${r.status}`);
           if (data.ok) {
             btn.textContent = '✅ Done (~60s)';
             setTimeout(() => window.location.reload(), 65000);
