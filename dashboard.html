@@ -110,10 +110,13 @@
           if (!r.ok) throw new Error(data.error || `Refresh endpoint returned ${r.status}`);
           if (data.ok) {
             btn.textContent = '⏳ Publishing...';
-            const latestUrl = 'https://raw.githubusercontent.com/nikkienxel/nunox-dashboard/main/dashboard.html?t=';
+            const latestUrl = 'https://api.github.com/repos/nikkienxel/nunox-dashboard/contents/dashboard.html?ref=main&t=';
             for (let attempt = 0; attempt < 24; attempt += 1) {
               await new Promise(resolve => setTimeout(resolve, attempt === 0 ? 15000 : 10000));
-              const latestResp = await fetch(latestUrl + Date.now(), { cache: 'no-store' });
+              const latestResp = await fetch(latestUrl + Date.now(), {
+                cache: 'no-store',
+                headers: { Accept: 'application/vnd.github.raw' }
+              });
               if (!latestResp.ok) continue;
               const latestHtml = await latestResp.text();
               if (latestHtml.includes('Generated ') && !latestHtml.includes(currentGenerated)) {
