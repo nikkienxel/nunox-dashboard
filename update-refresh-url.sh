@@ -1,6 +1,7 @@
 #!/bin/bash
-# Watches the CF tunnel log and pushes the current public URL to GitHub
-# so the dashboard refresh button always has the correct endpoint.
+# Watches the CF tunnel log and pushes the current public URL to GitHub.
+# The launchd job runs this periodically because quick trycloudflare URLs
+# can disappear or change while the local refresh server is still healthy.
 
 LOG="/tmp/cf-dashboard-refresh-err.log"
 DIR="/Users/jacai/.openclaw/workspace/nunox-dashboard"
@@ -26,5 +27,10 @@ echo "$URL" > "$URL_FILE"
 
 cd "$DIR"
 git add refresh-endpoint.txt
-git diff --staged --quiet || git commit -m "chore: update refresh endpoint URL" && git push
-echo "[$(date)] ✅ Pushed refresh-endpoint.txt to GitHub"
+if git diff --staged --quiet; then
+  echo "[$(date)] ℹ️ refresh-endpoint.txt already current"
+else
+  git commit -m "chore: update refresh endpoint URL"
+  git push
+  echo "[$(date)] ✅ Pushed refresh-endpoint.txt to GitHub"
+fi
