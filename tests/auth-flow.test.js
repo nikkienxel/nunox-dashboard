@@ -21,6 +21,8 @@ assert(dashboardHtml.includes('const NX_AUTH_HASHES'));
 assert(dashboardHtml.includes('8d6a1a27345582135057aa7143fac3377143235699c4b316f6ae2cae4d72e93a'));
 assert(dashboardHtml.includes("window.location.replace('index.html')"));
 assert(dashboardHtml.includes('Refresh endpoint returned'));
+assert(dashboardHtml.includes('https://sales.nunox-ai.com/refresh?s=nunox-refresh-2026'));
+assert(!dashboardHtml.includes('raw.githubusercontent.com/nikkienxel/nunox-dashboard/main/refresh-endpoint.txt'));
 assert(dashboardHtml.includes('api.github.com/repos/nikkienxel/nunox-dashboard/contents/dashboard.html'));
 assert(dashboardHtml.includes('application/vnd.github.raw'));
 assert(dashboardHtml.includes('document.write(latestHtml)'));

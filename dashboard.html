@@ -90,7 +90,7 @@
   <div class="meta">
     <h1>Business Dashboard · 2026</h1>
     <div class="gen" style="display:flex;align-items:center;gap:8px;">
-      <span>Generated 2026/5/29 下午3:08:12 (Taipei)</span>
+      <span>Generated 2026/5/29 下午3:52:07 (Taipei)</span>
       <button id="refreshBtn" onclick="triggerRefresh()" title="Pull latest data from Google Sheets" style="background:none;border:1px solid #30363d;color:#8b949e;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:11px;line-height:1.4;">🔄 Refresh</button>
       <script>
       async function triggerRefresh() {
@@ -98,11 +98,8 @@
         const currentGenerated = document.querySelector('.gen span')?.textContent || '';
         btn.disabled = true; btn.textContent = '⏳ Refreshing...'; btn.style.color='#58a6ff';
         try {
-          // Fetch current tunnel URL from GitHub (updated on Mac mini boot)
-          const urlResp = await fetch('https://raw.githubusercontent.com/nikkienxel/nunox-dashboard/main/refresh-endpoint.txt?t='+Date.now());
-          if (!urlResp.ok) throw new Error('Could not fetch endpoint URL');
-          const baseUrl = (await urlResp.text()).trim();
-          const r = await fetch(baseUrl + '/refresh?s=nunox-refresh-2026', { method: 'POST' });
+          const refreshEndpoint = 'https://sales.nunox-ai.com/refresh?s=nunox-refresh-2026';
+          const r = await fetch(refreshEndpoint, { method: 'POST' });
           const text = await r.text();
           let data;
           try {
@@ -193,7 +190,7 @@
     </div>
     <div class="kpi" style="border-color:#f85149;">
       <div class="label" style="color:#f85149;">Outstanding Balance</div>
-      <div class="value" style="color:#f85149;">$146.6K</div>
+      <div class="value" style="color:#f85149;">$144.8K</div>
       <div class="sub" style="color:#6e2020;">Unpaid invoices</div>
     </div>
   </div>
@@ -443,7 +440,7 @@
 
 </div>
 
-<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/5/29 下午3:08:12 (Taipei)</footer>
+<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/5/29 下午3:52:07 (Taipei)</footer>
 
 <script>
 const chartDefaults = {
