@@ -56,21 +56,32 @@
 <div id="dashboard-wrap"></div>
 
 <script>
-const _T = 'amFjQG51bm94LmlvOm51bm9YOTM2MjM2NDI=';
-function doLogin() {
+const _AUTH_HASHES = [
+  "e8dedae91ed0505719be1566f72a84542bdbb731062fbb36462b8daab767149f",
+  "8d6a1a27345582135057aa7143fac3377143235699c4b316f6ae2cae4d72e93a"
+];
+async function sha256Hex(value) {
+  const data = new TextEncoder().encode(value);
+  const digest = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, '0')).join('');
+}
+async function doLogin() {
   const u = document.getElementById('uid').value.trim();
   const p = document.getElementById('pwd').value;
-  if (btoa(u + ':' + p) === _T) {
-    localStorage.setItem('nx_auth', _T);
+  const authHash = await sha256Hex(u + ':' + p);
+  if (_AUTH_HASHES.includes(authHash)) {
+    localStorage.setItem('nx_auth', authHash);
     window.location.href = 'dashboard.html';
   } else {
     document.getElementById('err').textContent = 'Incorrect email or password.';
   }
 }
 document.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
-if (localStorage.getItem('nx_auth') === _T) {
-  window.location.replace('dashboard.html');
-}
+(async () => {
+  if (_AUTH_HASHES.includes(localStorage.getItem('nx_auth'))) {
+    window.location.replace('dashboard.html');
+  }
+})();
 </script>
 </body>
 </html>

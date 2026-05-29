@@ -17,8 +17,8 @@ token-dashboard-refresh.sh → hourly launchd refresh script for token-dashboard
 
 ## 部署
 - GitHub Pages: https://nikkienxel.github.io/nunox-dashboard/
-- 登入帳密：jac@nunox.io / nunoX93623642
-- 認證方式：localStorage (`nx_auth`)；`index.html` 登入成功後跳轉 `dashboard.html`，`dashboard.html` 未驗證會 redirect 回 `index.html`
+- 登入帳號：Jac、Sylvia
+- 認證方式：localStorage (`nx_auth`) 儲存 SHA-256 auth hash；`index.html` 登入成功後跳轉 `dashboard.html`，`dashboard.html` 未驗證會 redirect 回 `index.html`
 
 ## 資料來源
 - Sales Records: `1SpwPPqoR_tfcT63xY-7QUJWKXD4-mnhL74CHlbSmzq4`
@@ -52,6 +52,7 @@ token-dashboard-refresh.sh → hourly launchd refresh script for token-dashboard
 - Detail Records sheet: col B(idx 1)=customer, col D(idx 3)=type, col E(idx 4)=date, col H(idx 7)=product, col AB(idx 27)=Total NunoX Revenue, col AD(idx 29)=Outstanding
 
 ## 更新紀錄
+- **2026-05-29**: 新增 Sylvia dashboard login，將登入頁與 dashboard guard 從可解碼的 base64 token 改為 SHA-256 auth hash allowlist；同步更新本地 `build-index.js` / `fetch-data.js`，避免 weekly update 覆蓋登入設定。
 - **2026-05-18**: Jac requested canceling dashboard weekly report generation. Removed the OpenAI/GPT-4o weekly sales review call from `fetch-data.js`, removed the Weekly Sales Review block from generated `dashboard.html`/`index.html`, and removed the `openai` npm dependency. Future weekly updates only refresh data and pages.
 - **2026-05-18**: Weekly dashboard update pushed (`30d6080`): Customers 34, New this month 2, YTD Revenue $201.7K (20.2% of $1.00M goal), ARR $90.8K, Outstanding $181.9K, Pipeline $896.5K total / $333.6K weighted, Est. 2026 Revenue $535.3K. AI review call returned OpenAI quota 429, but dashboard HTML still generated and deployed.
 - **2026-05-11**: Weekly dashboard update pushed (`508c9db`): Customers 34, New this month 2, YTD Revenue $202.9K (20.3% of $1.00M goal), ARR $91.0K, Outstanding $211.6K, Pipeline $921.5K total / $341.1K weighted, Est. 2026 Revenue $544.1K. AI review call returned OpenAI quota 429, but dashboard HTML still generated and deployed.

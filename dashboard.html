@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <script>
-    const NX_AUTH_TOKEN = 'amFjQG51bm94LmlvOm51bm9YOTM2MjM2NDI=';
-    if (localStorage.getItem('nx_auth') !== NX_AUTH_TOKEN) {
+    const NX_AUTH_HASHES = [
+      'e8dedae91ed0505719be1566f72a84542bdbb731062fbb36462b8daab767149f',
+      '8d6a1a27345582135057aa7143fac3377143235699c4b316f6ae2cae4d72e93a'
+    ];
+    if (!NX_AUTH_HASHES.includes(localStorage.getItem('nx_auth'))) {
       window.location.replace('index.html');
     }
   </script>
