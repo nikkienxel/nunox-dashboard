@@ -52,7 +52,7 @@ token-dashboard-refresh.sh → hourly launchd refresh script for token-dashboard
 - Detail Records sheet: col B(idx 1)=customer, col D(idx 3)=type, col E(idx 4)=date, col H(idx 7)=product, col AB(idx 27)=Total NunoX Revenue, col AD(idx 29)=Outstanding
 
 ## 更新紀錄
-- **2026-05-29**: 將固定網域拆分為 Dashboard web 與 Refresh API：`sales.nunox-ai.com` 作為 dashboard 網頁 hostname，repo 新增 `CNAME`；`sales-api.nunox-ai.com` 作為 refresh API hostname，Cloudflare tunnel DNS route 指到同一條 named tunnel。`~/.cloudflared/nunox-sales-dashboard.yml` ingress 已改成 `sales-api.nunox-ai.com` → 本機 `localhost:3099`，`sales.nunox-ai.com` → GitHub Pages origin；Refresh button endpoint 改為 `https://sales-api.nunox-ai.com/refresh`。
+- **2026-05-29**: 將固定網域拆分為 Dashboard web 與 Refresh API：`sales.nunox-ai.com` 作為 dashboard 網頁 hostname，repo 新增 `CNAME`；`sales-api.nunox-ai.com` 作為 refresh API hostname，Cloudflare tunnel DNS route 指到同一條 named tunnel。`~/.cloudflared/nunox-sales-dashboard.yml` ingress 已改成 `sales-api.nunox-ai.com` → 本機 refresh server `localhost:3099`，`sales.nunox-ai.com` → 本機靜態 dashboard web server `localhost:3100`。本機 web server 由 launchd `com.nunox.dashboard-web` 常駐，服務 repo 目錄；Refresh button endpoint 改為 `https://sales-api.nunox-ai.com/refresh`。
 - **2026-05-29**: 新增 Sylvia dashboard login，將登入頁與 dashboard guard 從可解碼的 base64 token 改為 SHA-256 auth hash allowlist；同步更新本地 `build-index.js` / `fetch-data.js`，避免 weekly update 覆蓋登入設定。
 - **2026-05-29**: 將 Refresh button 改為固定 endpoint `https://sales.nunox-ai.com/refresh`，不再從 GitHub 讀 quick trycloudflare URL；`refresh-endpoint.txt` 保留同一個固定 hostname 供追蹤。停用本機 `com.nunox.dashboard-update-refresh-url` 的 5 分鐘 launchd interval，`update-refresh-url.sh` 改成 legacy/no-op helper，不再自動 commit/push 隨機 tunnel URL。固定 Cloudflare named tunnel `nunox-sales-dashboard` 透過 `sales.nunox-ai.com` 指向本機 refresh server port 3099。
 - **2026-05-29**: 修復 Refresh button 再次失效。根本原因：quick trycloudflare tunnel URL 已失效，`refresh-endpoint.txt` 仍指向舊 URL；本機 `refresh-server.js` 仍健康。重啟 `com.nunox.cf-dashboard-refresh` 取得新 tunnel URL，更新並 push `refresh-endpoint.txt`，實測 `/refresh` 成功產生並 push dashboard commit `9f85c43`。另外將 `com.nunox.dashboard-update-refresh-url` launchd 加上 `StartInterval=300`，每 5 分鐘檢查 tunnel log 並在 URL 改變時更新 GitHub，降低 quick tunnel 換 URL 後按鈕再次失效的機率。
@@ -80,6 +80,14 @@ token-dashboard-refresh.sh → hourly launchd refresh script for token-dashboard
 - 時間: 每週一 8:00 AM 台北時間
 - Log: `auto_update.log`
 - 手動觸發: `bash weekly_update.sh`
+
+### Dashboard Web / Refresh Tunnel
+- Cloudflare named tunnel: `nunox-sales-dashboard`
+- launchd: `com.nunox.cf-dashboard-refresh`
+- Config: `~/.cloudflared/nunox-sales-dashboard.yml`
+- Dashboard web: `https://sales.nunox-ai.com` → `localhost:3100`
+- Dashboard web launchd: `com.nunox.dashboard-web`
+- Refresh API: `https://sales-api.nunox-ai.com/refresh` → `localhost:3099`
 
 ### Token Dashboard 自動刷新
 - launchd: `ai.nunox.token-dashboard-refresh`
