@@ -5,7 +5,7 @@
 
 DIR="/Users/jacai/.openclaw/workspace/nunox-dashboard"
 URL_FILE="$DIR/refresh-endpoint.txt"
-URL="https://sales.nunox-ai.com"
+URL="https://sales-api.nunox-ai.com"
 
 echo "[$(date)] Refresh endpoint is fixed: $URL"
 echo "$URL" > "$URL_FILE"

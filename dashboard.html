@@ -98,7 +98,7 @@
         const currentGenerated = document.querySelector('.gen span')?.textContent || '';
         btn.disabled = true; btn.textContent = '⏳ Refreshing...'; btn.style.color='#58a6ff';
         try {
-          const refreshEndpoint = 'https://sales.nunox-ai.com/refresh?s=nunox-refresh-2026';
+          const refreshEndpoint = 'https://sales-api.nunox-ai.com/refresh?s=nunox-refresh-2026';
           const r = await fetch(refreshEndpoint, { method: 'POST' });
           const text = await r.text();
           let data;

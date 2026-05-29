@@ -1,1 +1,1 @@
-https://sales.nunox-ai.com
+https://sales-api.nunox-ai.com
