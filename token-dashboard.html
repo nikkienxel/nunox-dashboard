@@ -8,21 +8,21 @@
 </style>
 </head>
 <body><main class="wrap">
-  <div class="hero"><div><h1>OpenClaw Token Dashboard</h1><p>Generated 05/25 上午05:52 · static hourly refresh · no embedded gateway token</p></div><p class="actions"><code>bash token-dashboard-refresh.sh</code></p></div>
+  <div class="hero"><div><h1>OpenClaw Token Dashboard</h1><p>Generated 06/01 上午05:56 · static hourly refresh · no embedded gateway token</p></div><p class="actions"><code>bash token-dashboard-refresh.sh</code></p></div>
   <section class="grid">
-    <div class="card"><div class="label">Active Sessions</div><div class="value purple">18</div><p>All agents</p></div>
-    <div class="card"><div class="label">Current Context</div><div class="value green">208k</div><p>208,083 tokens</p></div>
+    <div class="card"><div class="label">Active Sessions</div><div class="value purple">19</div><p>All agents</p></div>
+    <div class="card"><div class="label">Current Context</div><div class="value green">170k</div><p>170,074 tokens</p></div>
     <div class="card"><div class="label">Estimated Cache Saved</div><div class="value yellow">3.4M</div><p>input - current context</p></div>
     <div class="card"><div class="label">Needs Attention</div><div class="value red">1</div><p>sessions above 70% context</p></div>
   </section>
   <section class="section panel note"><b>Optimization status:</b> regular automatic context/token compaction is handled by OpenClaw runtime. This dashboard now audits session pressure hourly without calling the LLM, so monitoring itself does not burn tokens.</section>
   <section class="section"><h2>Agents</h2><div class="agentgrid">
-    <div class="mini"><b>main</b><span>11 sessions</span><strong>117k</strong><small>latest 05/25 上午03:30</small></div>
-    <div class="mini"><b>christina</b><span>3 sessions</span><strong>74k</strong><small>latest 05/24 下午06:25</small></div>
-    <div class="mini"><b>nora</b><span>2 sessions</span><strong>18k</strong><small>latest 05/24 上午09:00</small></div>
-    <div class="mini"><b>handsome</b><span>1 sessions</span><strong>0</strong><small>latest 05/07 下午06:50</small></div>
-    <div class="mini"><b>eddie</b><span>1 sessions</span><strong>0</strong><small>latest 04/16 下午07:27</small></div></div></section>
-  <section class="section panel"><h2>Models</h2><span class="pill">gpt-5.5 · 17</span><span class="pill">gpt-5.2-pro · 1</span></section>
+    <div class="mini"><b>eddie</b><span>2 sessions</span><strong>74k</strong><small>latest 05/31 下午03:49</small></div>
+    <div class="mini"><b>nora</b><span>3 sessions</span><strong>69k</strong><small>latest 05/31 下午05:57</small></div>
+    <div class="mini"><b>main</b><span>11 sessions</span><strong>27k</strong><small>latest 06/01 上午03:30</small></div>
+    <div class="mini"><b>christina</b><span>2 sessions</span><strong>0</strong><small>latest 05/15 上午08:47</small></div>
+    <div class="mini"><b>handsome</b><span>1 sessions</span><strong>0</strong><small>latest 05/07 下午06:50</small></div></div></section>
+  <section class="section panel"><h2>Models</h2><span class="pill">gpt-5.5 · 18</span><span class="pill">gpt-5.2-pro · 1</span></section>
   <section class="section panel"><h2>Sessions</h2><div class="tablewrap"><table><thead><tr><th>Status</th><th>Agent</th><th>Session</th><th>Kind</th><th>Model</th><th class="num">Context</th><th>Usage</th><th class="num">Cache Saved</th><th>Age</th><th>Updated</th></tr></thead><tbody>
     <tr>
       <td><span class="badge online">online</span></td>
@@ -31,46 +31,34 @@
       <td>cron</td>
       <td>gpt-5.5</td>
       <td class="num">27k / 100k</td>
-      <td><div class="bar"><i style="width:27.1%"></i></div><small>27.1%</small></td>
+      <td><div class="bar"><i style="width:27.2%"></i></div><small>27.2%</small></td>
       <td class="num">0</td>
       <td>2h</td>
-      <td>05/25 上午03:30</td>
+      <td>06/01 上午03:30</td>
     </tr>
     <tr>
       <td><span class="badge online">online</span></td>
-      <td>main</td>
-      <td title="agent:main:discord:channel:1493912962576945182">main:discord:channel:1493912962576945182</td>
+      <td>nora</td>
+      <td title="agent:nora:discord:channel:1502241128995487816">nora:discord:channel:1502241128995487816</td>
       <td>group</td>
       <td>gpt-5.5</td>
-      <td class="num">39k / 100k</td>
-      <td><div class="bar"><i style="width:38.9%"></i></div><small>38.9%</small></td>
+      <td class="num">44k / 100k</td>
+      <td><div class="bar"><i style="width:43.9%"></i></div><small>43.9%</small></td>
       <td class="num">0</td>
-      <td>8h</td>
-      <td>05/24 下午09:42</td>
+      <td>12h</td>
+      <td>05/31 下午05:57</td>
     </tr>
     <tr>
       <td><span class="badge online">online</span></td>
-      <td>main</td>
-      <td title="agent:main:main">main:main</td>
-      <td>direct</td>
-      <td>gpt-5.5</td>
-      <td class="num">51k / 100k</td>
-      <td><div class="bar"><i style="width:50.6%"></i></div><small>50.6%</small></td>
-      <td class="num">0</td>
-      <td>9h</td>
-      <td>05/24 下午09:10</td>
-    </tr>
-    <tr>
-      <td><span class="badge online">online</span></td>
-      <td>christina</td>
-      <td title="agent:christina:main">christina:main</td>
-      <td>direct</td>
+      <td>eddie</td>
+      <td title="agent:eddie:discord:channel:1491343015053230170">eddie:discord:channel:1491343015053230170</td>
+      <td>group</td>
       <td>gpt-5.5</td>
       <td class="num">74k / 100k</td>
-      <td><div class="bar"><i style="width:73.6%"></i></div><small>73.6%</small></td>
+      <td><div class="bar"><i style="width:74.2%"></i></div><small>74.2%</small></td>
       <td class="num">0</td>
-      <td>11h</td>
-      <td>05/24 下午06:25</td>
+      <td>14h</td>
+      <td>05/31 下午03:49</td>
     </tr>
     <tr>
       <td><span class="badge online">online</span></td>
@@ -78,11 +66,35 @@
       <td title="agent:nora:cron:762b8f9f-c343-467b-9e0c-e9f0e68d45c9">nora:cron:762b8f9f-c343-467b-9e0c-e9f0e68d45c9</td>
       <td>cron</td>
       <td>gpt-5.5</td>
-      <td class="num">18k / 100k</td>
-      <td><div class="bar"><i style="width:17.9%"></i></div><small>17.9%</small></td>
-      <td class="num">993</td>
+      <td class="num">25k / 100k</td>
+      <td><div class="bar"><i style="width:24.8%"></i></div><small>24.8%</small></td>
+      <td class="num">0</td>
       <td>21h</td>
-      <td>05/24 上午09:00</td>
+      <td>05/31 上午09:00</td>
+    </tr>
+    <tr>
+      <td><span class="badge offline">offline</span></td>
+      <td>main</td>
+      <td title="agent:main:whatsapp:group:120363427500673453@g.us">main:whatsapp:group:120363427500673453@g.us</td>
+      <td>group</td>
+      <td>gpt-5.5</td>
+      <td class="num">0 / 100k</td>
+      <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
+      <td class="num">0</td>
+      <td>4d</td>
+      <td>05/27 下午08:36</td>
+    </tr>
+    <tr>
+      <td><span class="badge offline">offline</span></td>
+      <td>main</td>
+      <td title="agent:main:whatsapp:group:120363426853647306@g.us">main:whatsapp:group:120363426853647306@g.us</td>
+      <td>group</td>
+      <td>gpt-5.5</td>
+      <td class="num">0 / 100k</td>
+      <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
+      <td class="num">0</td>
+      <td>7d</td>
+      <td>05/25 上午08:55</td>
     </tr>
     <tr>
       <td><span class="badge offline">offline</span></td>
@@ -93,7 +105,7 @@
       <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>7d</td>
+      <td>14d</td>
       <td>05/18 上午09:00</td>
     </tr>
     <tr>
@@ -105,7 +117,7 @@
       <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">10k</td>
-      <td>10d</td>
+      <td>17d</td>
       <td>05/15 上午08:47</td>
     </tr>
     <tr>
@@ -117,7 +129,7 @@
       <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>17d</td>
+      <td>24d</td>
       <td>05/07 下午06:50</td>
     </tr>
     <tr>
@@ -129,7 +141,7 @@
       <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>18d</td>
+      <td>25d</td>
       <td>05/07 下午12:48</td>
     </tr>
     <tr>
@@ -141,7 +153,7 @@
       <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>18d</td>
+      <td>25d</td>
       <td>05/06 下午07:02</td>
     </tr>
     <tr>
@@ -153,7 +165,7 @@
       <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>30d</td>
+      <td>37d</td>
       <td>04/24 下午10:23</td>
     </tr>
     <tr>
@@ -165,7 +177,7 @@
       <td class="num">0 / 200k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">3.4M</td>
-      <td>38d</td>
+      <td>45d</td>
       <td>04/16 下午07:27</td>
     </tr>
     <tr>
@@ -177,7 +189,7 @@
       <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>39d</td>
+      <td>46d</td>
       <td>04/16 上午11:13</td>
     </tr>
     <tr>
@@ -189,7 +201,7 @@
       <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>51d</td>
+      <td>58d</td>
       <td>04/04 上午06:54</td>
     </tr>
     <tr>
@@ -201,7 +213,7 @@
       <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>61d</td>
+      <td>68d</td>
       <td>03/25 上午01:34</td>
     </tr>
     <tr>
@@ -213,7 +225,7 @@
       <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>67d</td>
+      <td>74d</td>
       <td>03/18 下午06:52</td>
     </tr>
     <tr>
@@ -225,7 +237,7 @@
       <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>70d</td>
+      <td>77d</td>
       <td>03/16 上午05:56</td>
     </tr>
     <tr>
@@ -237,7 +249,7 @@
       <td class="num">0 / 100k</td>
       <td><div class="bar"><i style="width:0.0%"></i></div><small>0.0%</small></td>
       <td class="num">0</td>
-      <td>76d</td>
+      <td>83d</td>
       <td>03/10 上午07:58</td>
     </tr></tbody></table></div></section>
 </main></body></html>
