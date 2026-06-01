@@ -8,6 +8,8 @@ const root = path.resolve(__dirname, '..');
 const indexHtml = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const dashboardHtml = fs.readFileSync(path.join(root, 'dashboard.html'), 'utf8');
 const refreshServer = fs.readFileSync(path.join(root, 'refresh-server.js'), 'utf8');
+const weeklyUpdate = fs.readFileSync(path.join(root, 'weekly_update.sh'), 'utf8');
+const { buildEmail, taipeiDate } = require('../scripts/send-weekly-dashboard-email');
 
 assert(indexHtml.includes("window.location.href = 'dashboard.html'"));
 assert(indexHtml.includes("window.location.replace('dashboard.html')"));
@@ -35,5 +37,13 @@ assert(refreshServer.includes('const requestUrl = new URL(req.url'));
 assert(refreshServer.includes("requestUrl.pathname === '/refresh'"));
 assert(refreshServer.includes("requestUrl.searchParams.get('s')"));
 assert(!refreshServer.includes("req.url === '/refresh'"));
+
+const weeklyEmail = buildEmail({ date: '2026-06-01' });
+assert.strictEqual(weeklyEmail.to, 'sales@nunox.io');
+assert.strictEqual(weeklyEmail.subject, 'NunoX Weekly Business Dashboard - 2026-06-01');
+assert(weeklyEmail.text.includes('https://sales.nunox-ai.com/dashboard.html'));
+assert.strictEqual(taipeiDate(new Date('2026-05-31T16:30:00.000Z')), '2026-06-01');
+assert(weeklyUpdate.includes('node scripts/send-weekly-dashboard-email.js'));
+assert(weeklyUpdate.indexOf('git push') < weeklyUpdate.indexOf('node scripts/send-weekly-dashboard-email.js'));
 
 console.log('auth-flow tests passed');

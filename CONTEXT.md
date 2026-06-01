@@ -9,6 +9,7 @@ fetch-data.js       → 主要資料抓取 + dashboard.html 生成腳本
 dashboard.html      → 生成的 dashboard（不要手動編輯，會被覆蓋）
 index.html          → 登入頁（login guard，成功後跳轉 dashboard.html）
 weekly_update.sh    → launchd 自動更新腳本
+scripts/send-weekly-dashboard-email.js → weekly update 成功 push 後寄 Gmail 通知 sales@nunox.io
 server.js           → 本地開發用（含 Basic Auth）
 build-index.js      → index.html 構建腳本（已不常用）
 scripts/token-dashboard-build.js → OpenClaw token dashboard 靜態生成器（不嵌 gateway token）
@@ -52,6 +53,7 @@ token-dashboard-refresh.sh → hourly launchd refresh script for token-dashboard
 - Detail Records sheet: col B(idx 1)=customer, col D(idx 3)=type, col E(idx 4)=date, col H(idx 7)=product, col AB(idx 27)=Total NunoX Revenue, col AD(idx 29)=Outstanding
 
 ## 更新紀錄
+- **2026-06-01**: 每週 dashboard 自動更新成功 push 後，`weekly_update.sh` 會呼叫 `scripts/send-weekly-dashboard-email.js`，透過 `nikkienxel@gmail.com` 寄給 `sales@nunox.io`。Subject 格式：`NunoX Weekly Business Dashboard - YYYY-MM-DD`，日期使用台北時區；信件內含 dashboard 連結 `https://sales.nunox-ai.com/dashboard.html`。`tests/auth-flow.test.js` 已加入 weekly email static validation，不會寄測試信。
 - **2026-06-01**: 修復 GitHub Pages CNAME redirect 造成 login 失敗。`https://nikkienxel.github.io/nunox-dashboard/dashboard.html` 會 301 到 `http://sales.nunox-ai.com/dashboard.html`；HTTP 不是 secure context，瀏覽器不提供 `crypto.subtle`，登入頁無法計算 SHA-256 auth hash。`index.html` 與 `dashboard.html` 先自動升級到 HTTPS，再執行 login/auth guard；本機 ignored generator `build-index.js` / `fetch-data.js` 也同步更新，避免 weekly update 覆蓋修復。
 - **2026-05-29**: 將固定網域拆分為 Dashboard web 與 Refresh API：`sales.nunox-ai.com` 作為 dashboard 網頁 hostname，repo 新增 `CNAME`；`sales-api.nunox-ai.com` 作為 refresh API hostname，Cloudflare tunnel DNS route 指到同一條 named tunnel。`~/.cloudflared/nunox-sales-dashboard.yml` ingress 已改成 `sales-api.nunox-ai.com` → 本機 refresh server `localhost:3099`，`sales.nunox-ai.com` → 本機靜態 dashboard web server `localhost:3100`。本機 web server 由 launchd `com.nunox.dashboard-web` 常駐，服務 repo 目錄；Refresh button endpoint 改為 `https://sales-api.nunox-ai.com/refresh`。
 - **2026-05-29**: 新增 Sylvia dashboard login，將登入頁與 dashboard guard 從可解碼的 base64 token 改為 SHA-256 auth hash allowlist；同步更新本地 `build-index.js` / `fetch-data.js`，避免 weekly update 覆蓋登入設定。

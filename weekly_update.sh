@@ -30,6 +30,12 @@ git push >> "$LOG" 2>&1
 
 if [ $? -eq 0 ]; then
     echo "[$(date)] ✅ Dashboard updated and pushed successfully" >> "$LOG"
+    node scripts/send-weekly-dashboard-email.js >> "$LOG" 2>&1
+    if [ $? -ne 0 ]; then
+        echo "[$(date)] ❌ Weekly dashboard email failed" >> "$LOG"
+        exit 1
+    fi
+    echo "[$(date)] ✅ Weekly dashboard email sent to sales@nunox.io" >> "$LOG"
 else
     echo "[$(date)] ❌ Git push failed" >> "$LOG"
     exit 1
