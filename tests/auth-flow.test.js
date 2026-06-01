@@ -11,6 +11,7 @@ const refreshServer = fs.readFileSync(path.join(root, 'refresh-server.js'), 'utf
 
 assert(indexHtml.includes("window.location.href = 'dashboard.html'"));
 assert(indexHtml.includes("window.location.replace('dashboard.html')"));
+assert(indexHtml.includes("window.location.href.replace(/^http:/, 'https:')"));
 assert(indexHtml.includes('sha256Hex'));
 assert(indexHtml.includes('8d6a1a27345582135057aa7143fac3377143235699c4b316f6ae2cae4d72e93a'));
 assert(!indexHtml.includes('btoa(u +'));
@@ -19,6 +20,7 @@ assert(!indexHtml.includes('function getDashboard()'));
 
 assert(dashboardHtml.includes('const NX_AUTH_HASHES'));
 assert(dashboardHtml.includes('8d6a1a27345582135057aa7143fac3377143235699c4b316f6ae2cae4d72e93a'));
+assert(dashboardHtml.includes("window.location.href.replace(/^http:/, 'https:')"));
 assert(dashboardHtml.includes("window.location.replace('index.html')"));
 assert(dashboardHtml.includes('Refresh endpoint returned'));
 assert(dashboardHtml.includes('https://sales-api.nunox-ai.com/refresh?s=nunox-refresh-2026'));
