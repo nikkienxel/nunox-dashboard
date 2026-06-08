@@ -1,0 +1,17 @@
+{
+  "name": "nunox-dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fetch-data.js",
+  "scripts": {
+    "test": "node tests/token-dashboard-build.test.js && node tests/detail-records-columns.test.js && node tests/auth-flow.test.js",
+    "token-dashboard": "node scripts/token-dashboard-build.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
