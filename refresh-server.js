@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Nunox Dashboard Refresh Server
- * Runs on port 3099. Called by the dashboard's Refresh button via Cloudflare tunnel.
+ * Runs on port 3101 by default. Called by the dashboard's Refresh button via Cloudflare tunnel.
  * Executes fetch-data.js + build-index.js + git push on demand.
  */
 
@@ -9,7 +9,7 @@ const http  = require('http');
 const path  = require('path');
 const { execFile } = require('child_process');
 
-const PORT   = 3099;
+const PORT   = Number(process.env.REFRESH_PORT || 3101);
 const DIR    = __dirname;
 const SECRET = process.env.REFRESH_SECRET || 'nunox-refresh-2026';
 

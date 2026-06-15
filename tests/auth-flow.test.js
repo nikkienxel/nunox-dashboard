@@ -36,6 +36,7 @@ assert(!dashboardHtml.includes('const data = await r.json();'));
 assert(refreshServer.includes('const requestUrl = new URL(req.url'));
 assert(refreshServer.includes("requestUrl.pathname === '/refresh'"));
 assert(refreshServer.includes("requestUrl.searchParams.get('s')"));
+assert(refreshServer.includes('process.env.REFRESH_PORT || 3101'));
 assert(!refreshServer.includes("req.url === '/refresh'"));
 
 const weeklyEmail = buildEmail({ date: '2026-06-01' });
