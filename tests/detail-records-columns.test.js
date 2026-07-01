@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require('assert');
-const { requireHeaderIndex } = require('../fetch-data');
+const { requireHeaderIndex, calculateLeadTotals } = require('../fetch-data');
 
 const headers = [
   '#',
@@ -44,5 +44,16 @@ assert.strictEqual(requireHeaderIndex(headers, ['purchased product']), 8);
 assert.strictEqual(requireHeaderIndex(headers, ['total nunox', 'revenue']), 28);
 assert.strictEqual(requireHeaderIndex(headers, ['outstanding balance']), 30);
 assert.throws(() => requireHeaderIndex(headers, ['missing column']), /Missing Detail Records column/);
+
+const leadTotals = calculateLeadTotals({
+  Active: { totalValue: 1058606, totalWeighted: 120911 },
+  Pending: { totalValue: 228219, totalWeighted: 23706 },
+  Closed: { totalValue: 477542, totalWeighted: 333393 },
+  Dead: { totalValue: 45000, totalWeighted: 0 },
+});
+assert.deepStrictEqual(leadTotals, {
+  totalLeadRevenue: 1058606,
+  totalWeightedRevenue: 120911,
+});
 
 console.log('detail-records column tests passed');

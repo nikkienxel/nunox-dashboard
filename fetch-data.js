@@ -46,6 +46,17 @@ function fmt(n, currency = 'USD') {
   return '$' + n.toFixed(0);
 }
 
+function calculateLeadTotals(stageMap) {
+  const activeEntries = Object.entries(stageMap)
+    .filter(([stage]) => stage.toLowerCase() === 'active');
+  const totalLeadRevenue = activeEntries
+    .reduce((sum, [, v]) => sum + v.totalValue, 0);
+  const totalWeightedRevenue = activeEntries
+    .reduce((sum, [, v]) => sum + v.totalWeighted, 0);
+
+  return { totalLeadRevenue, totalWeightedRevenue };
+}
+
 function normalizeHeader(header) {
   return String(header || '').replace(/\s+/g, ' ').trim().toLowerCase();
 }
@@ -288,13 +299,8 @@ async function main() {
     }
   });
 
-  // Total Leads Revenue = Active only (Jac: 2026-04-16)
-  const totalLeadRevenue     = Object.entries(stageMap)
-    .filter(([s]) => s.toLowerCase() === 'active')
-    .reduce((sum, [, v]) => sum + v.totalValue, 0);
-  const totalWeightedRevenue = Object.entries(stageMap)
-    .filter(([s]) => s.toLowerCase() !== 'closed')
-    .reduce((sum, [, v]) => sum + v.totalWeighted, 0);
+  // Sheet "Total Deals (Active)" uses Active-only totals for both revenue and weighted revenue.
+  const { totalLeadRevenue, totalWeightedRevenue } = calculateLeadTotals(stageMap);
   const estimatedRevenue     = accRevYear + totalWeightedRevenue;
 
   // ── 5. Quarterly revenue ──────────────────────────────────────────────────
@@ -599,14 +605,14 @@ async function main() {
       <div class="sub">Active pipeline only</div>
     </div>
     <div class="kpi accent">
-      <div class="label">Weighted Pipeline</div>
+      <div class="label">Weighted Deals (Active)</div>
       <div class="value">${fmt(totalWeightedRevenue)}</div>
-      <div class="sub">Probability-adjusted (excl. Closed)</div>
+      <div class="sub">Probability-adjusted active deals</div>
     </div>
     <div class="kpi accent">
       <div class="label">Est. Revenue ${curYear}</div>
       <div class="value">${fmt(estimatedRevenue)}</div>
-      <div class="sub">YTD + Weighted Pipeline</div>
+      <div class="sub">YTD + active weighted deals</div>
     </div>
   </div>
 
@@ -769,4 +775,4 @@ if (require.main === module) {
   main().catch(e => { console.error('❌', e.message); process.exit(1); });
 }
 
-module.exports = { normalizeHeader, requireHeaderIndex, toNum, fmt };
+module.exports = { normalizeHeader, requireHeaderIndex, toNum, fmt, calculateLeadTotals };
