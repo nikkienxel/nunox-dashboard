@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-const { sendMessage } = require('/Users/jacai/.openclaw/workspace/skills/google-workspace/scripts/google-gmail');
-
 const DEFAULT_RECIPIENT = 'sales@nunox.io';
 const DEFAULT_DASHBOARD_URL = 'https://sales.nunox-ai.com/dashboard.html';
 
@@ -35,6 +33,7 @@ function buildEmail({ date = taipeiDate(), to = DEFAULT_RECIPIENT, dashboardUrl 
 }
 
 async function main() {
+  const { sendMessage } = require('/Users/jacai/.openclaw/workspace/skills/google-workspace/scripts/google-gmail');
   const dryRun = process.argv.includes('--dry-run');
   const dateArgIndex = process.argv.indexOf('--date');
   const date = dateArgIndex >= 0 ? process.argv[dateArgIndex + 1] : taipeiDate();

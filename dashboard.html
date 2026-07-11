@@ -85,6 +85,7 @@
     .badge-dead   { background: #3d1f23; color: #f85149; }
     .badge-pending { background: #2d2a14; color: #e3b341; }
     .badge-unknown { background: #21262d; color: #8b949e; }
+    tr.threshold-hit td { background: rgba(63, 185, 80, 0.04); }
 
     footer { text-align: center; padding: 40px; color: #21262d; font-size: 11px; }
   </style>
@@ -96,7 +97,7 @@
   <div class="meta">
     <h1>Business Dashboard · 2026</h1>
     <div class="gen" style="display:flex;align-items:center;gap:8px;">
-      <span>Generated 2026/7/11 下午4:30:03 (Taipei)</span>
+      <span>Generated 2026/7/11 下午4:38:54 (Taipei)</span>
       <button id="refreshBtn" onclick="triggerRefresh()" title="Pull latest data from Google Sheets" style="background:none;border:1px solid #30363d;color:#8b949e;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:11px;line-height:1.4;">🔄 Refresh</button>
       <script>
       async function triggerRefresh() {
@@ -250,6 +251,320 @@
     </div>
   </div>
 
+  <!-- Customer Revenue Concentration -->
+  <div class="section-title">Customer Revenue Threshold</div>
+  <div class="kpi-grid" style="max-width: 900px;">
+    <div class="kpi accent">
+      <div class="label">Customers Over $25K</div>
+      <div class="value">7</div>
+      <div class="sub">Threshold: $25.0K</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Share of All Customers</div>
+      <div class="value">12.5%</div>
+      <div class="sub">7 / 56 Detail Records customers</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:12.5%"></div></div>
+    </div>
+    <div class="kpi">
+      <div class="label">Total Customers Counted</div>
+      <div class="value">56</div>
+      <div class="sub">Unique customers in Detail Records</div>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <h3>Customer Transaction Totals <small style="color:#8b949e;font-weight:400">(Detail Records, all years)</small></h3>
+    <table>
+      <thead><tr>
+        <th>Customer</th>
+        <th>Total NunoX Revenue</th>
+        <th>$25K Benchmark</th>
+      </tr></thead>
+      <tbody>
+<tr class="threshold-hit">
+      <td>財團法人紡織產業綜合研究所</td>
+      <td class="highlight-text">$41.9K</td>
+      <td><span class="badge badge-active">Over $25K</span></td>
+    </tr>
+    <tr class="threshold-hit">
+      <td>東豐纖維企業股份有限公司</td>
+      <td class="highlight-text">$40.9K</td>
+      <td><span class="badge badge-active">Over $25K</span></td>
+    </tr>
+    <tr class="threshold-hit">
+      <td>台灣設計研究院 TDRI</td>
+      <td class="highlight-text">$34.7K</td>
+      <td><span class="badge badge-active">Over $25K</span></td>
+    </tr>
+    <tr class="threshold-hit">
+      <td>東紡興業有限公司</td>
+      <td class="highlight-text">$32.2K</td>
+      <td><span class="badge badge-active">Over $25K</span></td>
+    </tr>
+    <tr class="threshold-hit">
+      <td>Santoni (Shanghai) Knitting Machinery Co., Ltd.</td>
+      <td class="highlight-text">$31.9K</td>
+      <td><span class="badge badge-active">Over $25K</span></td>
+    </tr>
+    <tr class="threshold-hit">
+      <td>新光紡織股份有限公司</td>
+      <td class="highlight-text">$30.4K</td>
+      <td><span class="badge badge-active">Over $25K</span></td>
+    </tr>
+    <tr class="threshold-hit">
+      <td>誠佳科紡 Creative Tech Textile Co., LTD.</td>
+      <td class="highlight-text">$26.6K</td>
+      <td><span class="badge badge-active">Over $25K</span></td>
+    </tr>
+    <tr>
+      <td>興采實業股份有限公司</td>
+      <td class="highlight-text">$24.4K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>智偉織造股份有限公司</td>
+      <td class="highlight-text">$20.0K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>Haworth Inc.</td>
+      <td class="highlight-text">$20.0K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>新創賦能（中小企業補助）</td>
+      <td class="highlight-text">$18.8K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>SKYRINA S.A. DE C.V.</td>
+      <td class="highlight-text">$17.7K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>Textile Fabric Consultants, Inc.</td>
+      <td class="highlight-text">$15.9K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>駿程實業股份有限公司（Starfab）</td>
+      <td class="highlight-text">$15.8K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>Victory Group</td>
+      <td class="highlight-text">$13.8K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>Huali</td>
+      <td class="highlight-text">$13.8K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>聚陽實業股份有限公司-LVMH</td>
+      <td class="highlight-text">$12.4K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>坤龍紡織股份有限公司 （TTRI）</td>
+      <td class="highlight-text">$10.9K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>CHUN CHERNG INDUSTRIAL CO., LTD.</td>
+      <td class="highlight-text">$10.2K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>Hochschule Niederrhein University of Applied Sciences</td>
+      <td class="highlight-text">$10.1K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>財團法人中華民國紡織業拓展會（興永和企業有限公司）</td>
+      <td class="highlight-text">$10.0K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>財團法人中華民國紡織業拓展會（496 fabric）</td>
+      <td class="highlight-text">$10.0K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>薩摩亞商竣邦國際股份有限公司台灣分公司</td>
+      <td class="highlight-text">$9.8K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>Saigon Printer</td>
+      <td class="highlight-text">$9.0K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>立肯國際股份有限公司</td>
+      <td class="highlight-text">$6.6K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>瀧星國際有限公司</td>
+      <td class="highlight-text">$6.5K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>皮耶洛實業有限公司</td>
+      <td class="highlight-text">$4.9K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>莎美娜實業股份有限公司</td>
+      <td class="highlight-text">$4.7K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>財團法人中華民國紡織業拓展會</td>
+      <td class="highlight-text">$3.3K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>VG Industrial Company Limited</td>
+      <td class="highlight-text">$3.2K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>Tailor Tech Incorporation</td>
+      <td class="highlight-text">$2.9K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>聚陽實業股份有限公司</td>
+      <td class="highlight-text">$2.9K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>展頌股份有限公司</td>
+      <td class="highlight-text">$2.7K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>YMUV</td>
+      <td class="highlight-text">$2.5K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>Fabric Textile Consultants Inc.</td>
+      <td class="highlight-text">$2.5K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>Shahi Exports Private Limited, Bangalore</td>
+      <td class="highlight-text">$2.5K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>Fabb</td>
+      <td class="highlight-text">$2.5K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>Shahi Exports Private Limited, Faridabad</td>
+      <td class="highlight-text">$2.3K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>Dongguan Kanghuaju Composite Material Ltd.</td>
+      <td class="highlight-text">$1.9K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>CEG</td>
+      <td class="highlight-text">$1.7K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>廣美針織有限公司</td>
+      <td class="highlight-text">$1.3K</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>496 Fabric Lab</td>
+      <td class="highlight-text">$658</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>崑特國際股份有限公司</td>
+      <td class="highlight-text">$537</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>TG3D Studio -廣美針織有限公司</td>
+      <td class="highlight-text">$451</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>SML Tekstil San. ve Dış Tic. Ltd. Şti.</td>
+      <td class="highlight-text">$394</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>PMG Asia Pacific Pte Ltd - Taiwan Branch</td>
+      <td class="highlight-text">$305</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>Alibaba Japan K.K.</td>
+      <td class="highlight-text">$299</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>Eastin Suits</td>
+      <td class="highlight-text">$216</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>Niederrhein University of Applied Sciences</td>
+      <td class="highlight-text">$211</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>Made To Fit</td>
+      <td class="highlight-text">$188</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>Kachins Fashion Pvt Ltd</td>
+      <td class="highlight-text">$187</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>That Original</td>
+      <td class="highlight-text">$180</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>Fusari Group Limited</td>
+      <td class="highlight-text">$180</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>TG3D Studio</td>
+      <td class="highlight-text">$180</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>Confeccion Textil Rams</td>
+      <td class="highlight-text">$63</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+    <tr>
+      <td>皇益紡織股份有限公司</td>
+      <td class="highlight-text">$0</td>
+      <td><span class="badge badge-unknown">Below $25K</span></td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+
   <!-- Sales Pipeline -->
   <div class="section-title">Sales Pipeline</div>
   
@@ -345,7 +660,7 @@
   </div>
 
   <!-- Category Breakdown -->
-  <div class="card" style="margin-top:16px;">
+  <div class="table-card">
     <h3>Pipeline by Customer Category <small style="color:#8b949e;font-weight:400">(excl. Closed)</small></h3>
     <table>
       <thead><tr>
@@ -458,7 +773,7 @@
 
 </div>
 
-<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/7/11 下午4:30:03 (Taipei)</footer>
+<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/7/11 下午4:38:54 (Taipei)</footer>
 
 <script>
 const chartDefaults = {

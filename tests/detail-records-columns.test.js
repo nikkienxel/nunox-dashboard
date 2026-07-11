@@ -1,7 +1,11 @@
 'use strict';
 
 const assert = require('assert');
-const { requireHeaderIndex, calculateLeadTotals } = require('../fetch-data');
+const {
+  requireHeaderIndex,
+  calculateLeadTotals,
+  aggregateCustomerRevenue,
+} = require('../fetch-data');
 
 const headers = [
   '#',
@@ -55,5 +59,21 @@ assert.deepStrictEqual(leadTotals, {
   totalLeadRevenue: 1058606,
   totalWeightedRevenue: 120911,
 });
+
+const customerRevenueTotals = aggregateCustomerRevenue([
+  ['', 'Acme', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '20,000'],
+  ['', 'Beta', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '$26,000'],
+  ['', ' acme ', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 6000],
+  ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 5000],
+], {
+  customerIndex: 1,
+  revenueIndex: 28,
+});
+
+assert.deepStrictEqual(customerRevenueTotals, [
+  { name: 'Acme', totalRevenue: 26000 },
+  { name: 'Beta', totalRevenue: 26000 },
+]);
+assert.strictEqual(customerRevenueTotals.filter(customer => customer.totalRevenue > 25000).length, 2);
 
 console.log('detail-records column tests passed');

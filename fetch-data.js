@@ -18,6 +18,7 @@ const DASHBOARD_AUTH_HASHES = [
 
 const SALES_RECORDS_ID = '1SpwPPqoR_tfcT63xY-7QUJWKXD4-mnhL74CHlbSmzq4';
 const SALES_LEADS_ID   = '11bi6h7PT4kmBWtxQ2jSbu8heet8sswYq5VBPK9DC5N0';
+const CUSTOMER_REVENUE_THRESHOLD = 25000;
 
 // ─── Auth ──────────────────────────────────────────────────────────────────
 function getAuth() {
@@ -55,6 +56,31 @@ function calculateLeadTotals(stageMap) {
     .reduce((sum, [, v]) => sum + v.totalWeighted, 0);
 
   return { totalLeadRevenue, totalWeightedRevenue };
+}
+
+function aggregateCustomerRevenue(rows, { customerIndex, revenueIndex }) {
+  const customerMap = new Map();
+
+  rows.forEach(row => {
+    const customerName = String(row[customerIndex] || '').trim();
+    if (!customerName || customerName === 'undefined') return;
+
+    const customerKey = customerName.toLowerCase().replace(/\s+/g, ' ');
+    const existing = customerMap.get(customerKey) || { name: customerName, totalRevenue: 0 };
+    existing.totalRevenue += toNum(row[revenueIndex]);
+    customerMap.set(customerKey, existing);
+  });
+
+  return [...customerMap.values()].sort((a, b) => b.totalRevenue - a.totalRevenue);
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 function normalizeHeader(header) {
@@ -163,6 +189,16 @@ async function main() {
   let outstandingBalance = 0;
   const newCustomersThisMonth = new Set();
   const existingCustomers = new Set();
+  const customerRevenueTotals = aggregateCustomerRevenue(detailRows.slice(1), {
+    customerIndex: colCustomer,
+    revenueIndex: colTotalNunoX,
+  });
+  const customersOverThreshold = customerRevenueTotals.filter(customer =>
+    customer.totalRevenue > CUSTOMER_REVENUE_THRESHOLD
+  );
+  const customerRevenueRatio = customerRevenueTotals.length > 0
+    ? (customersOverThreshold.length / customerRevenueTotals.length * 100)
+    : 0;
 
   detailRows.slice(1).forEach(row => {
     const custName = String(row[colCustomer] || '').trim();
@@ -339,6 +375,16 @@ async function main() {
       <td class="highlight-text">${fmt(v.totalWeighted)}</td>
     </tr>`).join('');
 
+  const customerRevenueTableRows = customerRevenueTotals.map(customer => {
+    const isOverThreshold = customer.totalRevenue > CUSTOMER_REVENUE_THRESHOLD;
+    return `
+    <tr${isOverThreshold ? ' class="threshold-hit"' : ''}>
+      <td>${escapeHtml(customer.name)}</td>
+      <td class="highlight-text">${fmt(customer.totalRevenue)}</td>
+      <td><span class="badge ${isOverThreshold ? 'badge-active' : 'badge-unknown'}">${isOverThreshold ? 'Over $25K' : 'Below $25K'}</span></td>
+    </tr>`;
+  }).join('').trim();
+
   const stagePieLabels = Object.keys(stageMap).map(s => `'${s}'`).join(',');
   const stagePieData   = Object.values(stageMap).map(v => v.count).join(',');
   const stageValueData = Object.values(stageMap).map(v => v.totalValue).join(',');
@@ -448,6 +494,7 @@ async function main() {
     .badge-dead   { background: #3d1f23; color: #f85149; }
     .badge-pending { background: #2d2a14; color: #e3b341; }
     .badge-unknown { background: #21262d; color: #8b949e; }
+    tr.threshold-hit td { background: rgba(63, 185, 80, 0.04); }
 
     footer { text-align: center; padding: 40px; color: #21262d; font-size: 11px; }
   </style>
@@ -595,6 +642,41 @@ async function main() {
     </div>
   </div>
 
+  <!-- Customer Revenue Concentration -->
+  <div class="section-title">Customer Revenue Threshold</div>
+  <div class="kpi-grid" style="max-width: 900px;">
+    <div class="kpi accent">
+      <div class="label">Customers Over $25K</div>
+      <div class="value">${customersOverThreshold.length}</div>
+      <div class="sub">Threshold: ${fmt(CUSTOMER_REVENUE_THRESHOLD)}</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Share of All Customers</div>
+      <div class="value">${customerRevenueRatio.toFixed(1)}%</div>
+      <div class="sub">${customersOverThreshold.length} / ${customerRevenueTotals.length} Detail Records customers</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${Math.min(customerRevenueRatio, 100).toFixed(1)}%"></div></div>
+    </div>
+    <div class="kpi">
+      <div class="label">Total Customers Counted</div>
+      <div class="value">${customerRevenueTotals.length}</div>
+      <div class="sub">Unique customers in Detail Records</div>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <h3>Customer Transaction Totals <small style="color:#8b949e;font-weight:400">(Detail Records, all years)</small></h3>
+    <table>
+      <thead><tr>
+        <th>Customer</th>
+        <th>Total NunoX Revenue</th>
+        <th>$25K Benchmark</th>
+      </tr></thead>
+      <tbody>
+${customerRevenueTableRows}
+      </tbody>
+    </table>
+  </div>
+
   <!-- Sales Pipeline -->
   <div class="section-title">Sales Pipeline</div>
   ${leadsPermissionError ? '<div style="background:#3d1f23;border:1px solid #f85149;border-radius:8px;padding:12px 16px;margin-bottom:16px;color:#f85149;font-size:13px;">⚠️ Sales Leads spreadsheet is currently inaccessible (permission error). Pipeline data may be stale. Please check sharing settings for the Sales Leads sheet.</div>' : ''}
@@ -641,7 +723,7 @@ async function main() {
   </div>
 
   <!-- Category Breakdown -->
-  <div class="card" style="margin-top:16px;">
+  <div class="table-card">
     <h3>Pipeline by Customer Category <small style="color:#8b949e;font-weight:400">(excl. Closed)</small></h3>
     <table>
       <thead><tr>
@@ -767,6 +849,7 @@ new Chart(document.getElementById('pipelinePie'), {
   console.log(`   YTD Revenue: ${fmt(accRevYear)} / ${fmt(yearGoal)} goal (${achieveRate}%)`);
   console.log(`   This Month: ${fmt(revenueThisMonth)} | Recurrent YTD: ${fmt(recurrentRevenue)}`);
   console.log(`   ARR: ${fmt(arr)} | Outstanding: ${fmt(outstandingBalance)}`);
+  console.log(`   Customers over $25K: ${customersOverThreshold.length}/${customerRevenueTotals.length} (${customerRevenueRatio.toFixed(1)}%)`);
   console.log(`   Pipeline: ${fmt(totalLeadRevenue)} total | ${fmt(totalWeightedRevenue)} weighted`);
   console.log(`   Est. ${curYear} Revenue: ${fmt(estimatedRevenue)}`);
 }
@@ -775,4 +858,11 @@ if (require.main === module) {
   main().catch(e => { console.error('❌', e.message); process.exit(1); });
 }
 
-module.exports = { normalizeHeader, requireHeaderIndex, toNum, fmt, calculateLeadTotals };
+module.exports = {
+  normalizeHeader,
+  requireHeaderIndex,
+  toNum,
+  fmt,
+  calculateLeadTotals,
+  aggregateCustomerRevenue,
+};

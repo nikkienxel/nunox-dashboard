@@ -67,19 +67,32 @@ const _AUTH_HASHES = [
   "8d6a1a27345582135057aa7143fac3377143235699c4b316f6ae2cae4d72e93a"
 ];
 async function sha256Hex(value) {
+  if (!window.crypto || !window.crypto.subtle) {
+    throw new Error('Secure login is not ready. Please reopen this page with HTTPS.');
+  }
   const data = new TextEncoder().encode(value);
   const digest = await crypto.subtle.digest('SHA-256', data);
   return Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, '0')).join('');
 }
 async function doLogin() {
-  const u = document.getElementById('uid').value.trim();
-  const p = document.getElementById('pwd').value;
-  const authHash = await sha256Hex(u + ':' + p);
-  if (_AUTH_HASHES.includes(authHash)) {
-    localStorage.setItem('nx_auth', authHash);
-    window.location.href = 'dashboard.html';
-  } else {
-    document.getElementById('err').textContent = 'Incorrect email or password.';
+  const err = document.getElementById('err');
+  try {
+    if (shouldUpgradeProtocol) {
+      err.textContent = 'Switching to secure login...';
+      window.location.replace(window.location.href.replace(/^http:/, 'https:'));
+      return;
+    }
+    const u = document.getElementById('uid').value.trim();
+    const p = document.getElementById('pwd').value;
+    const authHash = await sha256Hex(u + ':' + p);
+    if (_AUTH_HASHES.includes(authHash)) {
+      localStorage.setItem('nx_auth', authHash);
+      window.location.href = 'dashboard.html';
+    } else {
+      err.textContent = 'Incorrect email or password.';
+    }
+  } catch (error) {
+    err.textContent = error.message || 'Login failed. Please refresh and try again.';
   }
 }
 document.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
