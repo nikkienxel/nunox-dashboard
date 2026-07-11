@@ -49,10 +49,11 @@ token-dashboard-refresh.sh → hourly launchd refresh script for token-dashboard
 - 手動觸發: `bash token-dashboard-refresh.sh` 或 `npm run token-dashboard`
 
 ## 已知 Column Index
-- Customers Satus sheet: row[2]=customer, row[3]=status, row[2]=label(Total/New/Recurrent), row[3]=value
+- Customers Satus sheet: row[0]=category, row[2]=customer, row[3]=status, row[2]=label(Total/New/Recurrent), row[3]=value
 - Detail Records sheet: col B(idx 1)=customer, col D(idx 3)=type, col E(idx 4)=date, col H(idx 7)=product, col AB(idx 27)=Total NunoX Revenue, col AD(idx 29)=Outstanding
 
 ## 更新紀錄
+- **2026-07-11**: 更新 Customer Revenue Threshold 為 active-only 口徑：從 `Customers Satus` 讀取 category/customer/status（range 擴為 `A1:H500` 避免漏掉新列），非 `Active` customer 不列入門檻統計與 customer transaction table。本次 active Detail Records customers 為 `35`，超過 `$25,000` 的客戶 `5`，比例 `14.3%`。同區塊新增 Average Deal Value by Customer Type，依 active Detail Records transactions 分為 `T2 Suppliers`、`T1 Suppliers`、`Acadamic`、`Others`，本次平均成交單價分別為 `$8.7K`、`$5.3K`、`$3.0K`、`$2.6K`；`T1 & T2` 類別歸入 `T2 Suppliers`，避免重複計算。
 - **2026-07-11**: 修復 login 失敗時缺少可讀錯誤與 HTTP→HTTPS 過渡期 `crypto.subtle` 不可用的風險。`index.html` 現在會在 insecure context 重新導向 HTTPS，並在 Web Crypto 不可用時顯示明確錯誤，不再讓登入按鈕看起來無反應。新增 Detail Records 客戶交易總額統計：依 unique customer 彙總 `Total NunoX Revenue`（all years），以 `$25,000` 為門檻顯示超標客戶數、比例與全客戶交易總額表；本次資料為 `7 / 56 = 12.5%`。
 - **2026-07-01**: 修復 Sales Pipeline summary weighted 口徑不一致。Google Sheet `Sales Funnel(2026)` row 1 `Total Deals (Active)` 的 revenue/weighted 都是 Active-only；dashboard 之前 `Active Leads Revenue` 用 Active-only，但 `Weighted Pipeline` 用所有 non-Closed（Active + Pending + Dead）加總，導致 weighted 顯示 `$144.6K` 而 Sheet Active weighted 是 `$120.9K`。改為 summary KPI `Weighted Deals (Active)` 使用 Active-only，Estimated Revenue 同步改為 YTD + active weighted deals；stage/category/probability breakdown 仍保留 Pending/Dead 可視化。新增 `calculateLeadTotals` regression test。
 - **2026-06-15**: 修復 Refresh API port collision。`sales-api.nunox-ai.com` tunnel 原本指向 `localhost:3099`，但 3099 被 `com.nunox.3d-converter` 佔用，dashboard refresh server 起不來並在 log 顯示 `EADDRINUSE`，前端 Refresh 因此打到 3D converter 的 Express server，回 `Cannot POST /refresh`。`refresh-server.js` 預設 port 改為 `3101`（可用 `REFRESH_PORT` 覆蓋），本機 launchd 與 Cloudflare tunnel 需同步指向 `localhost:3101`。

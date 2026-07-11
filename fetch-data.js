@@ -19,6 +19,12 @@ const DASHBOARD_AUTH_HASHES = [
 const SALES_RECORDS_ID = '1SpwPPqoR_tfcT63xY-7QUJWKXD4-mnhL74CHlbSmzq4';
 const SALES_LEADS_ID   = '11bi6h7PT4kmBWtxQ2jSbu8heet8sswYq5VBPK9DC5N0';
 const CUSTOMER_REVENUE_THRESHOLD = 25000;
+const AVG_DEAL_GROUPS = [
+  'T2 Suppliers',
+  'T1 Suppliers',
+  'Acadamic',
+  'Others',
+];
 
 // ─── Auth ──────────────────────────────────────────────────────────────────
 function getAuth() {
@@ -58,20 +64,110 @@ function calculateLeadTotals(stageMap) {
   return { totalLeadRevenue, totalWeightedRevenue };
 }
 
-function aggregateCustomerRevenue(rows, { customerIndex, revenueIndex }) {
+function normalizeCustomerName(name) {
+  return String(name || '').trim().toLowerCase().replace(/\s+/g, ' ');
+}
+
+function customerKeysMatch(left, right) {
+  if (!left || !right) return false;
+  return left === right || left.includes(right) || right.includes(left);
+}
+
+function buildCustomerProfiles(rows, {
+  categoryIndex = 0,
+  customerIndex = 2,
+  statusIndex = 3,
+} = {}) {
+  const profiles = new Map();
+
+  rows.forEach(row => {
+    const name = String(row[customerIndex] || '').trim();
+    if (!name) return;
+
+    const key = normalizeCustomerName(name);
+    const existing = profiles.get(key) || { name, category: '', status: '' };
+    const category = String(row[categoryIndex] || '').trim();
+    const status = String(row[statusIndex] || '').trim();
+
+    profiles.set(key, {
+      name: existing.name || name,
+      category: category || existing.category,
+      status: status || existing.status,
+    });
+  });
+
+  return profiles;
+}
+
+function findCustomerProfile(customerName, profiles) {
+  const key = normalizeCustomerName(customerName);
+  return profiles.get(key) ||
+    [...profiles.entries()].find(([profileKey]) => customerKeysMatch(key, profileKey))?.[1] ||
+    null;
+}
+
+function isActiveCustomer(customerName, profiles) {
+  const profile = findCustomerProfile(customerName, profiles);
+  return profile?.status.toLowerCase() === 'active';
+}
+
+function classifyCustomerCategory(category) {
+  const normalized = String(category || '').toLowerCase();
+  if (normalized.includes('t2')) return 'T2 Suppliers';
+  if (normalized.includes('t1')) return 'T1 Suppliers';
+  if (normalized.includes('academic') || normalized.includes('acadamic')) return 'Acadamic';
+  return 'Others';
+}
+
+function aggregateCustomerRevenue(rows, { customerIndex, revenueIndex, includeCustomer }) {
   const customerMap = new Map();
 
   rows.forEach(row => {
     const customerName = String(row[customerIndex] || '').trim();
     if (!customerName || customerName === 'undefined') return;
+    if (includeCustomer && !includeCustomer(customerName, row)) return;
 
-    const customerKey = customerName.toLowerCase().replace(/\s+/g, ' ');
+    const customerKey = normalizeCustomerName(customerName);
     const existing = customerMap.get(customerKey) || { name: customerName, totalRevenue: 0 };
     existing.totalRevenue += toNum(row[revenueIndex]);
     customerMap.set(customerKey, existing);
   });
 
   return [...customerMap.values()].sort((a, b) => b.totalRevenue - a.totalRevenue);
+}
+
+function calculateAverageDealValueByCategory(rows, { customerIndex, revenueIndex, customerProfiles }) {
+  const groups = Object.fromEntries(AVG_DEAL_GROUPS.map(group => [
+    group,
+    { revenue: 0, dealCount: 0, customerKeys: new Set() },
+  ]));
+
+  rows.forEach(row => {
+    const customerName = String(row[customerIndex] || '').trim();
+    if (!customerName || customerName === 'undefined') return;
+    if (!isActiveCustomer(customerName, customerProfiles)) return;
+
+    const revenue = toNum(row[revenueIndex]);
+    if (revenue <= 0) return;
+
+    const profile = findCustomerProfile(customerName, customerProfiles);
+    const group = classifyCustomerCategory(profile?.category);
+    groups[group].revenue += revenue;
+    groups[group].dealCount += 1;
+    groups[group].customerKeys.add(normalizeCustomerName(customerName));
+  });
+
+  return AVG_DEAL_GROUPS.map(group => {
+    const data = groups[group];
+    const averageDealValue = data.dealCount > 0 ? data.revenue / data.dealCount : 0;
+    return {
+      group,
+      revenue: data.revenue,
+      dealCount: data.dealCount,
+      customerCount: data.customerKeys.size,
+      averageDealValue,
+    };
+  });
 }
 
 function escapeHtml(value) {
@@ -168,16 +264,10 @@ async function main() {
   // ── Read Customers Status to get Active customer list ──
   const custStatusRes = await sheets.spreadsheets.values.get({
     spreadsheetId: SALES_RECORDS_ID,
-    range: "'Customers Satus'!A1:H60",
+    range: "'Customers Satus'!A1:H500",
   });
   const custStatusRows = custStatusRes.data.values || [];
-  // Collect Active customer names (col C = customer idx 2, col D = status idx 3)
-  const activeCustomers = new Set();
-  custStatusRows.forEach(row => {
-    const custName = String(row[2] || '').trim();
-    const status   = String(row[3] || '').trim().toLowerCase();
-    if (custName && status === 'active') activeCustomers.add(custName.toLowerCase());
-  });
+  const customerProfiles = buildCustomerProfiles(custStatusRows.slice(6));
 
   // ── Parse all Detail Records ──
   // For ARR: per-customer, track software fees by year
@@ -192,6 +282,7 @@ async function main() {
   const customerRevenueTotals = aggregateCustomerRevenue(detailRows.slice(1), {
     customerIndex: colCustomer,
     revenueIndex: colTotalNunoX,
+    includeCustomer: customerName => isActiveCustomer(customerName, customerProfiles),
   });
   const customersOverThreshold = customerRevenueTotals.filter(customer =>
     customer.totalRevenue > CUSTOMER_REVENUE_THRESHOLD
@@ -199,6 +290,11 @@ async function main() {
   const customerRevenueRatio = customerRevenueTotals.length > 0
     ? (customersOverThreshold.length / customerRevenueTotals.length * 100)
     : 0;
+  const averageDealValueByCategory = calculateAverageDealValueByCategory(detailRows.slice(1), {
+    customerIndex: colCustomer,
+    revenueIndex: colTotalNunoX,
+    customerProfiles,
+  });
 
   detailRows.slice(1).forEach(row => {
     const custName = String(row[colCustomer] || '').trim();
@@ -217,11 +313,7 @@ async function main() {
 
     // Software fee tracking per customer per year (Active customers only)
     if (isSoftware(product) && nunoXRev > 0) {
-      // Check if this customer is active (fuzzy: partial match)
-      const isActive = [...activeCustomers].some(ac =>
-        ac.includes(custKey) || custKey.includes(ac) || ac === custKey
-      );
-      if (isActive) {
+      if (isActiveCustomer(custName, customerProfiles)) {
         if (!custSWByYear[custKey]) custSWByYear[custKey] = { sw2025: 0, sw2026: 0 };
         if (yr === curYear - 1) custSWByYear[custKey].sw2025 += nunoXRev;
         if (yr === curYear)     custSWByYear[custKey].sw2026 += nunoXRev;
@@ -384,6 +476,15 @@ async function main() {
       <td><span class="badge ${isOverThreshold ? 'badge-active' : 'badge-unknown'}">${isOverThreshold ? 'Over $25K' : 'Below $25K'}</span></td>
     </tr>`;
   }).join('').trim();
+
+  const averageDealValueTableRows = averageDealValueByCategory.map(category => `
+    <tr>
+      <td>${category.group}</td>
+      <td>${category.customerCount}</td>
+      <td>${category.dealCount}</td>
+      <td>${fmt(category.revenue)}</td>
+      <td class="highlight-text">${fmt(category.averageDealValue)}</td>
+    </tr>`).join('').trim();
 
   const stagePieLabels = Object.keys(stageMap).map(s => `'${s}'`).join(',');
   const stagePieData   = Object.values(stageMap).map(v => v.count).join(',');
@@ -651,20 +752,36 @@ async function main() {
       <div class="sub">Threshold: ${fmt(CUSTOMER_REVENUE_THRESHOLD)}</div>
     </div>
     <div class="kpi">
-      <div class="label">Share of All Customers</div>
+      <div class="label">Share of Active Customers</div>
       <div class="value">${customerRevenueRatio.toFixed(1)}%</div>
-      <div class="sub">${customersOverThreshold.length} / ${customerRevenueTotals.length} Detail Records customers</div>
+      <div class="sub">${customersOverThreshold.length} / ${customerRevenueTotals.length} active Detail Records customers</div>
       <div class="progress-bar"><div class="progress-fill" style="width:${Math.min(customerRevenueRatio, 100).toFixed(1)}%"></div></div>
     </div>
     <div class="kpi">
-      <div class="label">Total Customers Counted</div>
+      <div class="label">Active Customers Counted</div>
       <div class="value">${customerRevenueTotals.length}</div>
-      <div class="sub">Unique customers in Detail Records</div>
+      <div class="sub">Unique active customers in Detail Records</div>
     </div>
   </div>
 
   <div class="table-card">
-    <h3>Customer Transaction Totals <small style="color:#8b949e;font-weight:400">(Detail Records, all years)</small></h3>
+    <h3>Average Deal Value by Customer Type <small style="color:#8b949e;font-weight:400">(Active Detail Records customers, all years)</small></h3>
+    <table>
+      <thead><tr>
+        <th>Customer Type</th>
+        <th>Customers</th>
+        <th>Deals</th>
+        <th>Total NunoX Revenue</th>
+        <th>Average Deal Value</th>
+      </tr></thead>
+      <tbody>
+${averageDealValueTableRows}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-card">
+    <h3>Customer Transaction Totals <small style="color:#8b949e;font-weight:400">(Active Detail Records customers, all years)</small></h3>
     <table>
       <thead><tr>
         <th>Customer</th>
@@ -849,7 +966,10 @@ new Chart(document.getElementById('pipelinePie'), {
   console.log(`   YTD Revenue: ${fmt(accRevYear)} / ${fmt(yearGoal)} goal (${achieveRate}%)`);
   console.log(`   This Month: ${fmt(revenueThisMonth)} | Recurrent YTD: ${fmt(recurrentRevenue)}`);
   console.log(`   ARR: ${fmt(arr)} | Outstanding: ${fmt(outstandingBalance)}`);
-  console.log(`   Customers over $25K: ${customersOverThreshold.length}/${customerRevenueTotals.length} (${customerRevenueRatio.toFixed(1)}%)`);
+  console.log(`   Active customers over $25K: ${customersOverThreshold.length}/${customerRevenueTotals.length} (${customerRevenueRatio.toFixed(1)}%)`);
+  averageDealValueByCategory.forEach(category => {
+    console.log(`   Avg deal value ${category.group}: ${fmt(category.averageDealValue)} (${category.dealCount} deals)`);
+  });
   console.log(`   Pipeline: ${fmt(totalLeadRevenue)} total | ${fmt(totalWeightedRevenue)} weighted`);
   console.log(`   Est. ${curYear} Revenue: ${fmt(estimatedRevenue)}`);
 }
@@ -864,5 +984,11 @@ module.exports = {
   toNum,
   fmt,
   calculateLeadTotals,
+  normalizeCustomerName,
+  buildCustomerProfiles,
+  findCustomerProfile,
+  isActiveCustomer,
+  classifyCustomerCategory,
   aggregateCustomerRevenue,
+  calculateAverageDealValueByCategory,
 };

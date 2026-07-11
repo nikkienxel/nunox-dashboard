@@ -4,7 +4,11 @@ const assert = require('assert');
 const {
   requireHeaderIndex,
   calculateLeadTotals,
+  buildCustomerProfiles,
+  classifyCustomerCategory,
+  isActiveCustomer,
   aggregateCustomerRevenue,
+  calculateAverageDealValueByCategory,
 } = require('../fetch-data');
 
 const headers = [
@@ -60,14 +64,32 @@ assert.deepStrictEqual(leadTotals, {
   totalWeightedRevenue: 120911,
 });
 
-const customerRevenueTotals = aggregateCustomerRevenue([
+const customerProfiles = buildCustomerProfiles([
+  ['T2 - Textile (Apparel)', '1', 'Acme', 'Active'],
+  ['T1 - Apparel', '2', 'Beta', 'Active'],
+  ['Acadamic', '3', 'Campus', 'Active'],
+  ['Others', '4', 'Dormant', 'Suspend'],
+  ['T1 & T2 - Apparel', '5', 'Hybrid', 'Active'],
+]);
+
+assert.strictEqual(classifyCustomerCategory('T2 - Textile (Apparel)'), 'T2 Suppliers');
+assert.strictEqual(classifyCustomerCategory('T1 - Apparel'), 'T1 Suppliers');
+assert.strictEqual(classifyCustomerCategory('Acadamic'), 'Acadamic');
+assert.strictEqual(classifyCustomerCategory(''), 'Others');
+assert.strictEqual(classifyCustomerCategory('T1 & T2 - Apparel'), 'T2 Suppliers');
+
+const customerRevenueRows = [
   ['', 'Acme', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '20,000'],
   ['', 'Beta', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '$26,000'],
   ['', ' acme ', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 6000],
+  ['', 'Dormant', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 50000],
   ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 5000],
-], {
+];
+
+const customerRevenueTotals = aggregateCustomerRevenue(customerRevenueRows, {
   customerIndex: 1,
   revenueIndex: 28,
+  includeCustomer: customerName => isActiveCustomer(customerName, customerProfiles),
 });
 
 assert.deepStrictEqual(customerRevenueTotals, [
@@ -75,5 +97,25 @@ assert.deepStrictEqual(customerRevenueTotals, [
   { name: 'Beta', totalRevenue: 26000 },
 ]);
 assert.strictEqual(customerRevenueTotals.filter(customer => customer.totalRevenue > 25000).length, 2);
+
+const averageDealValueByCategory = calculateAverageDealValueByCategory([
+  ['', 'Acme', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 10000],
+  ['', 'Acme', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 30000],
+  ['', 'Beta', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 12000],
+  ['', 'Campus', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 4000],
+  ['', 'Hybrid', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 20000],
+  ['', 'Dormant', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 50000],
+], {
+  customerIndex: 1,
+  revenueIndex: 28,
+  customerProfiles,
+});
+
+assert.deepStrictEqual(averageDealValueByCategory, [
+  { group: 'T2 Suppliers', revenue: 60000, dealCount: 3, customerCount: 2, averageDealValue: 20000 },
+  { group: 'T1 Suppliers', revenue: 12000, dealCount: 1, customerCount: 1, averageDealValue: 12000 },
+  { group: 'Acadamic', revenue: 4000, dealCount: 1, customerCount: 1, averageDealValue: 4000 },
+  { group: 'Others', revenue: 0, dealCount: 0, customerCount: 0, averageDealValue: 0 },
+]);
 
 console.log('detail-records column tests passed');
