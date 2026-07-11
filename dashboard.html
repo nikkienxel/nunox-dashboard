@@ -96,7 +96,7 @@
   <div class="meta">
     <h1>Business Dashboard · 2026</h1>
     <div class="gen" style="display:flex;align-items:center;gap:8px;">
-      <span>Generated 2026/7/6 上午8:00:04 (Taipei)</span>
+      <span>Generated 2026/7/11 下午4:30:03 (Taipei)</span>
       <button id="refreshBtn" onclick="triggerRefresh()" title="Pull latest data from Google Sheets" style="background:none;border:1px solid #30363d;color:#8b949e;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:11px;line-height:1.4;">🔄 Refresh</button>
       <script>
       async function triggerRefresh() {
@@ -158,15 +158,15 @@
     </div>
     <div class="kpi accent">
       <div class="label">New (2026)</div>
-      <div class="value">23</div>
+      <div class="value">24</div>
     </div>
     <div class="kpi">
       <div class="label">New (Jul)</div>
-      <div class="value">0</div>
+      <div class="value">1</div>
     </div>
     <div class="kpi">
       <div class="label">Recurrent</div>
-      <div class="value">18</div>
+      <div class="value">17</div>
     </div>
   </div>
 
@@ -175,7 +175,7 @@
   <div class="kpi-grid">
     <div class="kpi accent">
       <div class="label">YTD Revenue 2026</div>
-      <div class="value">$262.8K</div>
+      <div class="value">$262.7K</div>
       <div class="sub">Goal: $1.00M · 26.3% achieved</div>
       <div class="progress-bar"><div class="progress-fill" style="width:26.3%"></div></div>
     </div>
@@ -191,12 +191,12 @@
     </div>
     <div class="kpi accent">
       <div class="label">ARR</div>
-      <div class="value">$113.4K</div>
+      <div class="value">$110.7K</div>
       <div class="sub">Software revenue 2025+2026 YTD</div>
     </div>
     <div class="kpi" style="border-color:#f85149;">
       <div class="label" style="color:#f85149;">Outstanding Balance</div>
-      <div class="value" style="color:#f85149;">$82.9K</div>
+      <div class="value" style="color:#f85149;">$80.4K</div>
       <div class="sub" style="color:#6e2020;">Unpaid invoices</div>
     </div>
   </div>
@@ -287,7 +287,7 @@
         
     <tr>
       <td><span class="badge badge-active">Active</span></td>
-      <td>65</td>
+      <td>66</td>
       <td>$1.02M</td>
       <td>50%</td>
       <td class="highlight-text">$107.4K</td>
@@ -338,7 +338,7 @@
     <div class="kpi" style="border-color:#f85149;">
       <div class="label" style="color:#f85149;"><50% (Low)</div>
       <div class="value" style="color:#f85149;font-size:22px;">$1.24M</div>
-      <div class="sub" style="color:#8b949e;margin-top:4px;">92 leads</div>
+      <div class="sub" style="color:#8b949e;margin-top:4px;">93 leads</div>
       <div class="sub" style="margin-top:4px;">Weighted: <span style="color:#f85149;font-weight:600;">$129.1K</span></div>
       <div class="progress-bar" style="margin-top:10px;background:#21262d;"><div class="progress-fill" style="width:10.4%;background:#f85149;"></div></div>
     </div>
@@ -400,7 +400,7 @@
     </tr>
     <tr>
       <td>Others</td>
-      <td>3</td>
+      <td>4</td>
       <td>$25.0K</td>
       <td class="highlight-text">$2.5K</td>
     </tr>
@@ -458,7 +458,7 @@
 
 </div>
 
-<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/7/6 上午8:00:04 (Taipei)</footer>
+<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/7/11 下午4:30:03 (Taipei)</footer>
 
 <script>
 const chartDefaults = {
@@ -478,7 +478,7 @@ new Chart(document.getElementById('revenueBar'), {
     datasets: [
       {
         label: 'Revenue',
-        data: [5076.99,3257.92,30404.58,76001.66000000002,71646.56999999999,76368.98999999999,0,0,0,0,0,0],
+        data: [5076.99,3257.92,30404.58,76001.66000000002,71639.59,76368.98999999999,0,0,0,0,0,0],
         backgroundColor: ctx => {
           const i = ctx.dataIndex;
           return i === 6 ? 'rgba(88,166,255,0.85)' : 'rgba(88,166,255,0.3)';
@@ -510,7 +510,7 @@ new Chart(document.getElementById('quarterBar'), {
     datasets: [
       {
         label: 'Actual',
-        data: [38739.490000000005,224017.22,0,0],
+        data: [38739.490000000005,224010.24,0,0],
         backgroundColor: ['rgba(88,166,255,0.8)','rgba(88,166,255,0.4)','rgba(88,166,255,0.2)','rgba(88,166,255,0.1)'],
         borderColor: '#58a6ff',
         borderWidth: 1,
@@ -543,7 +543,7 @@ new Chart(document.getElementById('pipelinePie'), {
   data: {
     labels: ['Dead','Closed','Pending','Active'],
     datasets: [{
-      data: [19,16,28,65],
+      data: [19,16,28,66],
       backgroundColor: ['#3fb950','#f85149','#e3b341','#58a6ff','#bc8cff','#79c0ff','#d2a8ff'],
       borderColor: '#161b22',
       borderWidth: 3,
