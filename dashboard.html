@@ -97,7 +97,7 @@
   <div class="meta">
     <h1>Business Dashboard · 2026</h1>
     <div class="gen" style="display:flex;align-items:center;gap:8px;">
-      <span>Generated 2026/7/20 上午6:00:13 (Taipei)</span>
+      <span>Generated 2026/7/20 上午8:00:04 (Taipei)</span>
       <button id="refreshBtn" onclick="triggerRefresh()" title="Pull latest data from Google Sheets" style="background:none;border:1px solid #30363d;color:#8b949e;border-radius:4px;padding:2px 8px;cursor:pointer;font-size:11px;line-height:1.4;">🔄 Refresh</button>
       <script>
       async function triggerRefresh() {
@@ -197,7 +197,7 @@
     </div>
     <div class="kpi" style="border-color:#f85149;">
       <div class="label" style="color:#f85149;">Outstanding Balance</div>
-      <div class="value" style="color:#f85149;">$72.3K</div>
+      <div class="value" style="color:#f85149;">$81.3K</div>
       <div class="sub" style="color:#6e2020;">Unpaid invoices</div>
     </div>
   </div>
@@ -287,8 +287,8 @@
       <td>T2 Suppliers</td>
       <td>12</td>
       <td>23</td>
-      <td>$301.5K</td>
-      <td class="highlight-text">$13.1K</td>
+      <td>$199.9K</td>
+      <td class="highlight-text">$8.7K</td>
     </tr>
     <tr>
       <td>T1 Suppliers</td>
@@ -301,8 +301,8 @@
       <td>Acadamic</td>
       <td>1</td>
       <td>14</td>
-      <td>$68.2K</td>
-      <td class="highlight-text">$4.9K</td>
+      <td>$41.8K</td>
+      <td class="highlight-text">$3.0K</td>
     </tr>
     <tr>
       <td>Others</td>
@@ -325,13 +325,13 @@
       </tr></thead>
       <tbody>
 <tr class="threshold-hit">
-      <td>東豐纖維企業股份有限公司</td>
-      <td class="highlight-text">$142.4K</td>
+      <td>財團法人紡織產業綜合研究所</td>
+      <td class="highlight-text">$41.8K</td>
       <td><span class="badge badge-active">Over $25K</span></td>
     </tr>
     <tr class="threshold-hit">
-      <td>財團法人紡織產業綜合研究所</td>
-      <td class="highlight-text">$68.2K</td>
+      <td>東豐纖維企業股份有限公司</td>
+      <td class="highlight-text">$40.9K</td>
       <td><span class="badge badge-active">Over $25K</span></td>
     </tr>
     <tr class="threshold-hit">
@@ -716,7 +716,7 @@
 
 </div>
 
-<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/7/20 上午6:00:13 (Taipei)</footer>
+<footer>Nunox Business Dashboard · Auto-generated weekly · 2026/7/20 上午8:00:04 (Taipei)</footer>
 
 <script>
 const chartDefaults = {
@@ -736,7 +736,7 @@ new Chart(document.getElementById('revenueBar'), {
     datasets: [
       {
         label: 'Revenue',
-        data: [5076.99,3257.92,30404.58,76001.66000000002,71637.45999999999,76368.98999999999,2221.32,0,0,0,0,0],
+        data: [5076.99,3257.92,30404.58,76001.66000000002,71637.45999999999,76368.98999999999,2227.17,0,0,0,0,0],
         backgroundColor: ctx => {
           const i = ctx.dataIndex;
           return i === 6 ? 'rgba(88,166,255,0.85)' : 'rgba(88,166,255,0.3)';
@@ -768,7 +768,7 @@ new Chart(document.getElementById('quarterBar'), {
     datasets: [
       {
         label: 'Actual',
-        data: [38739.490000000005,224008.11,2221.32,0],
+        data: [38739.490000000005,224008.11,2227.17,0],
         backgroundColor: ['rgba(88,166,255,0.8)','rgba(88,166,255,0.4)','rgba(88,166,255,0.2)','rgba(88,166,255,0.1)'],
         borderColor: '#58a6ff',
         borderWidth: 1,
